@@ -1,0 +1,38 @@
+Zaken 
+
+Zien:
+
+Admin rechten bestanden aanpassen.
+Oude Matrix: Vinkje voor bepaalde skills.
+Nieuwe skills kunnen toevoegen, op simpele manier (Zie foto van oude matrix)
+Engineers - resource / Machine - groups - (Nieuw: Skills) (Benaming niet erg)
+Geen beheer database / geen onderhoud
+Drop point = Plaats bij huis of bij een opslagplaats waar spullen worden geleverd.
+Hier kunnen engineers hun spullen vandaag halen
+
+//Gegevens voor engineer
+Droppoint is een code (Voorb. N15)
+Kenteken belangrijk
+VCA nummer 
+VCA datum behaald
+Auto merk, type en kleur
+Kenteken auto en prive adres
+Woonadres 
+Land van origien
+
+opleining van skills. Zie website. Products
+Combinatie van products gc + lc of apart.
+Ms is altijd combinatiesyteem
+Max 2 combinaties.
+Categoriën met sub categorien
+5977B/model = 5977  type = b 
+Categorie - subcategorie - model - type
+Apart knopje crosslab (producten van andere)
+
+Varian weghalen bij benamingen
+Alphabetisch ordenen op land, engineer en daarnaast level.
+Knop om volgorde/land aan te passen
+
+leonie.ter-voort@agilent.com
+
+Niet zien:
