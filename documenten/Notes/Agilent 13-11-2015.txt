@@ -1,0 +1,17 @@
+Agilent 13-11-2015
+
+Gebruik database van skillmatrix (?)
+
+Mogenlijk volgende x vrijdag datadump
+
+Levels uit de front-end, in de back-end
+
+Vlaggen bij engineer
+
+Back-End lees/schrijfrechten checken
+
+Bij namen eventueele noticies van ziek of niet aanwezig
+
+Asb of agilent weergeven
+
+Strategische droppoints (?)
