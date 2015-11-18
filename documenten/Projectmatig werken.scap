@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ScappleDocument Version="1.1" ID="0DA9F503-E895-4E46-93E1-9E7DAA40AFE2">
+    <Notes>
+        <Note ID="0" FontSize="12.0" Position="185.929688,128.265625" Width="45.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Fase 1</String>
+        </Note>
+        <Note ID="1" FontSize="12.0" Position="403.0,122.734375" Width="45.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Fase 2</String>
+        </Note>
+        <Note ID="2" FontSize="12.0" Position="906.417969,124.609375" Width="45.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Fase 3</String>
+        </Note>
+        <Note ID="3" FontSize="12.0" Position="1178.796875,129.695312" Width="45.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Fase 4</String>
+        </Note>
+        <Note ID="4" FontSize="12.0" Position="141.436891,221.1528" Width="158.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Analyse Informatie behoefte</String>
+            <ConnectedNoteIDs>20</ConnectedNoteIDs>
+        </Note>
+        <Note ID="5" FontSize="12.0" Position="160.319805,282.0" Width="101.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Pakket van Eisen</String>
+            <ConnectedNoteIDs>20</ConnectedNoteIDs>
+        </Note>
+        <Note ID="6" FontSize="12.0" Position="256.885552,587.151786" Width="72.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Feature List</String>
+        </Note>
+        <Note ID="7" FontSize="12.0" Position="409.626826,193.320008" Width="54.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Ontwerp</String>
+        </Note>
+        <Note ID="8" FontSize="12.0" Position="527.488281,274.992188" Width="117.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Functioneel ontwerp</String>
+            <ConnectedNoteIDs>20</ConnectedNoteIDs>
+        </Note>
+        <Note ID="9" FontSize="12.0" Position="665.496094,273.746094" Width="108.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Technisch ontwerp</String>
+            <ConnectedNoteIDs>20</ConnectedNoteIDs>
+        </Note>
+        <Note ID="10" FontSize="12.0" Position="364.085938,275.777344" Width="147.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Frontend Design (UX / UI)</String>
+            <ConnectedNoteIDs>20</ConnectedNoteIDs>
+        </Note>
+        <Note ID="11" FontSize="12.0" Position="899.042969,212.625" Width="59.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Productie</String>
+        </Note>
+        <Note ID="12" FontSize="12.0" Position="854.125,270.429688" Width="61.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Hardware</String>
+            <ConnectedNoteIDs>20</ConnectedNoteIDs>
+        </Note>
+        <Note ID="13" FontSize="12.0" Position="990.701299,270.0" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Code</String>
+            <ConnectedNoteIDs>20</ConnectedNoteIDs>
+        </Note>
+        <Note ID="14" FontSize="12.0" Position="936.394531,268.726562" Width="34.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Data</String>
+            <ConnectedNoteIDs>20</ConnectedNoteIDs>
+        </Note>
+        <Note ID="15" FontSize="12.0" Position="1052.957031,268.398438" Width="61.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Front-end</String>
+            <ConnectedNoteIDs>20</ConnectedNoteIDs>
+        </Note>
+        <Note ID="16" FontSize="12.0" Position="1180.496094,213.960938" Width="67.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Oplevering</String>
+        </Note>
+        <Note ID="17" FontSize="12.0" Position="1316.107346,266.742492" Width="53.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Testplan</String>
+            <ConnectedNoteIDs>20</ConnectedNoteIDs>
+        </Note>
+        <Note ID="18" FontSize="12.0" Position="1394.44724,270.500406" Width="87.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Acceptatie test</String>
+            <ConnectedNoteIDs>20</ConnectedNoteIDs>
+        </Note>
+        <Note ID="19" FontSize="12.0" Position="1181.262784,269.349432" Width="110.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Implementatie plan</String>
+            <ConnectedNoteIDs>20</ConnectedNoteIDs>
+        </Note>
+        <Note ID="20" FontSize="12.0" Position="150.70901,418.24858" Width="1362.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Documentatie</String>
+            <ConnectedNoteIDs>4-5, 8-10, 12-15, 17-19, 21-22</ConnectedNoteIDs>
+        </Note>
+        <Note ID="21" FontSize="12.0" Position="160.431615,462.196631" Width="55.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Planning</String>
+            <ConnectedNoteIDs>20</ConnectedNoteIDs>
+        </Note>
+        <Note ID="22" FontSize="12.0" Position="266.0,462.0" Width="1243.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Urenverantwoording</String>
+            <ConnectedNoteIDs>20</ConnectedNoteIDs>
+        </Note>
+        <Note ID="23" FontSize="12.0" Position="131.113028,162.70901" Width="31.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Titel</String>
+        </Note>
+        <Note ID="24" FontSize="12.0" Position="185.640219,163.0" Width="33.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Doel</String>
+        </Note>
+        <Note ID="25" FontSize="12.0" Position="235.07711,164.45414" Width="107.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Korte omschrijving</String>
+        </Note>
+        <Note ID="26" FontSize="12.0" Position="365.043425,588.941558" Width="51.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Mockup</String>
+        </Note>
+        <Note ID="27" FontSize="12.0" Position="161.323052,589.67918" Width="52.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Scapple</String>
+        </Note>
+        <Note ID="28" FontSize="12.0" Position="520.354505,591.948458" Width="146.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Productie van een feature</String>
+        </Note>
+        <Note ID="29" FontSize="12.0" Position="745.642857,595.443791" Width="44.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Testen</String>
+        </Note>
+        <Note ID="30" FontSize="12.0" Position="853.113028,597.310877" Width="64.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Opleveren</String>
+        </Note>
+        <Note ID="31" FontSize="12.0" Position="888.69724,667.533685" Width="20.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>1</String>
+        </Note>
+        <Note ID="32" FontSize="12.0" Position="891.286526,721.17289" Width="20.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>2</String>
+        </Note>
+        <Note ID="33" FontSize="12.0" Position="892.437703,766.584416" Width="20.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>3</String>
+        </Note>
+        <Note ID="34" FontSize="12.0" Position="890.99655,821.406656" Width="25.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>4</String>
+        </Note>
+        <Note ID="35" FontSize="12.0" Position="897.134537,878.50487" Width="20.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>5</String>
+        </Note>
+        <Note ID="36" FontSize="12.0" Position="903.420657,936.097403" Width="20.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>6</String>
+        </Note>
+        <Note ID="37" FontSize="12.0" Position="294.0,1021.0" Width="20.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>7</String>
+        </Note>
+        <Note ID="38" FontSize="12.0" Position="130.628044,95.242695" Width="115.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Waterval Methode</String>
+        </Note>
+        <Note ID="39" FontSize="12.0" Position="164.517857,557.904221" Width="43.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Fill>0.940019 0.892907 0.779716</Fill>
+            </Appearance>
+            <String>Scrum</String>
+        </Note>
+    </Notes>
+    <BackgroundShapes>
+        <Shape ID="40" Sticky="No" Position="120.0,107.0" Width="1404.0" Height="395.0">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+        <Shape ID="41" Sticky="No" Position="150.0,571.0" Width="784.0" Height="490.0">
+            <Appearance>
+                <Border Weight="1"></Border>
+            </Appearance>
+        </Shape>
+    </BackgroundShapes>
+    <AutoFit>0-19, 21, 23-33, 35-37, 39</AutoFit>
+    <NoteStyles>
+        <Style Name="Title Text" ID="AD7DEC7F-AE3F-414B-81B7-AE36F5F52D5A" AffectFontStyle="Yes" AffectAlignment="Yes" AffectTextColor="No" AffectNoteBody="No" AffectFade="No">
+            <FontSize>28.0</FontSize>
+            <IsBold>Yes</IsBold>
+        </Style>
+        <Style Name="Red Text" ID="5847D767-E588-49BE-8968-9D60DC238C39" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="Yes" AffectNoteBody="No" AffectFade="No">
+            <TextColor>1.0 0.0 0.0</TextColor>
+        </Style>
+        <Style Name="Brown Bubble" ID="0EB2EB3A-4EBE-48D3-B02A-7A7E4E8AB22C" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.290055 0.1523 0.182215</BorderColor>
+            <FillColor>0.940019 0.892907 0.779716</FillColor>
+        </Style>
+        <Style Name="Yellow Bubble" ID="A8FB3377-D0A1-4750-B89E-2C98A1AB3CAC" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.756763 0.785592 0.373258</BorderColor>
+            <FillColor>0.906773 0.910625 0.634363</FillColor>
+        </Style>
+        <Style Name="Green Bubble" ID="9273ABFE-39E5-4932-9D69-CFC294747158" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.331867 0.609932 0.356197</BorderColor>
+            <FillColor>0.790123 0.882328 0.80198</FillColor>
+        </Style>
+        <Style Name="Blue Bubble" ID="B9636C00-28DC-4170-B0B2-DD1257D4014D" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.477193 0.557066 0.76433</BorderColor>
+            <FillColor>0.840969 0.866828 0.925903</FillColor>
+        </Style>
+        <Style Name="Pink Bubble" ID="4C9804CD-C925-4862-BF3A-408F7F916374" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.747881 0.366532 0.542813</BorderColor>
+            <FillColor>0.918452 0.807302 0.863467</FillColor>
+        </Style>
+    </NoteStyles>
+    <UISettings>
+        <BackgroundColor>1.0 1.0 1.0</BackgroundColor>
+        <DefaultFont>Helvetica</DefaultFont>
+        <DefaultTextColor>0.0 0.0 0.0</DefaultTextColor>
+    </UISettings>
+    <PrintSettings PaperSize="595.0,842.0" LeftMargin="72.0" RightMargin="72.0" TopMargin="90.0" BottomMargin="90.0" PaperType="iso-a4" Orientation="Portrait" HorizontalPagination="Clip" VerticalPagination="Auto" ScaleFactor="1.0" HorizontallyCentered="Yes" VerticallyCentered="Yes" Collates="Yes" PagesAcross="1" PagesDown="1"></PrintSettings>
+</ScappleDocument>
