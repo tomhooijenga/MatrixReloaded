@@ -1,0 +1,13 @@
+Categorieën gebruiken als aparte menu.
+Toms idee. Categorieën als lijst.
+Bepaalde rechten per users.
+Geen dubbelen (Kan als categorieën)
+Categoriën shortcode daarna uitgeschreven.
+zoekmachine zoeken op shortcode.
+Add new Product. naam/categorie/sub categorie.
+Skill = Products.
+Supplys = consumables. niet gebruiken bij skills
+Meldingen voor acties.
+Personen op "inactive". Dus kan niet zien, maar hij is wel in database
+Admin add/remove rechten. User Read/Write engineer.
+
