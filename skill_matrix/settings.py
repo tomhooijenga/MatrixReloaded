@@ -36,6 +36,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Our apps
+    'rest_framework',
     'api',
 )
 
@@ -74,11 +77,13 @@ WSGI_APPLICATION = 'skill_matrix.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'mysql.connector.django',
+        'HOST': 'localhost',
+        'NAME': 'asm',
+        'USER': 'root', # THIS MUST CHANGE ON DEPLOYMENT
+        'PASSWORD': 'asdf', # THIS MUST CHANGE ON DEPLOYMENT
     }
 }
 
@@ -90,9 +95,9 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I18N = False
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -101,3 +106,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Rest framework settings
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 10,
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
+    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.SessionAuthentication',)
+}
+
+# Override the default User model with our own
+AUTH_USER_MODEL = 'api.User'
