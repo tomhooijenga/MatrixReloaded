@@ -76,16 +76,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'skill_matrix.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
+        'ENGINE': 'django.db.backends.sqlite3',
         'HOST': 'localhost',
-        'NAME': 'asm',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'), # THIS MUST CHANGE ON DEPLOYMENT
         'USER': 'root', # THIS MUST CHANGE ON DEPLOYMENT
-        'PASSWORD': 'asdf', # THIS MUST CHANGE ON DEPLOYMENT
+        'PASSWORD': 'asdf', # THIS MUST CHANGE ON DEPLOYMENT,
     }
 }
 
