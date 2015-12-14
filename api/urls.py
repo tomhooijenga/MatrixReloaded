@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-# Frontend URLs go here
+# API URLs go here
 urlpatterns = [
 
 ]
