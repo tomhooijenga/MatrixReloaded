@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     # Our apps
     'rest_framework',
     'api',
+    'frontend',
 )
 
 MIDDLEWARE_CLASSES = (
