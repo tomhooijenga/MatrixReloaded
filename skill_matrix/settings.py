@@ -111,7 +111,7 @@ STATIC_URL = '/static/'
 # Add site wide static files like bootstrap
 STATICFILES_DIRS = (
     # Project assets
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static'),
 )
 
 # Rest framework settings
