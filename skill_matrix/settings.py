@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'api',
     'frontend',
+    'backend'
 )
 
 MIDDLEWARE_CLASSES = (
