@@ -90,7 +90,6 @@ DATABASES = {
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -105,11 +104,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+# app files go in (app)/static
 STATIC_URL = '/static/'
+
+# Add site wide static files like bootstrap
+STATICFILES_DIRS = (
+    # Project assets
+    os.path.join(BASE_DIR, 'static')
+)
 
 # Rest framework settings
 REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
+    # A request needs to be at least logged in. Extra required permissions are
+    # defined in the Views
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
     'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.SessionAuthentication',)
 }
