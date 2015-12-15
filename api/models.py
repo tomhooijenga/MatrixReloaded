@@ -1,6 +1,7 @@
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin
 )
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 
@@ -56,3 +57,139 @@ class User(AbstractBaseUser, PermissionsMixin):
         Get the long string representation of a user
         """
         return getattr(self, self.USERNAME_FIELD)
+
+
+class Country(models.Model):
+    # The name of the country
+    name = models.CharField(max_length=100)
+
+
+class Language(models.Model):
+    # The name of the language
+    name = models.CharField(max_length=100, unique=True)
+
+
+class Engineer(models.Model):
+    # The id in the external system
+    employee_number = models.CharField(max_length=20)
+
+    # The first name of the employee
+    first_name = models.CharField(max_length=100)
+
+    # The last name of the employee
+    last_name = models.CharField(max_length=100)
+
+    # The location code where supplies should be dropped
+    droppoint = models.CharField(max_length=20)
+
+    # Employee's phone number
+    phone = models.CharField(max_length=11)
+
+    # Employee's email
+    email = models.EmailField()
+
+    # VCA number. Empty if employee doesn't have a VCA
+    vca_number = models.CharField(max_length=20)
+
+    # VCA Expiry date. Empty if employee doesn't have a VCA
+    vca_date = models.DateField()
+
+    # Employee's car brand and model. Example: Audi A5
+    car_type = models.CharField(max_length=100)
+
+    # Color of the employees car
+    car_color = models.CharField(max_length=100)
+
+    # License plate of the employee's car
+    license_plate = models.CharField(max_length=10)
+
+    # Address, street with number
+    street = models.CharField(max_length=100)
+
+    # Address, zip code part
+    zip_code = models.CharField(max_length=10)
+
+    # Addres, City part
+    city = models.CharField(max_length=100)
+
+    # Address, Country part
+    # Because an engineer has 2 relations with Country, the address country does not have a reverse relationship
+    country = models.ForeignKey(Country, related_name='+')
+
+    # Countries that a the employee is available in
+    countries = models.ManyToManyField(Country, related_name='engineers')
+
+    # Languages that the employee speaks
+    languages = models.ManyToManyField(Language, related_name='engineers')
+
+    # Wether this employee is still active or not
+    is_active = models.BooleanField(db_index=True)
+
+
+    # The skills of this employee. Defined in the Skill model
+    # skills
+
+    # The note of this employee. Defined in the Note model
+    # note
+
+
+class Note(models.Model):
+    """
+    This class represents a single comment on an engineer
+    """
+
+    # The actual message of the comment
+    content = models.CharField(max_length=255)
+
+    # The comment is visible from this date. Defaults to today
+    visible_from = models.DateField(auto_now=True)
+
+    # The comment is visible untill this date
+    visible_untill = models.DateField(null=True)
+
+    # The engineer that this note belongs to
+    engineer = models.OneToOneField(Engineer, related_name='note')
+
+
+class Category(models.Model):
+    # The abbreviation of the Category. Example: AA for Atomic Absorption
+    short_name = models.CharField(max_length=5)
+
+    # The full name of the Category
+    name = models.CharField(max_length=100)
+
+    # The parent category of this category
+    parent = models.ForeignKey('self', null=True, limit_choices_to={
+        'parent': not None
+    })
+
+
+class Product(models.Model):
+    # The name of the product
+    name = models.CharField(max_length=100)
+
+    # Wether this product is still in use
+    is_active = models.BooleanField(default=True, db_index=True)
+
+    # Wether this product is CrossLab or not
+    is_crosslab = models.BooleanField(default=False)
+
+    # The category that this product belongs to
+    category = models.ForeignKey(Category, related_name='products')
+
+    # The engineers that can work with this product. Defined in the Skill model
+    # engineers
+
+
+class Skill(models.Model):
+    # The engineer that has this skill
+    engineer = models.ForeignKey(Engineer, related_name='skills')
+
+    # The product that this skill belongs to
+    product = models.ForeignKey(Product, related_name='engineers')
+
+    # The level of the skill. Min = 1, Max = 4
+    level = models.SmallIntegerField(validators=[
+        MinValueValidator(1),
+        MaxValueValidator(4)
+    ])
