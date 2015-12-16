@@ -60,13 +60,27 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Country(models.Model):
+
+    # The ISO-3166-Alpha-2 country code
+    code = models.CharField(max_length=2)
+
     # The name of the country
     name = models.CharField(max_length=100)
 
+    # The engineers that are available in this country
+    # engineers
+
 
 class Language(models.Model):
+
+    # The ISO-639-1 language code
+    code = models.CharField(max_length=2)
+
     # The name of the language
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100)
+
+    # The engineers that speak this language
+    # engineers
 
 
 class Engineer(models.Model):
@@ -89,10 +103,10 @@ class Engineer(models.Model):
     email = models.EmailField()
 
     # VCA number. Empty if employee doesn't have a VCA
-    vca_number = models.CharField(max_length=20)
+    vca_number = models.CharField(max_length=20, null=True)
 
     # VCA Expiry date. Empty if employee doesn't have a VCA
-    vca_date = models.DateField()
+    vca_date = models.DateField(null=True)
 
     # Employee's car brand and model. Example: Audi A5
     car_type = models.CharField(max_length=100)
@@ -122,9 +136,8 @@ class Engineer(models.Model):
     # Languages that the employee speaks
     languages = models.ManyToManyField(Language, related_name='engineers')
 
-    # Wether this employee is still active or not
+    # Whether this employee is still active or not
     is_active = models.BooleanField(db_index=True)
-
 
     # The skills of this employee. Defined in the Skill model
     # skills
@@ -162,6 +175,9 @@ class Category(models.Model):
     parent = models.ForeignKey('self', null=True, limit_choices_to={
         'parent': not None
     })
+
+    # The products that belong to this category. Defined in the Product model
+    # products
 
 
 class Product(models.Model):
