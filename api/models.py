@@ -158,8 +158,8 @@ class Note(models.Model):
     # The comment is visible from this date. Defaults to today
     visible_from = models.DateField(auto_now=True)
 
-    # The comment is visible untill this date
-    visible_untill = models.DateField(null=True)
+    # The comment is visible until this date
+    visible_until = models.DateField(null=True)
 
     # The engineer that this note belongs to
     engineer = models.OneToOneField(Engineer, related_name='note')
@@ -185,10 +185,10 @@ class Product(models.Model):
     # The name of the product
     name = models.CharField(max_length=100)
 
-    # Wether this product is still in use
+    # Whether this product is still in use
     is_active = models.BooleanField(default=True, db_index=True)
 
-    # Wether this product is CrossLab or not
+    # Whether this product is CrossLab or not
     is_crosslab = models.BooleanField(default=False)
 
     # The category that this product belongs to
