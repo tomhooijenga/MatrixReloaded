@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
-from rest_framework import serializers
+from expander import ExpanderSerializerMixin
+from rest_framework import serializers, filters
 
 from . import models
 
@@ -36,18 +37,16 @@ class LanguageSerializer(serializers.ModelSerializer):
         model = models.Language
 
 
-class EngineerSerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     """
-    This class is responsible for the serialization of the 'Engineer' model
+    This class is responsible for the serialization of the 'Product' model'
     """
 
     class Meta:
-        model = models.Engineer
-
-        #exclude = ('countries', 'languages')
+        model = models.Product
 
 
-class SkillSerializer(serializers.ModelSerializer):
+class SkillSerializer(ExpanderSerializerMixin, serializers.ModelSerializer):
     """
     This class is responsible for the serialization of the 'Skill' model
     """
@@ -56,10 +55,29 @@ class SkillSerializer(serializers.ModelSerializer):
         model = models.Skill
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class EngineerSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSerializer):
     """
-    This class is responsible for the serialization of the 'Product' model'
+    This class is responsible for the serialization of the 'Engineer' model
     """
 
+    # Skills is a reverse relation, so add it manually
+    skills = serializers.HyperlinkedRelatedField(view_name='skill-detail', many=True, read_only=True)
+
     class Meta:
-        model = models.Product
+        model = models.Engineer
+
+        expandable_fields = {
+            'country': CountrySerializer,
+            'countries': (CountrySerializer, (), {'many': True}),
+            'languages': (LanguageSerializer, (), {'many': True}),
+            'skills': (SkillSerializer, (), {'many': True})
+        }
+
+
+# Python does not have 'hoisting'. That is, you can not reference a class that is later defined. Because the
+# SkillSerializer has a reference to the EngineerSerializer, we have to add this reference after the declaration of
+# the EngineerSerializer
+SkillSerializer.Meta.expandable_fields = {
+    'engineer': EngineerSerializer,
+    'product': ProductSerializer
+}

@@ -7,18 +7,14 @@ from . import views
 router = DefaultRouter()
 # Engineers
 router.register(r'engineers', views.EngineerViewSet)
-# Engineer's countries
-router.register(r'engineers/(?P<engineer>\d+)/countries',
-                views.EngineerCountriesViewSet)
-# Engineer's skills
-router.register(r'engineers/(?P<engineer>\d+)/skills',
-                views.EngineerSkillsViewSet)
 # Countries
-# router.register(r'countries', views.CountryViewSet)
+router.register(r'countries', views.CountryViewSet)
 # Languages
-# router.register(r'languages', views.LanguageViewSet)
-# # Skills
-# router.register(r'skills', views.SkillViewSet)
+router.register(r'languages', views.LanguageViewSet)
+# Skills
+router.register(r'skills', views.SkillViewSet)
+# Products
+router.register(r'products', views.ProductViewSet)
 
 # API URLs go here
 urlpatterns = [
