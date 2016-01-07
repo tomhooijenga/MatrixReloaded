@@ -127,7 +127,8 @@ class Engineer(models.Model):
     city = models.CharField(max_length=100)
 
     # Address, Country part
-    # Because an engineer has 2 relations with Country, the address country does not have a reverse relationship
+    # Because an engineer has 2 relations with Country, the address country does
+    # not have a reverse relationship
     country = models.ForeignKey(Country, related_name='+')
 
     # Countries that a the employee is available in
