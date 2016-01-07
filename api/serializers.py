@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from expander import ExpanderSerializerMixin
 from rest_framework import serializers, filters
+from rest_framework import serializers
 
 from . import models
 
@@ -55,6 +56,15 @@ class SkillSerializer(ExpanderSerializerMixin, serializers.ModelSerializer):
         model = models.Skill
 
 
+class CategorySerializer(ExpanderSerializerMixin, serializers.ModelSerializer):
+    """
+    This class is responsible for the serialization of the 'Category' model
+    """
+
+    class Meta:
+        model = models.Category
+
+
 class EngineerSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSerializer):
     """
     This class is responsible for the serialization of the 'Engineer' model
@@ -80,4 +90,8 @@ class EngineerSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSe
 SkillSerializer.Meta.expandable_fields = {
     'engineer': EngineerSerializer,
     'product': ProductSerializer
+}
+
+CategorySerializer.Meta.expandable_fields = {
+    'parent': CategorySerializer
 }

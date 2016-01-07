@@ -15,6 +15,8 @@ router.register(r'languages', views.LanguageViewSet)
 router.register(r'skills', views.SkillViewSet)
 # Products
 router.register(r'products', views.ProductViewSet)
+# Categories
+router.register(r'categories', views.CategoryViewSet)
 
 # API URLs go here
 urlpatterns = [

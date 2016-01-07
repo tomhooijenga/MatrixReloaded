@@ -74,3 +74,13 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = models.Product.objects.all()
 
     serializer_class = serializers.ProductSerializer
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint for the categories
+    """
+
+    queryset = models.Category.objects.all()
+
+    serializer_class = serializers.CategorySerializer
