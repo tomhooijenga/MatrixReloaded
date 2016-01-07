@@ -125,3 +125,22 @@ REST_FRAMEWORK = {
 
 # Override the default User model with our own
 AUTH_USER_MODEL = 'api.User'
+
+LOGGING = {
+    'disable_existing_loggers': True,
+    'version': 1,
+    'handlers': {
+        'console': {
+            # logging handler that outputs log messages to terminal
+            'class': 'logging.StreamHandler',
+            'level': 'DEBUG', # message level to be written to console
+        },
+    },
+    'loggers': {
+        'django.db': {
+            # django also has database level logging
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
