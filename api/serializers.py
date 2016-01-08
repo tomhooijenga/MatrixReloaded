@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from expander import ExpanderSerializerMixin
-from rest_framework import serializers, filters
 from rest_framework import serializers
 
 from . import models

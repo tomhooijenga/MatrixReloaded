@@ -43,7 +43,7 @@ class CountryViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = models.Country.objects.all()
 
-    serializers_class = serializers.CountrySerializer
+    serializer_class = serializers.CountrySerializer
 
 
 class LanguageViewSet(viewsets.ReadOnlyModelViewSet):
@@ -53,7 +53,7 @@ class LanguageViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = models.Language.objects.all()
 
-    serializers_class = serializers.LanguageSerializer
+    serializer_class = serializers.LanguageSerializer
 
 
 class SkillViewSet(viewsets.ModelViewSet):
