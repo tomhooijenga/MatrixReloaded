@@ -203,7 +203,7 @@ class Skill(models.Model):
     engineer = models.ForeignKey(Engineer, related_name='skills')
 
     # The product that this skill belongs to
-    product = models.ForeignKey(Product, related_name='engineers')
+    product = models.ForeignKey(Product, related_name='skills')
 
     # The level of the skill. Min = 1, Max = 4
     level = models.SmallIntegerField(validators=[

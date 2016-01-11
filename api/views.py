@@ -1,5 +1,7 @@
 from django.contrib.auth import get_user_model
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
+from rest_framework.response import Response
+from rest_framework.viewsets import GenericViewSet
 
 from . import serializers, models
 
@@ -27,13 +29,64 @@ class EngineerViewSet(viewsets.ModelViewSet):
     # The default serializer
     serializer_class = serializers.EngineerSerializer
 
+
+class EngineerCountriesViewSet(mixins.RetrieveModelMixin,
+                               mixins.UpdateModelMixin,
+                               mixins.DestroyModelMixin,
+                               mixins.ListModelMixin,
+                               GenericViewSet):
+    """
+    API endpoint for the engineer's countries.
+    GET     /engineers/:engineer/countries              Show all the engineer's countries
+    GET     /engineers/:engineer/countries/:country     Show the country or 404 if there's no link
+    PUT     /engineers/:engineer/countries/:country     Creates a link
+    DELETE  /engineers/:engineer:/countries:country     Deletes a link
+    """
+
+    # The default queryset
+    queryset = models.Country.objects.all()
+
+    # The default serializer
+    serializer_class = serializers.CountrySerializer
+
     def get_queryset(self):
         """
-        Override the default queryset to pre-load the country
+        Filter the countries to only return those of the engineer
         :return:
         """
-        return self.queryset.select_related('country').prefetch_related(
-                'countries', 'languages', 'skills')
+        engineer = self.kwargs['engineer']
+
+        return self.queryset.filter(engineers__id=engineer)
+
+    def update(self, request, *args, **kwargs):
+        """
+        Create a link between a country and an engineer
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+        engineer = models.Engineer.objects.get(pk=kwargs['engineer'])
+        country = models.Country.objects.get(pk=kwargs['pk'])
+
+        engineer.countries.add(country)
+
+        return Response(self.get_serializer(country))
+
+    def destroy(self, request, *args, **kwargs):
+        """
+        Destroy a link between a country and an engineer
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+        engineer = models.Engineer.objects.get(pk=kwargs['engineer'])
+        country = models.Country.objects.get(pk=kwargs['pk'])
+
+        engineer.countries.remove(country)
+
+        return Response(self.get_serializer(country))
 
 
 class CountryViewSet(viewsets.ReadOnlyModelViewSet):

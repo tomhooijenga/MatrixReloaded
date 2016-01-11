@@ -7,6 +7,7 @@ from . import views
 router = DefaultRouter()
 # Engineers
 router.register(r'engineers', views.EngineerViewSet)
+router.register(r'engineers/(?P<engineer>\d+)/countries', views.EngineerCountriesViewSet)
 # Countries
 router.register(r'countries', views.CountryViewSet)
 # Languages
