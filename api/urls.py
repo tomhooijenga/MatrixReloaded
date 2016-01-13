@@ -8,6 +8,7 @@ router = DefaultRouter()
 # Engineers
 router.register(r'engineers', views.EngineerViewSet)
 router.register(r'engineers/(?P<engineer>\d+)/countries', views.EngineerCountriesViewSet)
+router.register(r'engineers/(?P<engineer>\d+)/languages', views.EngineerLanguagesViewSet)
 # Countries
 router.register(r'countries', views.CountryViewSet)
 # Languages

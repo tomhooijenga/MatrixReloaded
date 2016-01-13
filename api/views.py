@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from rest_framework import status
 from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
@@ -24,23 +25,18 @@ class EngineerViewSet(viewsets.ModelViewSet):
     """
 
     # The default queryset
-    queryset = models.Engineer.objects.all()
+    queryset = models.Engineer.objects.all().select_related('country').prefetch_related('countries', 'languages',
+                                                                                        'skills')
 
     # The default serializer
     serializer_class = serializers.EngineerSerializer
 
 
 class EngineerCountriesViewSet(mixins.RetrieveModelMixin,
-                               mixins.UpdateModelMixin,
-                               mixins.DestroyModelMixin,
                                mixins.ListModelMixin,
                                GenericViewSet):
     """
-    API endpoint for the engineer's countries.
-    GET     /engineers/:engineer/countries              Show all the engineer's countries
-    GET     /engineers/:engineer/countries/:country     Show the country or 404 if there's no link
-    PUT     /engineers/:engineer/countries/:country     Creates a link
-    DELETE  /engineers/:engineer:/countries:country     Deletes a link
+    API endpoint for the engineer's countries
     """
 
     # The default queryset
@@ -52,7 +48,6 @@ class EngineerCountriesViewSet(mixins.RetrieveModelMixin,
     def get_queryset(self):
         """
         Filter the countries to only return those of the engineer
-        :return:
         """
         engineer = self.kwargs['engineer']
 
@@ -61,32 +56,68 @@ class EngineerCountriesViewSet(mixins.RetrieveModelMixin,
     def update(self, request, *args, **kwargs):
         """
         Create a link between a country and an engineer
-        :param request:
-        :param args:
-        :param kwargs:
-        :return:
         """
         engineer = models.Engineer.objects.get(pk=kwargs['engineer'])
         country = models.Country.objects.get(pk=kwargs['pk'])
 
         engineer.countries.add(country)
 
-        return Response(self.get_serializer(country))
+        return self.list(request, *args, **kwargs)
 
     def destroy(self, request, *args, **kwargs):
         """
         Destroy a link between a country and an engineer
-        :param request:
-        :param args:
-        :param kwargs:
-        :return:
         """
         engineer = models.Engineer.objects.get(pk=kwargs['engineer'])
         country = models.Country.objects.get(pk=kwargs['pk'])
 
         engineer.countries.remove(country)
 
-        return Response(self.get_serializer(country))
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class EngineerLanguagesViewSet(mixins.RetrieveModelMixin,
+                               mixins.ListModelMixin,
+                               GenericViewSet):
+    """
+    API endpoint for the engineer's languages
+    """
+
+    # The default queryset
+    queryset = models.Language.objects.all()
+
+    # The default serializer
+    serializer_class = serializers.LanguageSerializer
+
+    def get_queryset(self):
+        """
+        Filter the countries to only return those of the engineer
+        """
+        engineer = self.kwargs['engineer']
+
+        return self.queryset.filter(engineers__id=engineer)
+
+    def update(self, request, *args, **kwargs):
+        """
+        Create a link between a language and an engineer
+        """
+        engineer = models.Engineer.objects.get(pk=kwargs['engineer'])
+        language = models.Language.objects.get(pk=kwargs['pk'])
+
+        engineer.languages.add(language)
+
+        return self.list(request, *args, **kwargs)
+
+    def destroy(self, request, *args, **kwargs):
+        """
+        Destroy a link between a language and an engineer
+        """
+        engineer = models.Engineer.objects.get(pk=kwargs['engineer'])
+        country = models.Country.objects.get(pk=kwargs['pk'])
+
+        engineer.countries.remove(country)
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class CountryViewSet(viewsets.ReadOnlyModelViewSet):
@@ -114,7 +145,7 @@ class SkillViewSet(viewsets.ModelViewSet):
     API endpoint for the Skills.
     """
 
-    queryset = models.Skill.objects.all()
+    queryset = models.Skill.objects.all().select_related('engineer', 'product')
 
     serializer_class = serializers.SkillSerializer
 
@@ -124,7 +155,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     API endpoint for the products
     """
 
-    queryset = models.Product.objects.all()
+    queryset = models.Product.objects.all().select_related('category').prefetch_related('skills')
 
     serializer_class = serializers.ProductSerializer
 
@@ -134,6 +165,6 @@ class CategoryViewSet(viewsets.ModelViewSet):
     API endpoint for the categories
     """
 
-    queryset = models.Category.objects.all()
+    queryset = models.Category.objects.all().select_related('parent')
 
     serializer_class = serializers.CategorySerializer
