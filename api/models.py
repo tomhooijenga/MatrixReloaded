@@ -60,7 +60,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Country(models.Model):
-
     # The ISO-3166-Alpha-2 country code
     code = models.CharField(max_length=2)
 
@@ -72,7 +71,6 @@ class Country(models.Model):
 
 
 class Language(models.Model):
-
     # The ISO-639-1 language code
     code = models.CharField(max_length=2)
 
@@ -210,3 +208,7 @@ class Skill(models.Model):
         MinValueValidator(1),
         MaxValueValidator(4)
     ])
+
+    class Meta:
+        # Ensure there's always only one combination of engineer and product
+        unique_together = ('engineer', 'product')
