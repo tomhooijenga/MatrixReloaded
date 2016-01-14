@@ -1,0 +1,5 @@
+Introductie, behoefte
+Mockups documentatie
+Ontwerp breder internationaal
+Functioneel ontwerp - benodigdheden, taal, server specs
+
