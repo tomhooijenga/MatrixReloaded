@@ -31,6 +31,26 @@ class EngineerViewSet(viewsets.ModelViewSet):
     # The default serializer
     serializer_class = serializers.EngineerSerializer
 
+    def filter_queryset(self, queryset):
+        # Filter the engineers to have at least one of their operating countries in the list
+        countries = self.request.query_params.get('countries', None)
+        if countries is not None:
+            # Convert to list of country codes
+            countries = countries.upper().split(',')
+            queryset = queryset.filter(countries__code__in=countries)
+
+        # filter by active status. Is actually 3 values:
+        # true or omitted: active only
+        # false: not active only
+        # anything else: include all
+        is_active = self.request.query_params.get('is_active', 'true')
+        if is_active.lower() in ('true', '1'):
+            queryset = queryset.filter(is_active=True)
+        elif is_active.lower() in ('false', '0'):
+            queryset = queryset.filter(is_active=False)
+
+        return queryset
+
 
 class EngineerCountriesViewSet(mixins.RetrieveModelMixin,
                                mixins.ListModelMixin,
