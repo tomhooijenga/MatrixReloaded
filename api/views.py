@@ -198,12 +198,3 @@ class NoteViewSet(viewsets.ModelViewSet):
     queryset = models.Note.objects.all()
 
     serializer_class = serializers.NoteSerializer
-
-    def create(self, request, *args, **kwargs):
-        # Limit the engineer's notes to 1. If one exists, update that one
-
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
