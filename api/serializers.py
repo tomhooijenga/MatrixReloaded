@@ -68,6 +68,15 @@ class CategorySerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSe
         model = models.Category
 
 
+class NoteSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    This class is responsible for the serialization of the 'Note' model
+    """
+
+    class Meta:
+        model = models.Note
+
+
 class EngineerSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSerializer):
     """
     This class is responsible for the serialization of the 'Engineer' model
@@ -75,6 +84,8 @@ class EngineerSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSe
 
     # Skills is a reverse relation, so add it manually
     skills = serializers.HyperlinkedRelatedField(view_name='skill-detail', many=True, read_only=True)
+
+    note = serializers.HyperlinkedRelatedField(view_name='note-detail', read_only=True)
 
     class Meta:
         model = models.Engineer
@@ -102,5 +113,6 @@ EngineerSerializer.Meta.expandable_fields = {
     'country': CountrySerializer,
     'countries': (CountrySerializer, (), {'many': True}),
     'languages': (LanguageSerializer, (), {'many': True}),
-    'skills': (SkillSerializer, (), {'many': True})
+    'skills': (SkillSerializer, (), {'many': True}),
+    'note': NoteSerializer
 }
