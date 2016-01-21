@@ -1,0 +1,64 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ meta.verbose_name_plural|title }} &ndash; A.S.M.</title>
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet"/>
+    <link href="{% static "backend.css" %}" rel="stylesheet"/>
+</head>
+<body>
+<aside>
+    <nav>
+        <a href="{%  url 'backend-engineers' %}">Engineers</a>
+        <a href="{%  url 'backend-products' %}">Products</a>
+        <a href="{%  url 'backend-categories' %}">Categories</a>
+        <a href="{%  url 'backend-users' %}">Users</a>
+    </nav>
+</aside>
+<div class="main">
+    <div class="container-fluid">
+        <!-- Header row -->
+        <div class="row">
+            <header class="col-xs-8">
+                <h1>
+                    {{ meta.verbose_name_plural|title }}
+                </h1>
+                <button class="btn btn-primary">
+                    Add {{ meta.verbose_name }}
+                </button>
+            </header>
+        </div>
+
+        <!-- Main content -->
+        <div class="row">
+            <div class="col-xs-8">
+                <!-- Data table -->
+                <div class="panel panel-default">
+                    <div class="search-wrapper">
+                        <input type="search" class="form-control" placeholder="Search&hellip;" />
+                    </div>
+
+                    <table class="table">
+                        {% block table %}
+                            The entity's table goes here
+                        {% endblock table %}
+                    </table>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <!-- Details panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
