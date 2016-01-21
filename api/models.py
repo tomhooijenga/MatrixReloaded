@@ -60,7 +60,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Country(models.Model):
-
     # The ISO-3166-Alpha-2 country code
     code = models.CharField(max_length=2)
 
@@ -72,7 +71,6 @@ class Country(models.Model):
 
 
 class Language(models.Model):
-
     # The ISO-639-1 language code
     code = models.CharField(max_length=2)
 
@@ -127,7 +125,8 @@ class Engineer(models.Model):
     city = models.CharField(max_length=100)
 
     # Address, Country part
-    # Because an engineer has 2 relations with Country, the address country does not have a reverse relationship
+    # Because an engineer has 2 relations with Country, the address country does
+    # not have a reverse relationship
     country = models.ForeignKey(Country, related_name='+')
 
     # Countries that a the employee is available in
@@ -157,8 +156,8 @@ class Note(models.Model):
     # The comment is visible from this date. Defaults to today
     visible_from = models.DateField(auto_now=True)
 
-    # The comment is visible untill this date
-    visible_untill = models.DateField(null=True)
+    # The comment is visible until this date
+    visible_until = models.DateField(null=True)
 
     # The engineer that this note belongs to
     engineer = models.OneToOneField(Engineer, related_name='note')
@@ -184,10 +183,10 @@ class Product(models.Model):
     # The name of the product
     name = models.CharField(max_length=100)
 
-    # Wether this product is still in use
+    # Whether this product is still in use
     is_active = models.BooleanField(default=True, db_index=True)
 
-    # Wether this product is CrossLab or not
+    # Whether this product is CrossLab or not
     is_crosslab = models.BooleanField(default=False)
 
     # The category that this product belongs to
@@ -202,10 +201,14 @@ class Skill(models.Model):
     engineer = models.ForeignKey(Engineer, related_name='skills')
 
     # The product that this skill belongs to
-    product = models.ForeignKey(Product, related_name='engineers')
+    product = models.ForeignKey(Product, related_name='skills')
 
     # The level of the skill. Min = 1, Max = 4
     level = models.SmallIntegerField(validators=[
         MinValueValidator(1),
         MaxValueValidator(4)
     ])
+
+    class Meta:
+        # Ensure there's always only one combination of engineer and product
+        unique_together = ('engineer', 'product')
