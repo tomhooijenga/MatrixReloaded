@@ -4,6 +4,12 @@ from django.contrib.auth.models import (
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
+def upload_location(instance, filename):
+    """
+    Helper function to determine the location where the uploaded file should go.
+    """
+    return '/'.join(instance._meta.verbose_name, instance.pk)
+
 
 class UserManager(BaseUserManager):
     """
@@ -138,12 +144,14 @@ class Engineer(models.Model):
     # Whether this employee is still active or not
     is_active = models.BooleanField(db_index=True)
 
+    # A picture of the engineer
+    image = models.ImageField(upload_to=upload_location, null=True)
+
     # The skills of this employee. Defined in the Skill model
     # skills
 
     # The note of this employee. Defined in the Note model
     # note
-
 
 class Note(models.Model):
     """
