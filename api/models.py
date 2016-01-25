@@ -4,6 +4,7 @@ from django.contrib.auth.models import (
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
+
 def upload_location(instance, filename):
     """
     Helper function to determine the location where the uploaded file should go.
@@ -152,6 +153,7 @@ class Engineer(models.Model):
 
     # The note of this employee. Defined in the Note model
     # note
+
 
 class Note(models.Model):
     """
