@@ -3,13 +3,19 @@ from django.contrib.auth.models import (
 )
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.crypto import get_random_string
 
 
 def upload_location(instance, filename):
     """
     Helper function to determine the location where the uploaded file should go.
     """
-    return '/'.join(instance._meta.verbose_name, instance.pk)
+    # Grab the extension from the original file name
+    extension = filename.split('.')[-1]
+    # Generate a 20 char random string [a-z0-9]
+    rand = get_random_string(20).lower()
+
+    return "{0}/{1}.{2}".format(instance._meta.plural_verbose_name, rand, extension)
 
 
 class UserManager(BaseUserManager):
