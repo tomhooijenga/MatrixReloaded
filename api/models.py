@@ -194,6 +194,9 @@ class Category(models.Model):
     # The products that belong to this category. Defined in the Product model
     # products
 
+    class Meta:
+        verbose_name_plural = 'categories'
+
 
 class Product(models.Model):
     # The name of the product
