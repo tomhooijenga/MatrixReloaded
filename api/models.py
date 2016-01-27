@@ -14,8 +14,7 @@ def upload_location(instance, filename):
     extension = filename.split('.')[-1]
     # Generate a 20 char random string [a-z0-9]
     rand = get_random_string(20).lower()
-
-    return "{0}/{1}.{2}".format(instance._meta.plural_verbose_name, rand, extension)
+    return "{0}/{1}.{2}".format(instance._meta.verbose_name, rand, extension)
 
 
 class UserManager(BaseUserManager):
@@ -152,7 +151,7 @@ class Engineer(models.Model):
     is_active = models.BooleanField(db_index=True)
 
     # A picture of the engineer
-    image = models.ImageField(upload_to=upload_location, null=True)
+    image = models.ImageField(upload_to=upload_location, blank=True)
 
     # The skills of this employee. Defined in the Skill model
     # skills
@@ -210,6 +209,9 @@ class Product(models.Model):
 
     # The category that this product belongs to
     category = models.ForeignKey(Category, related_name='products')
+
+    # An image of the product
+    image = models.ImageField(upload_to=upload_location, blank=True)
 
     # The engineers that can work with this product. Defined in the Skill model
     # engineers
