@@ -119,7 +119,7 @@ MEDIA_URL = '/media/'
 
 # Rest framework settings
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 10,
+    'PAGE_SIZE': 200,
     # A request needs to be at least logged in. Extra required permissions are
     # defined in the Views
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
