@@ -1,22 +1,5 @@
 {% extends 'template.html' %}
-
+{% load static from staticfiles %}
 {% block table %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-    $.getJSON('http://127.0.0.1:8000/api/categories/?format=json', function(data){
-        $.each(data, function(i, value){
-            if (i === 'results') {
-                $('table').append('<tbody>');
-                $.each(value, function(x, item) {
-                    $('table').append('<tr><td>' + item.name + '</td>\n\
-                                       <td><a class="pull-right">Add / remove subcategory</a></td>\n\
-                                       </tr>');
-                });
-                $('table').append('</tbody>');
-            };
-        });
-    });
-});
-</script>
+<script type='text/javascript' src='{% static "categories.js" %}'></script>
 {% endblock table %}

@@ -70,3 +70,11 @@ input[type="search"] {
     text-align: center;
 }
 
+td.details-control {
+    cursor: pointer;
+}
+
+
+.panel.panel-default.details {
+    display: none;
+}
