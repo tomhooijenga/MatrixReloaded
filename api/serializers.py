@@ -64,6 +64,8 @@ class CategorySerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSe
 
     products = serializers.HyperlinkedRelatedField(view_name='product-detail', many=True, read_only=True)
 
+    children = serializers.HyperlinkedRelatedField(view_name='category-detail', many=True, read_only=True)
+
     class Meta:
         model = models.Category
 
@@ -101,6 +103,7 @@ SkillSerializer.Meta.expandable_fields = {
 
 CategorySerializer.Meta.expandable_fields = {
     'parent': CategorySerializer,
+    'children': (CategorySerializer, (), {'many': True}),
     'products': (ProductSerializer, (), {'many': True})
 }
 

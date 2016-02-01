@@ -3,6 +3,18 @@ from django.contrib.auth.models import (
 )
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.crypto import get_random_string
+
+
+def upload_location(instance, filename):
+    """
+    Helper function to determine the location where the uploaded file should go.
+    """
+    # Grab the extension from the original file name
+    extension = filename.split('.')[-1]
+    # Generate a 20 char random string [a-z0-9]
+    rand = get_random_string(20).lower()
+    return "{0}/{1}.{2}".format(instance._meta.verbose_name, rand, extension)
 
 
 class UserManager(BaseUserManager):
@@ -138,6 +150,9 @@ class Engineer(models.Model):
     # Whether this employee is still active or not
     is_active = models.BooleanField(db_index=True)
 
+    # A picture of the engineer
+    image = models.ImageField(upload_to=upload_location, blank=True)
+
     # The skills of this employee. Defined in the Skill model
     # skills
 
@@ -171,12 +186,18 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
 
     # The parent category of this category
-    parent = models.ForeignKey('self', null=True, limit_choices_to={
+    parent = models.ForeignKey('self', null=True, related_name='children', limit_choices_to={
         'parent': not None
     })
 
+    # The child categories of this category. Defined in the 'parent' property
+    # children
+
     # The products that belong to this category. Defined in the Product model
     # products
+
+    class Meta:
+        verbose_name_plural = 'categories'
 
 
 class Product(models.Model):
@@ -191,6 +212,9 @@ class Product(models.Model):
 
     # The category that this product belongs to
     category = models.ForeignKey(Category, related_name='products')
+
+    # An image of the product
+    image = models.ImageField(upload_to=upload_location, blank=True)
 
     # The engineers that can work with this product. Defined in the Skill model
     # engineers

@@ -15,7 +15,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'j+f-)=ch=9n%a-x(y0dfq%^j2-8jem8sw+$4-tid%2^z#df$8f'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -60,15 +58,15 @@ ROOT_URLCONF = 'skill_matrix.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages'
             ],
         },
     },
@@ -82,12 +80,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'HOST': 'localhost',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'), # THIS MUST CHANGE ON DEPLOYMENT
-        'USER': 'root', # THIS MUST CHANGE ON DEPLOYMENT
-        'PASSWORD': 'asdf', # THIS MUST CHANGE ON DEPLOYMENT,
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # THIS MUST CHANGE ON DEPLOYMENT
+        'USER': 'root',  # THIS MUST CHANGE ON DEPLOYMENT
+        'PASSWORD': 'asdf',  # THIS MUST CHANGE ON DEPLOYMENT,
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -101,7 +98,6 @@ USE_L10N = False
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -114,9 +110,16 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+# Media files (user-uploaded)
+# The path where the user-uploaded files will be stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# The url where the user-uploaded files will be served
+MEDIA_URL = '/media/'
+
 # Rest framework settings
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 10,
+    'PAGE_SIZE': 200,
     # A request needs to be at least logged in. Extra required permissions are
     # defined in the Views
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
@@ -133,7 +136,7 @@ LOGGING = {
         'console': {
             # logging handler that outputs log messages to terminal
             'class': 'logging.StreamHandler',
-            'level': 'DEBUG', # message level to be written to console
+            'level': 'DEBUG',  # message level to be written to console
         },
     },
     'loggers': {

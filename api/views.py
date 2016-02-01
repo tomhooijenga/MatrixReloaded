@@ -185,7 +185,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     API endpoint for the categories
     """
 
-    queryset = models.Category.objects.all().select_related('parent')
+    queryset = models.Category.objects.all().select_related('parent').prefetch_related('children')
 
     serializer_class = serializers.CategorySerializer
 
