@@ -186,9 +186,12 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
 
     # The parent category of this category
-    parent = models.ForeignKey('self', null=True, limit_choices_to={
+    parent = models.ForeignKey('self', null=True, related_name='children', limit_choices_to={
         'parent': not None
     })
+
+    # The child categories of this category. Defined in the 'parent' property
+    # children
 
     # The products that belong to this category. Defined in the Product model
     # products
