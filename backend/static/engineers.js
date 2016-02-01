@@ -1,30 +1,36 @@
 $(document).ready(function () {
-    var table = $('table').dataTable({
+    // We initialize the DataTable with the json file required for the engineer page
+    var table = $('table').DataTable({
         "sAjaxSource": "/api/engineers/?format=json",
         "sAjaxDataProp": "results",
+        "bInfo" : false,
+        "bPaginate": false,
         "bFilter": false,
+        // We initialize the column fields with the required details (First name, Last name) and add some HTML with the render function.
         "columns": [
             {data: "first_name",
             "className": 'details-control'},
             {data: "last_name"},
             {render: function () {
-                    return '<a id="note">Note</a>';
+                    return '<a class="note">Note</a>';
                 }, orderable: false},
             {render: function () {
-                    return '<a id="skills">Skills</a>';
+                    return '<a class="skills">Skills</a>';
                 }, orderable: false},
             {render: function () {
-                    return '<a id="edit">Edit</a>';
+                    return '<a class="edit">Edit</a>';
                 }, orderable: false}
         ]
     });
-    $("table").on("click", "#note", function(){
+    // On click functions for the HTML elements in the DataTable
+    // On click they should open the details panel on the right
+    $("table").on("click", ".note", function(){
         $("div.panel.panel-default.details").show();
     });
-    $("table").on("click", "#skills", function(){
+    $("table").on("click", ".skills", function(){
         $("div.panel.panel-default.details").show();
     });
-    $("table").on("click", "#edit", function(){
+    $("table").on("click", ".edit", function(){
         $("div.panel.panel-default.details").show();
     });
 });

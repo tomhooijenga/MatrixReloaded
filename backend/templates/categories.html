@@ -1,5 +1,12 @@
 {% extends 'template.html' %}
 {% load static from staticfiles %}
 {% block table %}
+<!Table headers>
+<thead>
+    <tr>
+        <th>Category name</th>
+        <th>Add / remove subcategory</th>
+    </tr>
+</thead>
 <script type='text/javascript' src='{% static "categories.js" %}'></script>
 {% endblock table %}

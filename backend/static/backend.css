@@ -74,7 +74,7 @@ td.details-control {
     cursor: pointer;
 }
 
-
+/* Hide panel by default */
 .panel.panel-default.details {
     display: none;
 }
