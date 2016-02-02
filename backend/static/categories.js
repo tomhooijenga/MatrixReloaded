@@ -21,17 +21,20 @@ $(document).ready(function() {
         "sAjaxDataProp": "results",
         "bInfo" : false,
         "bPaginate": false,
-        "bFilter": false,
         // We initialize the column fields with the required details (Name) and add some HTML with the render function.
         "columns": [
                     { data: "name",
                     "className": 'details-control'},
                     { render: function () {
                               return '<a class="add-remove">Add / remove subcategory</a>';  
-                              }, orderable: false}
+                              }, orderable: false,
+                                searchable: false}
                     ]
     });
-    
+    // Makes the search input form-control work on the DataTable
+    $('.form-control').keyup(function(){
+        table.search($(this).val()).draw() ;
+    }); 
     // Add event listener for opening and closing details
     $('table tbody').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');

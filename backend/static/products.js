@@ -5,7 +5,6 @@ $(document).ready(function () {
         "sAjaxDataProp": "results",
         "bInfo" : false,
         "bPaginate": false,
-        "bFilter": false,
         // We initialize the column fields with the required details (Category, Subcategory, Name) and add some HTML with the render function.
         "columns": [
             {data: "category.parent.short_name"},
@@ -14,9 +13,14 @@ $(document).ready(function () {
             "className": 'details-control'},
             {render: function () {
                     return '<a class="edit">Edit</a>';
-                }, orderable: false}
+                }, orderable: false,
+                searchable: false}
         ]
     });
+    // Makes the search input form-control work on the DataTable
+    $('.form-control').keyup(function(){
+        table.search($(this).val()).draw() ;
+    }); 
     // On click functions for the HTML elements in the DataTable
     // On click they should open the details panel on the right
     $("table").on("click", ".edit", function(){

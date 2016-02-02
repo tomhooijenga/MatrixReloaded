@@ -78,3 +78,8 @@ td.details-control {
 .panel.panel-default.details {
     display: none;
 }
+
+/* hides the default search bar of DataTables */
+div#DataTables_Table_0_filter label {
+    display: none;
+}
