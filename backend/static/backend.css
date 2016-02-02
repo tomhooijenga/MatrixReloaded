@@ -83,3 +83,8 @@ td.details-control {
 div#DataTables_Table_0_filter label {
     display: none;
 }
+
+/* Add pointer to all a links even without href */
+a {
+    cursor: pointer;
+}
