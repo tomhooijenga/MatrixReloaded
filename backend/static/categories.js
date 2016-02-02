@@ -21,6 +21,11 @@ $(document).ready(function() {
         "sAjaxDataProp": "results",
         "bInfo" : false,
         "bPaginate": false,
+        // The part below makes our table scrollable when showing more than 16 items.
+        "deferRender": true,
+        "scrollY": 600,
+        "scrollCollapse": true,
+        "scroller": true,
         // We initialize the column fields with the required details (Name) and add some HTML with the render function.
         "columns": [
                     { data: "name",
