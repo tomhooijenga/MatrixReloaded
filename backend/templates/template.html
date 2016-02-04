@@ -7,11 +7,10 @@
     <title>{{ meta.verbose_name_plural|title }} &ndash; A.S.M.</title>
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet"/>
     <link href="{% static "backend.css" %}" rel="stylesheet"/>
+
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-    <!Include DataTables and jquery plugins>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs/dt-1.10.10/datatables.min.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/s/bs/dt-1.10.10/datatables.min.js"></script>
 </head>
 <body>
 <aside>
@@ -54,16 +53,26 @@
             </div>
             <div class="col-xs-4">
                 <!-- Details panel -->
-                <div class="panel panel-default details">
+                <div id="card" class="panel panel-default card">
                     <div class="panel-heading">
-                        <h2 class="panel-title">
+                        <h2 class="panel-title"></h2>
+                    </div>
+                    <div class="panel-body">
+                        {% block card %}
 
-                        </h2>
+                        {% endblock %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    {% block javascript %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/s/bs/dt-1.10.10/datatables.min.js"></script>
+
+        <script src="{% static "js/card.js" %}" ></script>
+    {% endblock javascript %}
 </div>
 </body>
 </html>
