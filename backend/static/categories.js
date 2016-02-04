@@ -12,53 +12,68 @@ function format ( d ) {
             '<td>Example 3</td>'+
         '</tr>'+
     '</table>';
-}
+};
 
 $(document).ready(function() {
-    // We initialize the DataTable with the json file required for the categories page
-    var table = $('table').DataTable({
-        "sAjaxSource": "/api/categories/?format=json",
-        "sAjaxDataProp": "results",
-        "bInfo" : false,
-        "bPaginate": false,
-        // The part below makes our table scrollable when showing more than 16 items.
-        "deferRender": true,
-        "scrollY": 600,
-        "scrollCollapse": true,
-        "scroller": true,
-        // We initialize the column fields with the required details (Name) and add some HTML with the render function.
-        "columns": [
-                    { data: "name",
-                    "className": 'details-control'},
-                    { render: function () {
-                              return '<a class="add-remove">Add / remove subcategory</a>';  
-                              }, orderable: false,
-                                searchable: false}
-                    ]
-    });
-    // Makes the search input form-control work on the DataTable
-    $('.form-control').keyup(function(){
-        table.search($(this).val()).draw() ;
-    }); 
-    // Add event listener for opening and closing details
-    $('table tbody').on('click', 'td.details-control', function () {
-        var tr = $(this).closest('tr');
-        var row = table.row( tr );
- 
-        if ( row.child.isShown() ) {
-            // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
-        }
-        else {
-            // Open this row
-            row.child( format(row.data()) ).show();
-            tr.addClass('shown');
-        }
-    } );   
-    // On click functions for the HTML elements in the DataTable
-    // On click they should open the details panel on the right
-    $("table").on("click", ".add-remove", function(){
-        $("div.panel.panel-default.details").show();
+    // We create an array to store the categories from the json request
+    var categories = [];
+    function getArray(){
+        return $.getJSON("/api/categories/?format=json");
+    }
+    getArray().done(function(json) {
+        // Only show the categories by filtering the items.
+        // Only items with parent = null should be shown.
+        $.each(json.results, function(key, val) {
+            if (val.parent === null) {
+                categories.push(val);
+            }
+        });
+        // We initialize the DataTable with the json file required for the categories page
+        var table = $('table').DataTable({
+            // "sAjaxSource": "/api/categories/?format=json",
+            //"sAjaxDataProp": "results",
+            "aaData": categories,
+            "bInfo" : false,
+            "bPaginate": false,
+            // The part below makes our table scrollable when showing more than 16 items.
+            "deferRender": true,
+            "scrollY": 600,
+            "scrollCollapse": true,
+            "scroller": true,
+            // We initialize the column fields with the required details (Name) and add some HTML with the render function.
+            "columns": [
+                        { "data": "name",
+                        "className": 'details-control'},
+                        { render: function () {
+                                  return '<a class="add-remove">Add / remove subcategory</a>';  
+                                  }, orderable: false,
+                                    searchable: false},
+                        ]
+        });
+        // Makes the search input form-control work on the DataTable
+        $('.form-control').keyup(function(){
+            table.search($(this).val()).draw() ;
+        }); 
+        // Add event listener for opening and closing details
+        $('table tbody').on('click', 'td.details-control', function () {
+            var tr = $(this).closest('tr');
+            var row = table.row( tr );
+
+            if ( row.child.isShown() ) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            }
+            else {
+                // Open this row
+                row.child( format(row.data()) ).show();
+                tr.addClass('shown');
+            }
+        } );   
+        // On click functions for the HTML elements in the DataTable
+        // On click they should open the details panel on the right
+        $("table").on("click", ".add-remove", function(){
+            $("div.panel.panel-default.details").show();
+        });
     });
 });
