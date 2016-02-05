@@ -24,11 +24,11 @@
             </div>
 
             <div class="image-input col-xs-6">
+                <input id="image" type="file"/>
                 <label for="image" class="form-control">
-                    <img class="img-responsive"/>
+                    <img data-autofill="src" class="image img-responsive"/>
                     <span>Click to upload image</span>
                 </label>
-                <input id="image" class="image" type="file"/>
             </div>
         </div>
 
@@ -89,7 +89,7 @@
                     <i class="fa fa-globe"></i>
                 </label>
                 <div class="col-xs-11">
-                    <select id="countries" name=countries" class="form-control" multiple required></select>
+                    <select id="countries" name="countries" class="form-control" multiple required></select>
                 </div>
             </div>
         </fieldset>
@@ -102,7 +102,7 @@
                     <i class="fa fa-home"></i>
                 </label>
                 <div class="col-xs-11">
-                    <input id="street" name="street" class="form-control" type="number" placeholder="Address"
+                    <input id="street" name="street" class="form-control" type="text" placeholder="Address"
                            maxlength="100"
                            required>
                 </div>
@@ -199,11 +199,11 @@
 
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="is-active">
+                <input type="checkbox" name="is-active" data-autofill="checked">
                 Is active
             </label>
 
-            <button type="submit" class="btn btn-default pull-right">Submit</button>
+            <input type="submit" class="btn btn-default pull-right" value="Submit" />
         </div>
     </form>
 
@@ -211,5 +211,7 @@
 
 {% block javascript %}
     {{ block.super }}
-    <script type='text/javascript' src='{% static "engineers.js" %}'></script>
+
+    <script src='{% static "engineers.js" %}'></script>
+    <script src="{% static 'js/card.js' %}"></script>
 {% endblock javascript %}

@@ -91,12 +91,17 @@ td.details-control {
 }
 
 .card .checkbox {
-    height: 34px;
-    line-height: 34px;
+    height: 42px;
+    line-height: 42px;
 }
 
 .card .checkbox input[type="checkbox"] {
-    margin-top: 10px;
+    margin-top: 16px;
+}
+
+.image-input input {
+    visibility: hidden;
+    width: 0;
 }
 
 .image-input > label {
@@ -122,13 +127,13 @@ td.details-control {
     z-index: 2;
 }
 
+.image-input input:disabled + label > span {
+    display: none;
+}
+
 .image-input > label > img {
     position: absolute;
     display: block;
     z-index: 1;
 }
 
-.image-input input {
-    visibility: hidden;
-    width: 0;
-}
