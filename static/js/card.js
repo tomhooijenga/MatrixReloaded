@@ -33,16 +33,19 @@
                     // Replace all _ with - then find that element in our current scope
                     // Searches by class and by name
                     var name = key.replace(/_/g, '-'),
-                        el = $this.find('.' + name + ', [name="' + name + '"]');
+                        $el = $this.find('.' + name + ', [name="' + name + '"]');
 
-                    el.each(function () {
+                    $el.each(function () {
                         var $el = $(this),
                             autofill = $el.data('autofill');
 
                         if (autofill) {
                             $el.prop(autofill, data[key]);
                         } else {
-                            $el.val(data[key]);
+                            // If the data is not an array, make it an array
+                            var value = $.isArray(data[key]) ? data[key] : [data[key]];
+
+                            $el.val(value).trigger('change');
                         }
                     });
                 }
@@ -54,7 +57,45 @@
          * @returns {jQuery}
          */
         editable: function (enabled) {
-            return this.find('input, select').prop('disabled', !enabled);
+            this.find('input, select').prop('disabled', !enabled);
+
+            return this
+        },
+        /**
+         *
+         * @param form
+         * @param method
+         * @returns {*}
+         */
+        submit: function (form, method) {
+            var $form = $(form),
+                url = form.action,
+                data = new FormData();
+
+            // Find all file inputs and append all files of these inputs to the data
+            $form.find('input[type="file"]')
+                .each(function () {
+                    var name = this.name;
+
+                    for (var i = this.files.length - 1; i >= 0; i--) {
+                        data.append(name, this.files[i]);
+                    }
+                });
+
+            // Transform each name back to it's original by replacing the -'s with _'s
+            // Append this data as well
+            $form.serializeArray()
+                .forEach(function (input) {
+                    data.append(input.name.replace(/-/g, '_'), input.value);
+                });
+
+            // PUT/PATCH/POST the data to the server
+            return $.ajax(url, {
+                method: method,
+                data: data,
+                contentType: false,
+                processData: false
+            });
         }
     };
 })(jQuery);

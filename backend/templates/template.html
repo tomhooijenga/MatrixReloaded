@@ -9,9 +9,11 @@
     <link href="{% static "backend.css" %}" rel="stylesheet"/>
 
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans" />
-{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">#}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/s/bs/dt-1.10.10/datatables.min.css"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css"  />
+
+    <meta name="csrf-token" content="{{ csrf_token }}" />
 </head>
 <body>
 <aside>
@@ -73,6 +75,8 @@
         <script src="https://cdn.datatables.net/s/bs/dt-1.10.10/datatables.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
 
+        <script src="{% static "js/bootstrap.min.js" %}"></script>
+        <script src="{% static "backend.js" %}" ></script>
         <script src="{% static "js/card.js" %}" ></script>
     {% endblock javascript %}
 </div>

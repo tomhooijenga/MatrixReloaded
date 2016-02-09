@@ -90,15 +90,6 @@ td.details-control {
     box-shadow: none;
 }
 
-.card .checkbox {
-    height: 42px;
-    line-height: 42px;
-}
-
-.card .checkbox input[type="checkbox"] {
-    margin-top: 16px;
-}
-
 .image-input input {
     visibility: hidden;
     width: 0;

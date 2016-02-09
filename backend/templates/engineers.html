@@ -16,197 +16,223 @@
 {% endblock table %}
 
 {% block card %}
-    <form class="form-horizontal">
-
-        <div class="form-group">
-            <div class="col-xs-6">
-
+    <div id="engineer-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+        <div class="carousel-inner" role="listbox">
+            <div class="item">
+                Notes
             </div>
+            <div class="item">
+                Skills
+            </div>
+            <div class="item active">
+                <form class="form-horizontal url" method="post" data-autofill="action">
+                    <div class="form-group">
+                        <div class="col-xs-6">
 
-            <div class="image-input col-xs-6">
-                <input id="image" type="file"/>
-                <label for="image" class="form-control">
-                    <img data-autofill="src" class="image img-responsive"/>
-                    <span>Click to upload image</span>
-                </label>
+                        </div>
+
+                        <div class="image-input col-xs-6">
+                            <input id="image" type="file"/>
+                            <label for="image" class="form-control">
+                                <img data-autofill="src" class="image img-responsive"/>
+                                <span>Click to upload image</span>
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <fieldset>
+                        <legend>Details</legend>
+
+                        <div class="form-group">
+                            <div class="col-xs-5 col-xs-offset-2">
+                                <input name="first-name" class="form-control" placeholder="First name" maxlength="100"
+                                       required>
+                            </div>
+                            <div class="col-xs-5">
+                                <input name="last-name" class="form-control" placeholder="First name" maxlength="100"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-xs-2 control-label">
+                                <i class="fa fa-envelope"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <input id="email" name="email" class="form-control" type="email" maxlength="254"
+                                       required
+                                       placeholder="Email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" class="col-xs-2 control-label">
+                                <i class="fa fa-phone"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <input id="phone" name="phone" class="form-control" type="number" maxlength="11"
+                                       placeholder="Phone number">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="employee-number" class="col-xs-2 control-label">
+                                <i class="fa fa-user"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <input id="employee-number" name="employee-number" class="form-control" type="text"
+                                       maxlength="20"
+                                       placeholder="Employee number">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="languages" class="col-xs-2 control-label">
+                                <i class="fa fa-language"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <select id="languages" name="languages" class="form-control" multiple required></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="countries" class="col-xs-2 control-label">
+                                <i class="fa fa-globe"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <select id="countries" name="countries" class="form-control" multiple required></select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Address</legend>
+
+                        <div class="form-group">
+                            <label for="street" class="col-xs-2 control-label">
+                                <i class="fa fa-home"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <input id="street" name="street" class="form-control" type="text" placeholder="Address"
+                                       maxlength="100"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="zip-code" class="col-xs-2 control-label">
+                                <i class="fa fa-road"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <input id="zip-code" name="zip-code" class="form-control" type="text"
+                                       placeholder="Zipcode"
+                                       maxlength="10"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city" class="col-xs-2 control-label">
+                                <i class="fa fa-map"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <input id="city" name="city" class="form-control" type="text" placeholder="City"
+                                       maxlength="100"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country" class="col-xs-2 control-label">
+                                <i class="fa fa-globe"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <select id="country" name="country" class="form-control" required></select>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Car</legend>
+
+                        <div class="form-group">
+                            <label for="car-type" class="col-xs-2 control-label">
+                                <i class="fa fa-car"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <input id="car-type" name="car-type" class="form-control" type="text"
+                                       placeholder="Brand and model"
+                                       maxlength="100" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="license-plate" class="col-xs-2 control-label">
+
+                            </label>
+                            <div class="col-xs-10">
+                                <input id="license-plate" name="license-plate" class="form-control" type="text"
+                                       placeholder="License plate" maxlength="100" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="car-color" class="col-xs-2 control-label">
+                                <i class="fa fa-paint-brush"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <input id="car-color" name="car-color" class="form-control" type="text"
+                                       placeholder="Color"
+                                       maxlength="100" required>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>VCA</legend>
+
+                        <div class="form-group">
+                            <label for="vca-number" class="col-xs-2 control-label">
+                                <i class="fa fa-certificate"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <input id="vca-number" name="vca-number" class="form-control" type="text"
+                                       placeholder="Number"
+                                       maxlength="20">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vca-date" class="col-xs-2 control-label">
+                                <i class="fa fa-calendar"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <input id="vca-date" name="vca-date" class="form-control" type="date"
+                                       placeholder="Issued at">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-group">
+                        <div class="col-xs-5 col-xs-offset-2">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="is-active" data-autofill="checked" value="true">
+                                    Is active
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-5">
+                            <input type="submit" class="btn btn-default pull-right" value="Submit"/>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-
-
-        <fieldset>
-            <legend>Details</legend>
-
-            <div class="form-group">
-                <div class="col-xs-5 col-xs-offset-1">
-                    <input name="first-name" class="form-control" placeholder="First name" maxlength="100" required>
-                </div>
-                <div class="col-xs-6">
-                    <input name="last-name" class="form-control" placeholder="First name" maxlength="100" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="email" class="col-xs-1 control-label">
-                    <i class="fa fa-envelope"></i>
-                </label>
-                <div class="col-xs-11">
-                    <input id="email" name="email" class="form-control" type="email" maxlength="254" required
-                           placeholder="Email">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="phone" class="col-xs-1 control-label">
-                    <i class="fa fa-phone"></i>
-                </label>
-                <div class="col-xs-11">
-                    <input id="phone" name="phone" class="form-control" type="number" maxlength="11"
-                           placeholder="Phone number">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="employee-number" class="col-xs-1 control-label">
-                    <i class="fa fa-user"></i>
-                </label>
-                <div class="col-xs-11">
-                    <input id="employee-number" name="employee-number" class="form-control" type="text" maxlength="20"
-                           placeholder="Employee number">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="languages" class="col-xs-1 control-label">
-                    <i class="fa fa-language"></i>
-                </label>
-                <div class="col-xs-11">
-                    <select id="languages" name=languages" class="form-control" multiple required></select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="countries" class="col-xs-1 control-label">
-                    <i class="fa fa-globe"></i>
-                </label>
-                <div class="col-xs-11">
-                    <select id="countries" name="countries" class="form-control" multiple required></select>
-                </div>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>Address</legend>
-
-            <div class="form-group">
-                <label for="street" class="col-xs-1 control-label">
-                    <i class="fa fa-home"></i>
-                </label>
-                <div class="col-xs-11">
-                    <input id="street" name="street" class="form-control" type="text" placeholder="Address"
-                           maxlength="100"
-                           required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="zip-code" class="col-xs-1 control-label">
-                    <i class="fa fa-road"></i>
-                </label>
-                <div class="col-xs-11">
-                    <input id="zip-code" name="zip-code" class="form-control" type="text" placeholder="Zipcode"
-                           maxlength="10"
-                           required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="city" class="col-xs-1 control-label">
-                    <i class="fa fa-map"></i>
-                </label>
-                <div class="col-xs-11">
-                    <input id="city" name="city" class="form-control" type="text" placeholder="City" maxlength="100"
-                           required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="country" class="col-xs-1 control-label">
-                    <i class="fa fa-globe"></i>
-                </label>
-                <div class="col-xs-11">
-                    <select id="country" name="country" class="form-control" required></select>
-                </div>
-            </div>
-
-        </fieldset>
-
-        <fieldset>
-            <legend>Car</legend>
-
-            <div class="form-group">
-                <label for="car-type" class="col-xs-1 control-label">
-                    <i class="fa fa-car"></i>
-                </label>
-                <div class="col-xs-11">
-                    <input id="car-type" name="car-type" class="form-control" type="text" placeholder="Brand and model"
-                           maxlength="100" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="license-plate" class="col-xs-1 control-label">
-
-                </label>
-                <div class="col-xs-11">
-                    <input id="license-plate" name="license-plate" class="form-control" type="text"
-                           placeholder="License plate" maxlength="100" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="car-color" class="col-xs-1 control-label">
-                    <i class="fa fa-paint-brush"></i>
-                </label>
-                <div class="col-xs-11">
-                    <input id="car-color" name="car-color" class="form-control" type="text" placeholder="Color"
-                           maxlength="100" required>
-                </div>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>VCA</legend>
-
-            <div class="form-group">
-                <label for="vca-number" class="col-xs-1 control-label">
-                    <i class="fa fa-certificate"></i>
-                </label>
-                <div class="col-xs-11">
-                    <input id="vca-number" name="vca-number" class="form-control" type="text" placeholder="Number"
-                           maxlength="20">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="vca-date" class="col-xs-1 control-label">
-                    <i class="fa fa-calendar"></i>
-                </label>
-                <div class="col-xs-11">
-                    <input id="vca-date" name="vca-date" class="form-control" type="date" placeholder="Issued at">
-                </div>
-            </div>
-        </fieldset>
-
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="is-active" data-autofill="checked">
-                Is active
-            </label>
-
-            <input type="submit" class="btn btn-default pull-right" value="Submit" />
-        </div>
-    </form>
-
+    </div>
 {% endblock card %}
 
 {% block javascript %}
