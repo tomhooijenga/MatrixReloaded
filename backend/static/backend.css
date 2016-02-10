@@ -37,6 +37,15 @@ aside nav a:hover {
     background-color: #494545;
 }
 
+/* Add pointer to all a links even without href */
+a {
+    cursor: pointer;
+}
+
+tr {
+    cursor: pointer;
+}
+
 .main {
     width: 80%;
     padding: 0 25px;
@@ -68,10 +77,6 @@ aside nav a:hover {
 
 input[type="search"] {
     text-align: center;
-}
-
-td.details-control {
-    cursor: pointer;
 }
 
 .card {
@@ -109,9 +114,11 @@ td.details-control {
     bottom: 0;
     padding: 20px;
     position: absolute;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.8);
     z-index: 0;
     cursor: pointer;
+    color: black;
+    text-shadow: 1px 1px 1px white;
 }
 
 .image-input:hover > label > span {
@@ -124,7 +131,11 @@ td.details-control {
 
 .image-input > label > img {
     position: absolute;
-    display: block;
     z-index: 1;
+}
+
+/* hides the default search bar of DataTables */
+div#DataTables_Table_0_filter label {
+    display: none;
 }
 

@@ -25,14 +25,14 @@
                 Skills
             </div>
             <div class="item active">
-                <form class="form-horizontal url" method="post" data-autofill="action">
+                <form class="engineer-edit form-horizontal url" method="post" data-autofill="action">
                     <div class="form-group">
                         <div class="col-xs-6">
 
                         </div>
 
                         <div class="image-input col-xs-6">
-                            <input id="image" type="file"/>
+                            <input id="image" name="image" type="file"/>
                             <label for="image" class="form-control">
                                 <img data-autofill="src" class="image img-responsive"/>
                                 <span>Click to upload image</span>
@@ -239,5 +239,5 @@
     {{ block.super }}
 
     <script src='{% static "engineers.js" %}'></script>
-    <script src="{% static 'js/card.js' %}"></script>
+    <script src="{% static 'js/form.js' %}"></script>
 {% endblock javascript %}

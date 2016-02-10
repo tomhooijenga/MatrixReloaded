@@ -5,7 +5,7 @@
      * @param method
      * @returns {jQuery}
      */
-    $.fn.card = function (method /*, arguments */) {
+    $.fn.form = function (method /*, arguments */) {
 
         // If this method is defined, call it with the given arguments.
         if (methods[method]) {
@@ -33,11 +33,17 @@
                     // Replace all _ with - then find that element in our current scope
                     // Searches by class and by name
                     var name = key.replace(/_/g, '-'),
-                        $el = $this.find('.' + name + ', [name="' + name + '"]');
+                        selector = '.' + name + ', [name="' + name + '"]',
+                        $el = $this.find(selector).addBack(selector);
 
                     $el.each(function () {
                         var $el = $(this),
                             autofill = $el.data('autofill');
+
+                        // It is not possible to set a file input with javascript
+                        if ($el.is('[type="file"]')) {
+                            return;
+                        }
 
                         if (autofill) {
                             $el.prop(autofill, data[key]);
@@ -63,17 +69,15 @@
         },
         /**
          *
-         * @param form
          * @param method
          * @returns {*}
          */
-        submit: function (form, method) {
-            var $form = $(form),
-                url = form.action,
+        submit: function (method) {
+            var url = this[0].action,
                 data = new FormData();
 
             // Find all file inputs and append all files of these inputs to the data
-            $form.find('input[type="file"]')
+            this.find('input[type="file"]')
                 .each(function () {
                     var name = this.name;
 
@@ -84,7 +88,7 @@
 
             // Transform each name back to it's original by replacing the -'s with _'s
             // Append this data as well
-            $form.serializeArray()
+            this.serializeArray()
                 .forEach(function (input) {
                     data.append(input.name.replace(/-/g, '_'), input.value);
                 });

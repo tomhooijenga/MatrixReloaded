@@ -1,14 +1,21 @@
 $(document).ready(function () {
     // We initialize the DataTable with the json file required for the engineer page
     var $table = $('table'),
-        $card = $('#card');
+        $card = $('#card'),
+        $edit = $card.find('.engineer-edit'),
+        $note = $card.find('.engineer-note'),
+        $skills = $card.find('.engineer-skills');
 
     var table = $table.DataTable({
-        "sAjaxSource": "/api/engineers/?is_active=both",
+        "sAjaxSource": "/api/engineers/",
         "sAjaxDataProp": "results",
         "bInfo": false,
         "bPaginate": false,
-        "bFilter": false,
+        // The part below makes our table scrollable when showing more than 16 items.
+        "deferRender": true,
+        "scrollY": 600,
+        "scrollCollapse": true,
+        "scroller": true,
         // We initialize the column fields with the required details (First name, Last name) and add some HTML with the render function.
         "columns": [
             {
@@ -21,19 +28,22 @@ $(document).ready(function () {
                 render: function () {
                     return '<a class="note" data-target="#engineer-carousel" data-slide-to="0">Note</a>';
                 },
-                orderable: false
+                orderable: false,
+                searchable: false
             },
             {
                 render: function () {
                     return '<a class="skills" data-target="#engineer-carousel" data-slide-to="1">Skills</a>';
                 },
-                orderable: false
+                orderable: false,
+                searchable: false
             },
             {
                 render: function () {
                     return '<a class="edit" data-target="#engineer-carousel" data-slide-to="2">Edit</a>';
                 },
-                orderable: false
+                orderable: false,
+                searchable: false
             }
         ]
     });
@@ -45,24 +55,36 @@ $(document).ready(function () {
             var data = table.row(this).data();
 
             // Fill the card with data and make the card read-only
-            $card.card(data).card('editable', false);
+            $card.form(data).form('editable', false);
         }
     });
+    // Makes the search input form-control work on the DataTable
+    $('.form-control').keyup(function () {
+        table.search($(this).val()).draw();
+    });
 
-    $table.on('click', '.edit', function (e) {
+    $table.on('click', '.edit', function () {
         var parent = $(this).closest('tr'),
             data = table.row(parent).data();
 
-        // Enable the card and fill with data
-        $card.card('editable', true).card(data);
+        // Enable the form and fill with data
+        $edit.form('editable', true).form(data);
     });
 
-    $card.find('form').on('submit', function (e) {
+    $edit.on('submit', function (e) {
         e.preventDefault();
 
-        $card.card('submit', this, 'patch').then(function () {
-
-        });
+        $edit.form('submit', 'patch')
+            // Success, fill the form with new data
+            .done(function (data) {
+                console.log(arguments);
+                $edit.form(data);
+            })
+            // Error
+            .fail(function () {
+                // Error handling goes here
+                // Possibly show an notification
+            });
     });
 
     // Fill the country and countries selector
