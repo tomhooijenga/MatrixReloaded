@@ -1,24 +1,28 @@
-/* Formatting function for row details - modify as you need */
-function format ( d ) {
+/* This is the function for showing subcategories */
+function listSubcategories (d) {
     // `d` is the original data object for the row
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-        '<tr>'+
-            '<td>Example 1</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Example 2</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Example 3</td>'+
-        '</tr>'+
-    '</table>';
+    // create an empty string which will contain the categories in a table
+    var mytable = '';
+    mytable += '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;"><thead><tr><td><b>Subcategories:</b></td></tr></thead>';
+    // if d.children[0] = null there are no subcategories
+    if (d.children[0] != null)
+    {
+        for (var key in d.children) {
+            mytable += '<tr><td>' + d.children[key].name + '</td></tr>';
+        };
+    } else {
+        mytable += '<tr><td>No subcategories</td></tr>';
+    };
+    mytable += '</table>';
+    // return the subcategories to show below the original category
+    return mytable;
 };
 
 $(document).ready(function() {
     // We create an array to store the categories from the json request
     var categories = [];
     function getArray(){
-        return $.getJSON("/api/categories/?format=json");
+        return $.getJSON("/api/categories/?expand=children&format=json");
     }
     getArray().done(function(json) {
         // Only show the categories by filtering the items.
@@ -30,8 +34,6 @@ $(document).ready(function() {
         });
         // We initialize the DataTable with the json file required for the categories page
         var table = $('table').DataTable({
-            // "sAjaxSource": "/api/categories/?format=json",
-            //"sAjaxDataProp": "results",
             "aaData": categories,
             "bInfo" : false,
             "bPaginate": false,
@@ -54,7 +56,7 @@ $(document).ready(function() {
         $('.form-control').keyup(function(){
             table.search($(this).val()).draw() ;
         }); 
-        // Add event listener for opening and closing details
+        // Add event listener for opening and closing subcategory listing
         $('table tbody').on('click', 'td.details-control', function () {
             var tr = $(this).closest('tr');
             var row = table.row( tr );
@@ -66,7 +68,7 @@ $(document).ready(function() {
             }
             else {
                 // Open this row
-                row.child( format(row.data()) ).show();
+                row.child( listSubcategories(row.data()) ).show();
                 tr.addClass('shown');
             }
         } );   
