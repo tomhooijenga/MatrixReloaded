@@ -25,8 +25,9 @@ class EngineerViewSet(viewsets.ModelViewSet):
     """
 
     # The default queryset
-    queryset = models.Engineer.objects.all().select_related('country').prefetch_related('countries', 'languages',
-                                                                                        'skills')
+    queryset = models.Engineer.objects.all().select_related('country', 'note').prefetch_related('countries',
+                                                                                                'languages',
+                                                                                                'skills')
 
     # The default serializer
     serializer_class = serializers.EngineerSerializer
@@ -40,14 +41,15 @@ class EngineerViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(countries__code__in=countries)
 
         # filter by active status. Is actually 3 values:
-        # true or omitted: active only
+        # true: active only
         # false: not active only
-        # anything else: include all
-        is_active = self.request.query_params.get('is_active', 'true')
-        if is_active.lower() in ('true', '1'):
-            queryset = queryset.filter(is_active=True)
-        elif is_active.lower() in ('false', '0'):
-            queryset = queryset.filter(is_active=False)
+        # omitted: include all
+        is_active = self.request.query_params.get('is_active')
+        if is_active is not None:
+            if is_active.lower() in ('true', '1'):
+                queryset = queryset.filter(is_active=True)
+            elif is_active.lower() in ('false', '0'):
+                queryset = queryset.filter(is_active=False)
 
         return queryset
 
@@ -149,6 +151,9 @@ class CountryViewSet(viewsets.ReadOnlyModelViewSet):
 
     serializer_class = serializers.CountrySerializer
 
+    # Disable pagination for the countries, because the set is small and won't grow soon
+    pagination_class = None
+
 
 class LanguageViewSet(viewsets.ReadOnlyModelViewSet):
     """
@@ -158,6 +163,9 @@ class LanguageViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = models.Language.objects.all()
 
     serializer_class = serializers.LanguageSerializer
+
+    # Disable pagination for the countries, because the set is small and won't grow soon
+    pagination_class = None
 
 
 class SkillViewSet(viewsets.ModelViewSet):
