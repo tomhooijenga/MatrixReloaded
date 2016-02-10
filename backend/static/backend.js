@@ -8,4 +8,10 @@ $(function () {
             'X-CSRFToken': csrfToken
         }
     });
+
+    $('.image-input input[type="file"]').on('change', function () {
+        var url = this.files[0] ? URL.createObjectURL(this.files[0]) : '';
+
+        $('.image-input img').prop('src', url);
+    });
 });
