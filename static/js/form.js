@@ -72,9 +72,10 @@
          * @param method
          * @returns {*}
          */
-        submit: function (method) {
+        submit: function () {
             var url = this[0].action,
-                data = new FormData();
+                data = new FormData(),
+                method = this.data('method') || this.method;
 
             // Find all file inputs and append all files of these inputs to the data
             this.find('input[type="file"]')

@@ -105,6 +105,7 @@ input[type="search"] {
     position: relative;
     padding: 0 0 100% 0;
     padding-bottom: calc(100% - 2px);
+    overflow: hidden;
 }
 
 .image-input > label > span {
@@ -131,7 +132,20 @@ input[type="search"] {
 
 .image-input > label > img {
     position: absolute;
+    display: block;
     z-index: 1;
+}
+
+.image-input .image-horizontal {
+    width: auto;
+    height: 100%;
+    transform: translateX(-25%);
+}
+
+.image-input .image-vertical {
+    width: 100%;
+    height: auto;
+    transform: translateY(-25%);
 }
 
 /* hides the default search bar of DataTables */
