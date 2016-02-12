@@ -44,7 +44,7 @@ def login(request):
                 # the password verified for the user
                 if user.is_active:
                     auth_login(request, user)
-                    return redirect('/engineers')
+                    return redirect('admin/engineers')
                 else:
                     # print("The password is valid, but the account has been disabled!")
                     return render(request, 'login.html',{'form': form, 'FormError': 'the account has been disabled!'})
