@@ -17,10 +17,6 @@ function listSubcategories (d) {
     // return the subcategories to show below the original category
     return mytable;
 };
-// This function calculates the height of the datatable by checking your resolution
-var calcDataTableHeight = function() {
-    return $(window).height()*55/100;
-};
 
 $(document).ready(function() {
     // We create an array to store the categories from the json request
@@ -43,8 +39,7 @@ $(document).ready(function() {
             "bPaginate": false,
             // The part below makes our table scrollable when showing more than 16 items.
             "deferRender": true,
-            // We use the calcDataTableHeight() function to calculate the height of the table
-            "scrollY": calcDataTableHeight(),
+            "scrollY": 600,
             "scrollCollapse": true,
             "scroller": true,
             // We initialize the column fields with the required details (Name) and add some HTML with the render function.
@@ -57,12 +52,12 @@ $(document).ready(function() {
                                     searchable: false},
                         ]
         });
-        // This function makes the DataTable resize correctly
-        $(window).resize(function () {
+        $(window).bind('resize', function () {
+            var NewHeight = $(document).height() - 260;
             var oSettings = table.fnSettings();
-            oSettings.oScroll.sY = calcDataTableHeight(); 
-            table.fnDraw();
-        });  
+            oSettings.oScroll.sY = NewHeight + "px";
+            myTable.fnDraw();
+        });
         // Makes the search input form-control work on the DataTable
         $('.search-bar').keyup(function(){
             table.search($(this).val()).draw() ;

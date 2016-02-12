@@ -1,8 +1,3 @@
-// This function calculates the height of the datatable by checking your resolution
-var calcDataTableHeight = function() {
-    return $(window).height()*55/100;
-};
-
 $(document).ready(function () {
     // We initialize the DataTable with the json file required for the engineer page
     var table = $('table').DataTable({
@@ -12,7 +7,7 @@ $(document).ready(function () {
         "bPaginate": false,
         // The part below makes our table scrollable when showing more than 16 items.
         "deferRender": true,
-        "scrollY": calcDataTableHeight(),
+        "scrollY": 600,
         "scrollCollapse": true,
         "scroller": true,
         // We initialize the column fields with the required details (First name, Last name) and add some HTML with the render function.
@@ -34,12 +29,6 @@ $(document).ready(function () {
                 searchable: false}
         ]
     });
-    // This function makes the DataTable resize correctly
-        $(window).resize(function () {
-            var oSettings = table.fnSettings();
-            oSettings.oScroll.sY = calcDataTableHeight(); 
-            table.fnDraw();
-        }); 
     // Makes the search input form-control work on the DataTable
     $('.search-bar').keyup(function(){
         table.search($(this).val()).draw() ;
