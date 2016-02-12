@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import engineers, products, categories, users
+from .views import engineers, products, categories, users, login
 
 # Backend URLs go here
 urlpatterns = [
@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'engineers$', engineers, name='backend-engineers'),
     url(r'products', products, name='backend-products'),
     url(r'categories', categories, name='backend-categories'),
-    url(r'users', users, name='backend-users')
+    url(r'users', users, name='backend-users'),
+    url(r'', login)
 
 ]
