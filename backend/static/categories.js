@@ -33,7 +33,7 @@ $(document).ready(function() {
             }
         });
         // We initialize the DataTable with the json file required for the categories page
-        var table = $('table').DataTable({
+        var table = $('.table').DataTable({
             "aaData": categories,
             "bInfo" : false,
             "bPaginate": false,
