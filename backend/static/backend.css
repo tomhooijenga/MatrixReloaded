@@ -88,3 +88,15 @@ div#DataTables_Table_0_filter label {
 a {
     cursor: pointer;
 }
+
+.panel.panel-default{
+    overflow: auto;
+}
+
+.panel.panel-default.search-wrapper {
+    overflow: none;
+}
+
+.panel.panel-default.listed-items {
+    overflow: scroll;
+}
