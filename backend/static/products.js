@@ -1,3 +1,8 @@
+// This function calculates the height of the datatable by checking your resolution
+var calcDataTableHeight = function() {
+    return $(window).height()*55/100;
+};
+
 $(document).ready(function () {
     // We initialize the DataTable with the json file required for the products page
     var table = $('table').DataTable({
@@ -7,7 +12,7 @@ $(document).ready(function () {
         "bPaginate": false,
         // The part below makes our table scrollable when showing more than 16 items.
         "deferRender": true,
-        "scrollY": 600,
+        "scrollY": calcDataTableHeight(),
         "scrollCollapse": true,
         "scroller": true,
         // We initialize the column fields with the required details (Category, Subcategory, Name) and add some HTML with the render function.
@@ -22,8 +27,14 @@ $(document).ready(function () {
                 searchable: false}
         ]
     });
+    // This function makes the DataTable resize correctly
+        $(window).resize(function () {
+            var oSettings = table.fnSettings();
+            oSettings.oScroll.sY = calcDataTableHeight(); 
+            table.fnDraw();
+        }); 
     // Makes the search input form-control work on the DataTable
-    $('.form-control').keyup(function(){
+    $('.search-bar').keyup(function(){
         table.search($(this).val()).draw() ;
     }); 
     // On click functions for the HTML elements in the DataTable
