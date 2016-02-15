@@ -1,19 +1,21 @@
 $(document).ready(function () {
+    alert('Hello');
     $(".filterlanden").select2();
     // Local bestand
     $.getJSON("/api/countries/?format=json", function (data) {
-        $.each(data.results, function (i, item) {
-            // alert(item.name);
-            $('#filter #filterlanden').append('<option value="AL">' + item.name + '</option>');
+        $.each(data, function (key, val) {
+            $('#filter #filterlanden').append('<option value="AL">' + val.name + '</option>');
         });
     });
-
+    var filterCountries = [];
     $(document).on("click", "#savefilt", function () {
-        var ar = [];
+        var selectedCountries = [];
         $('li.select2-selection__choice').each(function () {
             var language = $(this).text();
-            ar.push(language.substring(1, language.length));
+            selectedCountries.push(language.substring(1, language.length));
         });
-        console.log(ar);
+        $('.selectCountries').modal('hide');
+        filterCountries = selectedCountries;
+        console.log(filterCountries);
     });
 });
