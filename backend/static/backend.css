@@ -91,7 +91,7 @@ a {
 
 /* Makes the listed items scrollable */
 .listed-items{
-    overflow-y: scroll;
+    overflow-y: hidden;
     overflow-x: hidden;
     height: 70vh;
 }
