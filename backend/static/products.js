@@ -7,6 +7,7 @@ $(document).ready(function () {
         "bPaginate": false,
         // The part below makes our table scrollable when showing more than 16 items.
         "deferRender": true,
+        "autoWidth": false,
         // We initialize the column fields with the required details (Category, Subcategory, Name) and add some HTML with the render function.
         "columns": [
             {data: "category.parent.short_name"},

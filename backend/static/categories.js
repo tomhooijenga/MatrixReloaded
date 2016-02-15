@@ -38,6 +38,8 @@ $(document).ready(function() {
             "aaData": categories,
             "bInfo" : false,
             "bPaginate": false,
+            "autoWidth": false,
+            "autoHeight": true,
             // The part below makes our table scrollable when showing more than 16 items.
             "deferRender": true,
             // We initialize the column fields with the required details (Name) and add some HTML with the render function.
