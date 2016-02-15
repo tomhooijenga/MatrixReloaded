@@ -1,14 +1,14 @@
 $(document).ready(function () {
     var $table = $('table'),
-        $card = $('#card'),
+        $carousel = $('#engineer-carousel'),
         $add = $('.add-new'),
-        $edit = $card.find('.engineer-edit'),
-        $note = $card.find('.engineer-note'),
-        $skills = $card.find('.engineer-skills');
+        $edit = $carousel.find('.engineer-edit'),
+        $note = $carousel.find('.engineer-note'),
+        $skills = $carousel.find('.engineer-skills');
 
     // We initialize the DataTable with the json file required for the engineer page
     var table = $table.DataTable({
-        "sAjaxSource": "/api/engineers/",
+        "sAjaxSource": "/api/engineers/?expand=note,skills",
         "sAjaxDataProp": "results",
         "bInfo": false,
         "bPaginate": false,
@@ -62,12 +62,22 @@ $(document).ready(function () {
             var data = table.row(this).data();
 
             // Fill the card with data and make the card read-only
-            $card.form(data).form('editable', false);
+            $carousel.form(data).form('editable', false).carousel(2);
         }
     });
 
+    $table.on('click', '.note', function () {
+        var parent = $(this).closest('tr'),
+            data = table.row(parent).data();
 
-    $table.on('click', '.edit', function () {
+        // Override the form's method
+        // Enable the form and fill with data
+        $note.data('method', 'patch')
+            .form('editable', true)
+            .form(data.note);
+    }).on('click', '.skills', function () {
+
+    }).on('click', '.edit', function () {
         var parent = $(this).closest('tr'),
             data = table.row(parent).data();
 
@@ -78,16 +88,35 @@ $(document).ready(function () {
             .form(data);
     });
 
-    $edit.on('submit', function (e) {
+    //$edit.on('submit', function (e) {
+    //    e.preventDefault();
+    //
+    //    $edit.form('submit')
+    //        // Success, fill the form with new data
+    //        .done(function (data) {
+    //            $edit.form(data);
+    //        })
+    //        // Error
+    //        .fail(function () {
+    //            // Error handling goes here
+    //            // Possibly show an notification
+    //        });
+    //});
+
+    $carousel.find('form').on('submit', function (e) {
         e.preventDefault();
 
-        $edit.form('submit')
-            // Success, fill the form with new data
+        var $this = $(this);
+
+        $this.form('submit')
             .done(function (data) {
-                $edit.form(data);
+                $this.form(data);
+
+                // Reload the table with new data
+                table.ajax.reload();
             })
             // Error
-            .fail(function () {
+            .fail(function (data) {
                 // Error handling goes here
                 // Possibly show an notification
             });
@@ -96,18 +125,17 @@ $(document).ready(function () {
 
     $add.on('click', function () {
         // Empty the form
-        $edit[0].reset();
+        // Make the details form editable and set it's method
+        $edit.form('clear')
+            .form('editable', true)
+            .form({
+                url: '/api/engineers/'
+            })
+            .data('method', 'post');
 
         // Slide to the engineer details
         // Find all the inputs and trigger a change event. This is done
-        // because not all plugins respond to the 'reset' event
-        $('#engineer-carousel').carousel(2)
-            .find('input, select')
-            .trigger('change');
-
-        // Make the details form editable and set it's method
-        $edit.form('editable', true)
-            .data('method', 'post');
+        $carousel.carousel(2);
     });
 
     // Fill the country and countries selector

@@ -1,7 +1,7 @@
 (function ($) {
 
     /**
-     * A simple plugin to support the details card behaviour
+     * A simple plugin to make forms easier
      * @param method
      * @returns {jQuery}
      */
@@ -19,7 +19,7 @@
 
     var methods = {
         /**
-         *
+         * Fill the form with data
          * @param data Object with keys as input names and values as input values
          * @returns {jQuery}
          */
@@ -63,14 +63,13 @@
          * @returns {jQuery}
          */
         editable: function (enabled) {
-            this.find('input, select').prop('disabled', !enabled);
+            this.find(':input').prop('disabled', !enabled);
 
             return this
         },
         /**
-         *
-         * @param method
-         * @returns {*}
+         * Submit the form to the server
+         * @returns {jQuery}
          */
         submit: function () {
             var url = this[0].action,
@@ -101,6 +100,21 @@
                 contentType: false,
                 processData: false
             });
+        },
+        /**
+         * Clear the form
+         * @returns {*}
+         */
+        clear: function () {
+            return this.each(function () {
+                // Reset the entire form to it's initial state. Note: this is
+                // not the same as setting each input to empty
+                this.reset();
+
+                // Trigger a change event because most scripts don't listen for
+                // 'reset' event
+                $(this).find(':input').trigger('change');
+            })
         }
     };
 })(jQuery);

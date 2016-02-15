@@ -19,11 +19,49 @@
     <div id="engineer-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
         <div class="carousel-inner" role="listbox">
             <div class="item">
-                Notes
+                <form class="engineer-note form-horizontal url" method="post" data-autofill="action">
+                    <fieldset>
+                        <legend>Edit note</legend>
+
+                        <div class="form-group">
+                            <label for="visible-from" class="col-xs-2 control-label">
+                                <i class="fa fa-hourglass-start"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <input type="date" id="visible-from" name="visible-from" class="form-control"
+                                       placeholder="Visible from"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="visible-until" class="col-xs-2 control-label">
+                                <i class="fa fa-hourglass-end"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <input type="date" id="visible-until" name="visible-until" class="form-control"
+                                       placeholder="Visible until"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">
+                                <i class="fa fa-comment"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <textarea id="content" class="form-control" name="content" placeholder="Content&hellip;"
+                                          required></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <input type="submit" class="btn btn-default pull-right" value="Submit"/>
+                </form>
             </div>
+
             <div class="item">
                 Skills
             </div>
+
             <div class="item active">
                 <form class="engineer-edit form-horizontal url" method="post" data-autofill="action">
                     <div class="form-group">
