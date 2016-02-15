@@ -7,9 +7,9 @@ $(document).ready(function () {
         "bPaginate": false,
         // The part below makes our table scrollable when showing more than 16 items.
         "deferRender": true,
-        "scrollY": 600,
-        "scrollCollapse": true,
-        "scroller": true,
+        "fixedHeader": true,
+        "bScrollCollapse": true,
+        "scrollY": '64vh',
         // We initialize the column fields with the required details (Category, Subcategory, Name) and add some HTML with the render function.
         "columns": [
             {data: "category.parent.short_name"},
@@ -21,9 +21,9 @@ $(document).ready(function () {
                 }, orderable: false,
                 searchable: false}
         ]
-    });
+    }); 
     // Makes the search input form-control work on the DataTable
-    $('.form-control').keyup(function(){
+    $('.search-bar').keyup(function(){
         table.search($(this).val()).draw() ;
     }); 
     // On click functions for the HTML elements in the DataTable

@@ -88,3 +88,10 @@ div#DataTables_Table_0_filter label {
 a {
     cursor: pointer;
 }
+
+/* Makes the listed items scrollable */
+.listed-items{
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 70vh;
+}
