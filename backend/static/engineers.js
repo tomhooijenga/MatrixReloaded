@@ -7,9 +7,7 @@ $(document).ready(function () {
         "bPaginate": false,
         // The part below makes our table scrollable when showing more than 16 items.
         "deferRender": true,
-        "scrollY": 600,
-        "scrollCollapse": true,
-        "scroller": true,
+        "autoWidth": false,
         // We initialize the column fields with the required details (First name, Last name) and add some HTML with the render function.
         "columns": [
             {data: "first_name",

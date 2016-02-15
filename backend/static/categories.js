@@ -1,9 +1,10 @@
 /* This is the function for showing subcategories */
 function listSubcategories (d) {
+    $(this).addClass("test123");
     // `d` is the original data object for the row
     // create an empty string which will contain the categories in a table
     var mytable = '';
-    mytable += '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;"><thead><tr><td><b>Subcategories:</b></td></tr></thead>';
+    mytable += '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; style="background-color:red><thead><tr><td><b>Subcategories:</b></td></tr></thead>';
     // if d.children[0] = null there are no subcategories
     if (d.children[0] != null)
     {
@@ -38,10 +39,7 @@ $(document).ready(function() {
             "bInfo" : false,
             "bPaginate": false,
             // The part below makes our table scrollable when showing more than 16 items.
-            //"deferRender": true,
-            "scrollY": "100%",
-            "scrollCollapse": true,
-            "scroller": true,
+            "deferRender": true,
             // We initialize the column fields with the required details (Name) and add some HTML with the render function.
             "columns": [
                         { "data": "name",
@@ -51,12 +49,6 @@ $(document).ready(function() {
                                   }, orderable: false,
                                     searchable: false},
                         ]
-        });
-        $(window).bind('resize', function () {
-            var NewHeight = $(document).height() - 260;
-            var oSettings = table.fnSettings();
-            oSettings.oScroll.sY = NewHeight + "px";
-            myTable.fnDraw();
         });
         // Makes the search input form-control work on the DataTable
         $('.search-bar').keyup(function(){
