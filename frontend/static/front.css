@@ -1,3 +1,9 @@
+/* Custom CSS for the whole webpage */
+* {
+    font-size: 100%;
+    font-family: 'Open Sans';
+}
+
 .col-centered{
     float: none;
     margin: 0 auto;
@@ -12,12 +18,10 @@ body{
 }
 
 .search {
-	font-family: "ShreeDev0714","Shree Devanagari 714";
-	font-size: 14px;
 	color: rgb(5, 133, 205);
 }
 
-.productsnaam{
+.products{
 	height:220px; 
 	border: 1px solid #ccc;
 }
@@ -47,33 +51,14 @@ body{
 	width:165px; 
 	height:30px;
 }
-.panel-default{
-	border-color:#ccc;
+.engineers{
+	border: 1px solid #ccc;
 }
 
 .table{
 	margin-bottom: 3px;
 	border-color:#ccc;
-	font-family: "ShreeDev0714","Shree Devanagari 714";
-	font-size: 14px;
 	color: rgb(5, 133, 205);
-}
-
-.hover > tbody > tr:hover{
-	background-color: rgba(5, 133, 205, 1);
-	color: white;
-}
-
-.selected {
-	background-color: rgba(5, 133, 205, 1);
-	color: white;
-}
-
-.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
-	border-top:0px;
-	margin: 5px 5px;
-
-
 }
 
 .curlvl{
@@ -102,15 +87,6 @@ body{
 	padding-right:0px;
 }
 
-.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12{
-	position:static;
-}
-
-.button{
-	height:50px;
-	width:50px;
-}
-
 #selectlan
 {
   position:absolute;
@@ -136,4 +112,23 @@ body{
 	width:85%;  
 	margin-left:25px; 
 	margin-right:25px;
+}
+
+/* hides the default search bar of DataTables */
+div#DataTables_Table_0_filter label {
+    display: none;
+}
+
+/* hides the default search bar of DataTables */
+div#DataTables_Table_1_filter label {
+    display: none;
+}
+
+.countrybutton {
+    padding: 6px 10px;
+    line-height: 1.7;
+}
+
+.input-group-btn:first-child>.btn, .input-group-btn:first-child>.btn-group {
+    margin-right: 5px;
 }
