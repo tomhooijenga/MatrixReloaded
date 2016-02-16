@@ -151,9 +151,6 @@ class CountryViewSet(viewsets.ReadOnlyModelViewSet):
 
     serializer_class = serializers.CountrySerializer
 
-    # Disable pagination for the countries, because the set is small and won't grow soon
-    pagination_class = None
-
 
 class LanguageViewSet(viewsets.ReadOnlyModelViewSet):
     """
@@ -163,9 +160,6 @@ class LanguageViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = models.Language.objects.all()
 
     serializer_class = serializers.LanguageSerializer
-
-    # Disable pagination for the countries, because the set is small and won't grow soon
-    pagination_class = None
 
 
 class SkillViewSet(viewsets.ModelViewSet):
