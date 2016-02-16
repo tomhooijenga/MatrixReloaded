@@ -7,8 +7,8 @@
         <meta charset="UTF-8">
         <title>Agilent Skill Matrix</title>
         <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet"/>
-        <link href="{% static "front.css" %}" rel="stylesheet"/>
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+              <link href="{% static "front.css" %}" rel="stylesheet"/>
+              <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs/dt-1.10.10/datatables.min.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -38,7 +38,7 @@
                     </div>
                     <!-- Logo -->
                     <div class ="col-xs-4 agiimg">
-                        <img class="img-responsive" src="Images/Agilentlogo.jpg" alt="Agilent">
+                        <img class="img-responsive" src="{% static "img/logo.jpg" %}" alt="Agilent">
                     </div>
                     <!-- Inlogknop -->
                     <div class="col-xs-1"> 
@@ -118,25 +118,6 @@
                                         <th><i class="fa fa-sort-amount-desc"></i></th>
                                     </tr> 
                                 </thead> 
-                                <tbody>
-                                    <tr>
-                                        <!--<td>Jack Kerry</td>-->
-                                        <!--<td>FSS</td>-->
-                                        <!--<td><img src="Images/du.png" alt="Agilent" style="margin-top:6px"></td>-->
-                                        <!--</tr>-->
-                                        <!--<tr>-->
-                                        <!--<td>Lorem Piepschuim</td>-->
-                                        <!--<td>ASP</td>-->
-                                        <!--<td><img src="Images/du.png" alt="Agilent" style="margin-top:6px"></td>-->
-                                        <!--</tr>-->
-                                        <!--<tr>-->
-                                        <!--<td>-->
-                                        <!--Albert Minekus van Osvaart-->
-                                        <!--</td>-->
-                                        <!--<td>FSS</td>-->
-                                        <!--<td><img src="Images/nl.png" alt="Agilent" style="margin-top:6px"></td>-->
-                                    </tr>
-                                </tbody> 
                             </table>
                         </div>
                     </div>
@@ -168,77 +149,7 @@
                                 <!-- Engineer info -->
                                 <div class="engiinfo" style="clear:left; font-size:10px;">
                                     <table class= "table engiinfofont engitabpad">
-                                        <tbody> 
-                                            <!--<tr> -->
-                                            <!--<td><i class="fa fa-map-marker famargin"></i></td>-->
-                                            <!--<td>-->
-                                            <!--HPDROP1234-->
-                                            <!--</td> -->
-                                            <!--<td><i class="fa fa-files-o famargin"></i></td>-->
-                                            <!--</tr>-->
-                                            <!--<tr> -->
-                                            <!--<td><i class="fa fa-map-marker famargin"></i></td>-->
-                                            <!--<td>-->
-                                            <!--0031 678 94 56 12-->
-                                            <!--</td> -->
-                                            <!--<td><i class="fa fa-files-o famargin"></i></td>-->
-                                            <!--</tr>-->
-                                            <!--<tr> -->
-                                            <!--<td><i class="fa fa-map-marker famargin"></i></td>-->
-                                            <!--<td>-->
-                                            <!--aminekus@agilent.com-->
-                                            <!--</td> -->
-                                            <!--<td><i class="fa fa-files-o famargin"></i></td>-->
-                                            <!--</tr>-->
-                                            <!--<tr class="border"> -->
-                                            <!--<td><i class="fa fa-map-marker famargin"></i></td>-->
-                                            <!--<td>00073789</td> -->
-                                            <!--</tr>-->
-                                            <!--<tr> -->
-                                            <!--<td><i class="fa fa-map-marker famargin"></i></td>-->
-                                            <!--<td>-->
-                                            <!--2269804/2/NL-->
-                                            <!--</td> -->
-                                            <!--<td><i class="fa fa-files-o famargin"></i></td>-->
-                                            <!--</tr>-->
-                                            <!--<tr class="border"> -->
-                                            <!--<td><i class="fa fa-map-marker famargin"></i></td>-->
-                                            <!--<td>10-02-2012</td> -->
-                                            <!--</tr>-->
-                                            <!--<tr> -->
-                                            <!--<td><i class="fa fa-map-marker famargin"></i></td>-->
-                                            <!--<td>-->
-                                            <!--44-RPZ-4-->
-                                            <!--</td> -->
-                                            <!--<td><i class="fa fa-files-o famargin"></i></td>-->
-                                            <!--</tr>-->
-                                            <!--<tr class="border"> -->
-                                            <!--<td><i class="fa fa-map-marker famargin"></i></td>-->
-                                            <!--<td>-->
-                                            <!--Audi A3, Blue-->
-                                            <!--</td> -->
-                                            <!--</tr>-->
-                                            <!--<tr> -->
-                                            <!--<td><i class="fa fa-map-marker famargin"></i></td>-->
-                                            <!--<td>-->
-                                            <!--Woekeven 65, 1703MR-->
-                                            <!--</td> -->
-                                            <!--<td><i class="fa fa-files-o famargin"></i></td>-->
-                                            <!--</tr>-->
-                                            <!--<tr> -->
-                                            <!--<td><i class="fa fa-map-marker famargin"></i></td>-->
-                                            <!--<td>Beverwijk</td>-->
-                                            <!--</tr>-->
-                                            <!--<tr class="border"> -->
-                                            <!--<td><i class="fa fa-map-marker famargin"></i></td>-->
-                                            <!--<td>The Netherlands</td>-->
-                                            <!--</tr> -->
-                                            <!--<tr> -->
-                                            <!--<td><i class="fa fa-map-marker famargin"></i></td>-->
-                                            <!--<td style="text-align: left">NL / ENG</td> -->
-                                            <!--<td><i class="fa fa-files-o famargin"></i></td>-->
-                                            <!--</tr>-->
-                                        </tbody>
+
                                     </table>
                                 </div>
                             </div>

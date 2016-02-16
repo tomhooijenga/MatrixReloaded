@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    alert('Hello');
     $(".filterlanden").select2();
     // Local bestand
     $.getJSON("/api/countries/?format=json", function (data) {
