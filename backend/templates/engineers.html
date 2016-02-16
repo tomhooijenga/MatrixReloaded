@@ -59,7 +59,15 @@
             </div>
 
             <div class="item">
-                Skills
+                <div class="engineer-skills">
+                    <div class="form-group">
+                        <select id="skills-select" multiple style="width: 100%"></select>
+                    </div>
+
+                    <ul class="list-group">
+
+                    </ul>
+                </div>
             </div>
 
             <div class="item active">
@@ -129,7 +137,8 @@
                                 <i class="fa fa-language"></i>
                             </label>
                             <div class="col-xs-10">
-                                <select id="languages" name="languages" class="form-control" multiple required></select>
+                                <select id="languages" name="languages" class="form-control" placeholder="Languages"
+                                        multiple required></select>
                             </div>
                         </div>
 
@@ -138,7 +147,8 @@
                                 <i class="fa fa-globe"></i>
                             </label>
                             <div class="col-xs-10">
-                                <select id="countries" name="countries" class="form-control" multiple required></select>
+                                <select id="countries" name="countries" class="form-control" placeholder="Countries"
+                                        multiple required></select>
                             </div>
                         </div>
                     </fieldset>
@@ -152,8 +162,7 @@
                             </label>
                             <div class="col-xs-10">
                                 <input id="street" name="street" class="form-control" type="text" placeholder="Address"
-                                       maxlength="100"
-                                       required>
+                                       maxlength="100" required>
                             </div>
                         </div>
 
@@ -163,9 +172,7 @@
                             </label>
                             <div class="col-xs-10">
                                 <input id="zip-code" name="zip-code" class="form-control" type="text"
-                                       placeholder="Zipcode"
-                                       maxlength="10"
-                                       required>
+                                       placeholder="Zipcode" maxlength="10" required>
                             </div>
                         </div>
 
@@ -175,8 +182,7 @@
                             </label>
                             <div class="col-xs-10">
                                 <input id="city" name="city" class="form-control" type="text" placeholder="City"
-                                       maxlength="100"
-                                       required>
+                                       maxlength="100" required>
                             </div>
                         </div>
 
@@ -185,10 +191,10 @@
                                 <i class="fa fa-globe"></i>
                             </label>
                             <div class="col-xs-10">
-                                <select id="country" name="country" class="form-control" required></select>
+                                <select id="country" name="country" class="form-control" placeholder="Country"
+                                        required></select>
                             </div>
                         </div>
-
                     </fieldset>
 
                     <fieldset>
@@ -221,8 +227,7 @@
                             </label>
                             <div class="col-xs-10">
                                 <input id="car-color" name="car-color" class="form-control" type="text"
-                                       placeholder="Color"
-                                       maxlength="100" required>
+                                       placeholder="Color" maxlength="100" required>
                             </div>
                         </div>
                     </fieldset>
@@ -236,8 +241,7 @@
                             </label>
                             <div class="col-xs-10">
                                 <input id="vca-number" name="vca-number" class="form-control" type="text"
-                                       placeholder="Number"
-                                       maxlength="20">
+                                       placeholder="Number" maxlength="20">
                             </div>
                         </div>
 
@@ -277,4 +281,24 @@
 
     <script src='{% static "engineers.js" %}'></script>
     <script src="{% static 'js/form.js' %}"></script>
+
+    <script type="text/html" id="skill-template">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-xs-7 skill-name">
+
+                </div>
+                <div class="col-xs-5">
+                    <div class="input-group">
+                        <input type="number" min="1" max="4" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-danger" type="button">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </script>
 {% endblock javascript %}
