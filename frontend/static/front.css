@@ -58,7 +58,11 @@ body{
 .table{
 	margin-bottom: 3px;
 	border-color:#ccc;
-	color: rgb(5, 133, 205);
+	/*color: rgb(5, 133, 205);*/
+}
+
+.table thead {
+    color: rgb(5, 133, 205);
 }
 
 .curlvl{
