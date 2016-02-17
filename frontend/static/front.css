@@ -136,3 +136,23 @@ div#DataTables_Table_1_filter label {
 .input-group-btn:first-child>.btn, .input-group-btn:first-child>.btn-group {
     margin-right: 5px;
 }
+
+table.click {
+    border-collapse: collapse;
+}
+#click tr {
+    background-color: #eee;
+    border-top: 1px solid #fff;
+}
+.click tr:hover {
+    background-color: #ccc;
+}
+.click th {
+    background-color: #fff;
+}
+.click th, #example td {
+    padding: 3px 5px;
+}
+.click  td:hover {
+    cursor: pointer;
+}

@@ -27,5 +27,13 @@ $(document).ready(function () {
     // Makes the search input search-bar work on the DataTable
     $('.search-bar').keyup(function(){
         table.search($(this).val()).draw() ;
-    }); 
+    });
+
+        // table on click product
+    $('table tbody').on('click', 'tr.odd, tr.even', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+        table.ajax.reload();
+        console.log(table.row( this ).data() );
+    });
 });

@@ -19,5 +19,5 @@ $(document).ready(function () {
     // Makes the search input search-bar work on the DataTable
     $('.search-bar').keyup(function(){
         table.search($(this).val()).draw() ;
-    }); 
+    });
 });
