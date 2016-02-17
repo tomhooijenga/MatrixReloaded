@@ -6,5 +6,5 @@ import frontend.urls
 urlpatterns = [
     url(r'^api/', include(api.urls.urlpatterns)),
     url(r'^admin/', include(backend.urls.urlpatterns)),
-    url(r'', include(frontend.urls.urlpatterns))
+    url(r'^', include(frontend.urls.urlpatterns))
 ]

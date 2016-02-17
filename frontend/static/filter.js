@@ -1,68 +1,86 @@
-// This function sets a Cookie with the selected Countries. They will have a long expire date so it will remember the preferences.
-function setCookie(countries){
-    var expireYear = (new Date).getFullYear() + 2;
-    var date = new Date("January 1, " + expireYear);
-    var dateString = date.toGMTString();
-    var cookieString = "countries=" + countries + ";expires=" + dateString;
-    document.cookie = cookieString;
+/**
+ * Set a http cookie.
+ * @param {string} name The name of the cookie
+ * @param {string} value The value of the cookie
+ */
+function setCookie(name, value) {
+    // This cookie is valid for exactly one year
+    var expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 1);
+console.log(name + "=" + value + "; expires=" + expires.toUTCString());
+    document.cookie = name + "=" + value + "; expires=" + expires.toUTCString();
 }
-// We can get cookies with this function
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+
+/**
+ * Get the value of a cookie by name
+ * @param {string} name The name of the cookie
+ * @returns {string}
+ */
+function getCookie(name) {
+    name = name + '=';
+
+    var cookies = document.cookie.split(';');
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+
+        // Trim possible leading whitespace
+        while (cookie.charAt(0) == ' ') {
+            cookie = cookie.substring(1);
+        }
+
+        // If we found the cookie we're looking for, return the value
+        if (cookie.indexOf(name) == 0) {
+            return cookie.substring(name.length, cookie.length);
+        }
     }
+
     return "";
 }
+
 $(document).ready(function () {
-    // Sets the cookie for later use
-    var cookie = getCookie("countries");
+
+    // Fetch our elements for later use
+    var select = $('.filterlanden'),
+        save = $("#savefilt"),
+        modal = $('.selectCountries')
+
     // We get the JSON from the API.
     $.getJSON("/api/countries/?format=json", function (data) {
         // We format an array since select2 can't use a JSON array
-        var formatData = data.map(function(obj){ 
-            var newObj = {};
-            newObj.id = obj.code;
-            newObj.text = obj.name;
-            return newObj;
+        var formatData = data.map(function (country) {
+            return {
+                id: country.code,
+                text: country.name
+            }
         });
+
         // Select2 shows all the countries in the datatabase
-        var element = $(".filterlanden").select2({
+        select.select2({
             data: formatData
         });
-        // Checks if cookie is set.
-        if (cookie != "") {
+
+        var countries = getCookie('countries');
+
+        if (countries) {
             // If the cookie is set, we split it into an array
-            var filter = cookie.split(",");
-            // We loop through all the items in the array, and add the selected countries if they are saved in the cookie
-            for (var d = 0; d < formatData.length; d++) {
-                var item = formatData[d];
-                // Create the DOM option that is pre-selected by default
-                $.each(filter, function(code, country){
-                    if (country == item.id) {
-                        var option = new Option(item.text, item.id, true, true);
-                        // Append it to the select
-                        element.append(option);
-                        // Update the selected options that are displayed
-                        element.trigger('change');
-                    };
-                });
-            };
+            var filter = countries.split(",");
+
+            // Set the selected values and trigger for an update
+            select.val(filter).trigger('change');
         }
     });
+
     // On click we create the cookie and reload the page to show the filtered results
-    $(document).on("click", "#savefilt", function () {
-        if ($(".filterlanden").val() == null) {
-            // This removes the cookie if no countries are selected
-            document.cookie = 'countries' + '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
-        } else {
-            var selectedCountries = $(".filterlanden").val().join(',');
-            setCookie(selectedCountries);
-        };
-        $('.selectCountries').modal('hide');
-        location.reload(true);
-    })       
+    save.on('click', function () {
+        // Grab the value of the country selector. If its null, use an empty array instead.
+        var countries = select.val() || [];
+
+        setCookie('countries', countries.join(','));
+
+        modal.modal('hide');
+
+        // Reload the page to fetch see the new filters in action
+        location.reload();
+    });
 });
