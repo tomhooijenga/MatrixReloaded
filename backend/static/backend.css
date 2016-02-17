@@ -70,7 +70,7 @@ tr {
     height: 80vh;
 }
 
-.panel-body {
+.data .panel-body {
     overflow: auto;
     height: 90%;
     height: calc(100% - 54px);

@@ -1,14 +1,68 @@
 {% extends 'template.html' %}
 {% load static from staticfiles %}
 {% block table %}
-<!Table headers>
-<thead>
+    <thead>
     <tr>
         <th>Category</th>
         <th>Subcategory</th>
         <th>Name</th>
         <th>Edit</th>
     </tr>
-</thead>
-<script type='text/javascript' src='{% static "products.js" %}'></script>
+    </thead>
 {% endblock table %}
+
+{% block card %}
+    <form class="form-horizontal url" method="post" data-autofill="action">
+        <div class="form-group">
+            <div class="image-input col-xs-6 col-xs-offset-4">
+                <input id="image" name="image" type="file"/>
+                <label for="image" class="form-control">
+                    <img data-autofill="src" class="image"/>
+                    <span>Click to upload image</span>
+                </label>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="category" class="col-xs-2 control-label">
+                <i class="fa fa-tags"></i>
+            </label>
+            <div class="col-xs-10">
+                <select id="category" name="category" class="form-control" placeholder="Category"
+                        required></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name" class="col-xs-2 control-label">
+                <i class="fa fa-header"></i>
+            </label>
+            <div class="col-xs-10">
+                <input id="name" name="name" class="form-control" type="text"
+                       maxlength="20" placeholder="Name">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-5 col-xs-offset-2">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="is-active" data-autofill="checked" value="true">
+                        Is active
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-xs-5">
+                <input type="submit" class="btn btn-default pull-right" value="Submit"/>
+            </div>
+        </div>
+    </form>
+{% endblock card %}
+
+{% block javascript %}
+    {{ block.super }}
+
+    <script src="{% static "products.js" %}"></script>
+{% endblock %}

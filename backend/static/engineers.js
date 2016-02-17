@@ -195,7 +195,7 @@ $(document).ready(function () {
 
         $this.form('submit')
             .done(function (data) {
-                $this.form(data);
+                $this.form(data).data('method', 'patch');
 
                 // TODO: notify user
 
