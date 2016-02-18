@@ -75,6 +75,9 @@ class NoteSerializer(serializers.HyperlinkedModelSerializer):
     This class is responsible for the serialization of the 'Note' model
     """
 
+    # Explicitly add this field as DRF makes field with 'auto_now' read only
+    visible_from = serializers.DateField(required=False)
+
     class Meta:
         model = models.Note
 
