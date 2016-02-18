@@ -37,6 +37,10 @@ aside nav a:hover {
     background-color: #494545;
 }
 
+aside nav hr {
+    border-top-color: #494545;
+}
+
 /* Add pointer to all a links even without href */
 a {
     cursor: pointer;
