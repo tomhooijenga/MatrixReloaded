@@ -21,6 +21,12 @@ body{
 	color: rgb(5, 133, 205);
 }
 
+.product{
+	height: 190px;
+	border: 1px solid #ccc;
+}
+
+
 .products{
 	height:220px; 
 	border: 1px solid #ccc;
@@ -28,7 +34,7 @@ body{
 
 .prodimgnaam{
 	text-align: center;
-	background-color:rgba(102, 102, 102, 0.1);
+	background-color:rgba(102, 102, 102, 0.8);
 	font-size: 14px;
 	padding: 4px;
 	height:30px;
@@ -48,8 +54,8 @@ body{
 }
 
 .agiimg{
-	width:165px; 
-	height:30px;
+	width:250px;
+	height:35px;
 }
 .engineers{
 	border: 1px solid #ccc;
@@ -70,12 +76,30 @@ body{
 	color: black;
 }
 
+.engiimg{
+	width:50%;
+	height:100px;
+	float:left;
+	margin-bottom: 10px;
+}
+
+.engistyle{
+	width:50%;
+	height:100px;
+	float:right;
+}
+
 .engiimglvl{
 	text-align: center;
 	color: #eee;
 }
 .engithpad{
 	padding-bottom:2px;
+}
+
+.engiinfo{
+	clear:left;
+	font-size:10px;
 }
 .engiinfofont{
 	font-size:12px;
@@ -91,31 +115,11 @@ body{
 	padding-right:0px;
 }
 
-#selectlan
-{
-  position:absolute;
-  width:440px;
-  height:320px;
-  background-color: rgba(51, 51, 51, 0.9);
-}
-
 .filtertable{
 	margin-bottom: 3px;
 	font-family: "ShreeDev0714","Shree Devanagari 714";
 	font-size: 12px;
 	color: rgb(255,255,255);
-}
-
-#lansub{
-	position: absolute;
-	left:    0;
-	bottom:   0;
-}
-
-#landen{
-	width:85%;  
-	margin-left:25px; 
-	margin-right:25px;
 }
 
 /* hides the default search bar of DataTables */
@@ -131,10 +135,6 @@ div#DataTables_Table_1_filter label {
 .countrybutton {
     padding: 6px 10px;
     line-height: 1.7;
-}
-
-.input-group-btn:first-child>.btn, .input-group-btn:first-child>.btn-group {
-    margin-right: 5px;
 }
 
 table.click {
@@ -155,4 +155,47 @@ table.click {
 }
 .click  td:hover {
     cursor: pointer;
+}
+
+.fa-caret-square-o-right{
+	margin-top:8px;
+}
+
+.modal-content{
+	background-color: rgb(51, 51, 51);
+	opacity: 0.9;
+}
+
+.modal-header{
+	border-bottom:0px;
+}
+
+.modal-title{
+	text-align:center;
+	color:white;
+}
+
+.modal-body{
+	text-align:center;
+}
+
+.filterlanden{
+	width:300px;
+}
+
+.modal-footer{
+	text-align:center;
+	border-top:0px;
+}
+
+.log{
+	padding-top:4px;
+}
+
+.fa-filter{
+	color: #C9C9C9;
+}
+
+.fa-caret-square-o-right{
+	color: #C9C9C9;
 }
