@@ -1,0 +1,52 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Skill Matrix: login</title>
+</head>
+<body>
+
+<link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+<link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}">
+<link rel="stylesheet" href="{% static "css/login.css" %}">
+
+<div class="container">
+	<div class="row text-center">
+	  	<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+	  		<img class="img-responsive" src="{% static "img/logo.png" %}"/>
+	  		<h1 class="title">Skill Matrix login</h1>
+	  		<form method="POST" class="User-form">
+	  			{% csrf_token %}
+	  			{{ form.non_field_errors }}
+	  			{% if FormError %}
+	  				<div class="form-group has-error has-feedback">
+	  					<h3 class="control-label failLabel">{{FormError}}</h3>
+	  				</div>
+	  			{% endif %}
+	  			{% for field in form %}
+
+	  				{% if field.errors %}
+	  				<div class="form-group has-error has-feedback">
+	  					<label class="control-label failLabel">
+	  					{{ field.errors }}
+	  					</label>
+	  					{{ field }}
+	  					<span class="fa fa-times faFail form-control-feedback" aria-hidden="true"></span>
+	  					<span id="inputError2Status" class="sr-only">(error)</span>
+	  				{% else %}
+	  				<div class="form-group">
+   						{{ field }}
+	  				{% endif %}
+	  				</div>
+	  			{% endfor %}
+ 				<button type="submit" class="save btn btn-block btn-primary"><span class="fa fa-sign-in fasize"></span>
+</button>
+ 		   </form>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

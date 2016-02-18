@@ -1,0 +1,24 @@
+.title{
+	margin-top: 5px;
+	margin-bottom: 30px;
+}
+
+.save {
+	margin-top: 20px;
+}
+
+.fasize{
+	font-size: 30px;
+}
+
+.container {
+	margin-top: 150px;
+}
+
+.faFail{
+	font-size: 22px;
+}
+
+.failLabel, .failLabel > ul{
+	margin-bottom: 0px;
+}
