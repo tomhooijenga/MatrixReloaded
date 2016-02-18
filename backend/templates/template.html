@@ -18,12 +18,12 @@
 </head>
 <body>
 <aside>
-    <nav>
+    <nav class="navigation">
         <img class="img-responsive logo" src="{% static "img/logo-white.png" %}" alt="Agilent">
-        <a href="{% url 'backend-engineers' %}">Engineers</a>
-        <a href="{% url 'backend-products' %}">Products</a>
-        <a href="{% url 'backend-categories' %}">Categories</a>
-        <a href="{% url 'backend-users' %}">Users</a>
+        <a class="{% if request.resolver_match.url_name == 'backend-engineers' %}active{% endif %}" href="{% url 'backend-engineers' %}">Engineers</a>
+        <a class="{% if request.resolver_match.url_name == 'backend-products' %}active{% endif %}" href="{% url 'backend-products' %}">Products</a>
+        <a class="{% if request.resolver_match.url_name == 'backend-categories' %}active{% endif %}" href="{% url 'backend-categories' %}">Categories</a>
+        <a class="{% if request.resolver_match.url_name == 'backend-users' %}active{% endif %}" href="{% url 'backend-users' %}">Users</a>
         <hr />
         <a href="{% url 'logout' %}">Log out</a>
     </nav>
