@@ -129,6 +129,13 @@ REST_FRAMEWORK = {
 # Override the default User model with our own
 AUTH_USER_MODEL = 'api.User'
 
+LOGIN_URL = '/admin/login/'
+
+# When there's no next url to go to, send them to the engineers part
+LOGIN_REDIRECT_URL = '/admin/engineers'
+
+LOGOUT_URL = '/admin/logout'
+
 LOGGING = {
     'disable_existing_loggers': True,
     'version': 1,
