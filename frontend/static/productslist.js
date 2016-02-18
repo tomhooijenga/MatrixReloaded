@@ -1,3 +1,4 @@
+// This file lists the products on the page
 $(document).ready(function () {
     // We initialize the DataTable with the json file required for the products page
     var table = $('.productslist').DataTable({
