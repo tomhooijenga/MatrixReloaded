@@ -14,5 +14,4 @@ urlpatterns = [
 
     url(r'login/$', login),
     url(r'logout/$', logout_then_login, name='logout')
-    url(r'password_reset/$', )
 ]
