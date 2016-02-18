@@ -10,7 +10,7 @@ $(document).ready(function () {
         },
         "bInfo": false,
         "bPaginate": false,
-        "deferRender": true,
+        autoWidth: false,
         // We initialize the column fields with the required details (Category, Subcategory, Name) and add some HTML with the render function.
         "columns": [
             {
