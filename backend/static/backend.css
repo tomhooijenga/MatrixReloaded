@@ -70,10 +70,6 @@ aside nav a:hover {
     text-align: center;
 }
 
-button.btn.btn-default.btn-sm.countrybutton {
-    margin-right: 6px;
-}
-
 td.details-control {
     cursor: pointer;
 }

@@ -102,10 +102,6 @@ div#DataTables_Table_1_filter label {
     line-height: 1.7;
 }
 
-.input-group-btn:first-child>.btn, .input-group-btn:first-child>.btn-group {
-    margin-right: 5px;
-}
-
 /*Styling for the country button. Below we give the fa-globe icon the color of the logo */
 .countrybutton {
     padding: 0px 9px;
