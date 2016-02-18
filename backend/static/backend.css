@@ -78,3 +78,20 @@ td.details-control {
 .panel.panel-default.details {
     display: none;
 }
+
+/* hides the default search bar of DataTables */
+div#DataTables_Table_0_filter label {
+    display: none;
+}
+
+/* Add pointer to all a links even without href */
+a {
+    cursor: pointer;
+}
+
+/* Makes the listed items scrollable */
+.listed-items{
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 70vh;
+}
