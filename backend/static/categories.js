@@ -23,12 +23,12 @@ $(document).ready(function() {
     // We create an array to store the categories from the json request
     var categories = [];
     function getArray(){
-        return $.getJSON("/api/categories/?expand=children&format=json");
+        return $.getJSON("/api/categories/?expand=children");
     }
     getArray().done(function(json) {
         // Only show the categories by filtering the items.
         // Only items with parent = null should be shown.
-        $.each(json.results, function(key, val) {
+        $.each(json, function(key, val) {
             if (val.parent === null) {
                 categories.push(val);
             }

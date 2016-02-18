@@ -7,7 +7,7 @@ function setCookie(name, value) {
     // This cookie is valid for exactly one year
     var expires = new Date();
     expires.setFullYear(expires.getFullYear() + 1);
-    document.cookie = name + "=" + value + "; expires=" + expires.toUTCString();
+    document.cookie = name + "=" + value + "; expires=" + expires.toUTCString() + "; path=/";
 }
 
 /**

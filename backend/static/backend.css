@@ -162,3 +162,9 @@ div#DataTables_Table_0_filter label {
     padding-left: 0;
     padding-right: 0;
 }
+
+/*Styling for the country button. Below we give the fa-globe icon the color of the logo */
+.countrybutton {
+    padding: 2px 8px;
+    font-size: 19px;
+}

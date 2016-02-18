@@ -31,6 +31,11 @@ $(document).ready(function () {
             }
         ]
     });
+    
+    // Makes the search input form-control work on the DataTable
+        $('.search-bar').keyup(function(){
+            table.search($(this).val()).draw() ;
+        }); 
 
     $table.on('click', 'tr', function () {
         var data = table.row(this).data(),

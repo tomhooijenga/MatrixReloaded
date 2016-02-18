@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     var engineer, // Holds the current engineer
         products = {}; // Map of product urls => products
 
@@ -9,11 +8,24 @@ $(document).ready(function () {
         $edit = $carousel.find('.engineer-edit'),
         $note = $carousel.find('.engineer-note'),
         $skills = $carousel.find('.engineer-skills');
+    
+    // This cookie holds the current selected countries
+    var cookie = getCookie("countries");
+    // We will use this variable to create the JSON request
+    var jsonUrl = "";
+    // Checks if cookie is empty
+    // If it's empty, it requests the normal JSON url.
+    if (cookie == "") {
+        jsonUrl = "/api/engineers/?expand=country";
+    } else {
+        // If the cookie is not empty it filters the results.
+        jsonUrl = "/api/engineers/?expand=note&countries=" + cookie;
+    };
 
     // We initialize the DataTable with the json file required for the engineer page
     var table = $table.DataTable({
         ajax: {
-            url: '/api/engineers/?expand=note',
+            url: jsonUrl,
             dataSrc: ''
         },
         "bInfo": false,
@@ -50,7 +62,11 @@ $(document).ready(function () {
             }
         ]
     });
-
+    
+    // Makes the search input form-control work on the DataTable
+        $('.search-bar').keyup(function(){
+            table.search($(this).val()).draw() ;
+        }); 
 
     $table.on('click', 'tr', function (e) {
         // Ignore clicks that started on the edit links. We can't use `stopPropagation`

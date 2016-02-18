@@ -1,16 +1,3 @@
-// We can get cookies with this function
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ')
-            c = c.substring(1);
-        if (c.indexOf(name) == 0)
-            return c.substring(name.length, c.length);
-    }
-    return "";
-}
 // This file lists the engineers on the page
 $(document).ready(function () {
     var cookie = getCookie("countries");
@@ -26,8 +13,10 @@ $(document).ready(function () {
     };
     // We initialize the DataTable with the json file required for the engineer page
     var table = $('.engineerslist').DataTable({
-        "sAjaxSource": jsonUrl,
-        "sAjaxDataProp": "results",
+        ajax: {
+            url: jsonUrl,
+            dataSrc: ''
+        },
         "bInfo": false,
         "bPaginate": false,
         // The part below makes our table scrollable when showing more than 16 items.
