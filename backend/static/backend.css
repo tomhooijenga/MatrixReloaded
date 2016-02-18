@@ -37,6 +37,15 @@ aside nav a:hover {
     background-color: #494545;
 }
 
+/* Add pointer to all a links even without href */
+a {
+    cursor: pointer;
+}
+
+tr {
+    cursor: pointer;
+}
+
 .main {
     width: 80%;
     padding: 0 25px;
@@ -61,22 +70,87 @@ aside nav a:hover {
     height: 80vh;
 }
 
-.search-wrapper {
-    padding: 10px;
-    margin-bottom: 10px;
+.data .panel-body {
+    overflow: auto;
+    height: 90%;
+    height: calc(100% - 54px);
 }
 
-.search-bar {
+.search-wrapper {
+    padding: 10px;
+}
+
+input[type="search"] {
     text-align: center;
 }
 
-td.details-control {
-    cursor: pointer;
+.card {
+    /* display: none; */
+    overflow: auto;
 }
 
-/* Hide panel by default */
-.panel.panel-default.details {
+.card label {
+    text-align: center;
+}
+
+.card:not(.card-edit) input[disabled] {
+    border: none;
+    cursor: auto;
+    background: transparent;
+    box-shadow: none;
+}
+
+.image-input input {
+    visibility: hidden;
+    width: 0;
+}
+
+.image-input > label {
+    height: auto;
+    position: relative;
+    padding: 0 0 100% 0;
+    padding-bottom: calc(100% - 2px);
+    overflow: hidden;
+}
+
+.image-input > label > span {
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 0;
+    cursor: pointer;
+    color: black;
+    text-shadow: 1px 1px 1px white;
+}
+
+.image-input:hover > label > span {
+    z-index: 2;
+}
+
+.image-input input:disabled + label > span {
     display: none;
+}
+
+.image-input > label > img {
+    position: absolute;
+    display: block;
+    z-index: 1;
+}
+
+.image-input .image-horizontal {
+    width: auto;
+    height: 100%;
+    transform: translateX(-25%);
+}
+
+.image-input .image-vertical {
+    width: 100%;
+    height: auto;
+    transform: translateY(-25%);
 }
 
 /* hides the default search bar of DataTables */
@@ -84,21 +158,7 @@ div#DataTables_Table_0_filter label {
     display: none;
 }
 
-/* Add pointer to all a links even without href */
-a {
-    cursor: pointer;
+.engineer-skills .btn {
+    padding-left: 0;
+    padding-right: 0;
 }
-
-/* Makes the listed items scrollable */
-.listed-items{
-    overflow-y: hidden;
-    overflow-x: hidden;
-    height: 70vh;
-}
-
-/*Styling for the country button. Below we give the fa-globe icon the color of the logo */
-.countrybutton {
-    padding: 2px 8px;
-    font-size: 19px;
-}
-

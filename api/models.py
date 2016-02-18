@@ -133,7 +133,7 @@ class Engineer(models.Model):
     # Address, zip code part
     zip_code = models.CharField(max_length=10)
 
-    # Addres, City part
+    # Address, City part
     city = models.CharField(max_length=100)
 
     # Address, Country part
