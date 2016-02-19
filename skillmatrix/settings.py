@@ -25,7 +25,7 @@ SECRET_KEY = 'j+f-)=ch=9n%a-x(y0dfq%^j2-8jem8sw+$4-tid%2^z#df$8f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.agilent.engineer']
 
 # Application definition
 
