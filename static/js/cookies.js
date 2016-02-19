@@ -4,10 +4,17 @@
  * @param {string} value The value of the cookie
  */
 function setCookie(name, value) {
-    // This cookie is valid for exactly one year
-    var expires = new Date();
-    expires.setFullYear(expires.getFullYear() + 1);
-    document.cookie = name + "=" + value + "; expires=" + expires.toUTCString() + "; path=/";
+    // If no value is given, it creates a cookie that is expired so it will be deleted.
+    if (value == "") {
+        var expires = new Date();
+        expires.setFullYear(expires.getFullYear() - 1);
+        document.cookie = name + "=" + value + "; expires=" + expires.toUTCString() + "; path=/";
+    } else {
+        // This cookie is valid for exactly one year
+        var expires = new Date();
+        expires.setFullYear(expires.getFullYear() + 1);
+        document.cookie = name + "=" + value + "; expires=" + expires.toUTCString() + "; path=/";
+    }
 }
 
 /**
