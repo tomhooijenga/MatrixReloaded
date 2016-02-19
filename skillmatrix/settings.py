@@ -19,10 +19,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# Deployment: This must change
 SECRET_KEY = 'j+f-)=ch=9n%a-x(y0dfq%^j2-8jem8sw+$4-tid%2^z#df$8f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -74,15 +75,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'skillmatrix.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'skillmatrix',
+        'USER': 'agilent',
+        'PASSWORD': 'skillmatrix', # MUST CHANGE ON ACTUAL DEPLOYMENT
         'HOST': 'localhost',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # THIS MUST CHANGE ON DEPLOYMENT
-        'USER': 'root',  # THIS MUST CHANGE ON DEPLOYMENT
-        'PASSWORD': 'asdf',  # THIS MUST CHANGE ON DEPLOYMENT,
+        'PORT': '',
     }
 }
 
@@ -101,6 +101,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+# Deployment: Absolute path to where the static files are located.
+STATIC_ROOT = '/home/sboelsma/webapps/skillmatrix_static/static/'
+
 # app files go in (app)/static
 STATIC_URL = '/static/'
 
@@ -111,8 +114,8 @@ STATICFILES_DIRS = (
 )
 
 # Media files (user-uploaded)
-# The path where the user-uploaded files will be stored
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Deployment: Absolute path to where the upload files are stored
+MEDIA_ROOT = '/home/sboelsma/webapps/skillmatrix_static/media/'
 
 # The url where the user-uploaded files will be served
 MEDIA_URL = '/media/'
@@ -129,28 +132,8 @@ REST_FRAMEWORK = {
 # Override the default User model with our own
 AUTH_USER_MODEL = 'api.User'
 
+# Where the login form is located
 LOGIN_URL = '/admin/login/'
 
 # When there's no next url to go to, send them to the engineers part
 LOGIN_REDIRECT_URL = '/admin/engineers'
-
-LOGOUT_URL = '/admin/logout'
-
-LOGGING = {
-    'disable_existing_loggers': True,
-    'version': 1,
-    'handlers': {
-        'console': {
-            # logging handler that outputs log messages to terminal
-            'class': 'logging.StreamHandler',
-            'level': 'DEBUG',  # message level to be written to console
-        },
-    },
-    'loggers': {
-        'django.db': {
-            # django also has database level logging
-            'handlers': ['console'],
-            'level': 'DEBUG',
-        },
-    },
-}
