@@ -14,7 +14,7 @@ body{
 }
 
 .padtop{
-	padding-top: 10px;
+	padding-top:20px;
 }
 
 .search {
@@ -28,13 +28,13 @@ body{
 
 
 .products{
-	height: 260px; 
+	height:220px; 
 	border: 1px solid #ccc;
 }
 
 .prodimgnaam{
 	text-align: center;
-	background-color:rgba(102, 102, 102, 0.1);
+	background-color:rgba(102, 102, 102, 0.8);
 	font-size: 14px;
 	padding: 4px;
 	height:30px;
