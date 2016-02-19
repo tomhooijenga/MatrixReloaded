@@ -14,27 +14,21 @@ body{
 }
 
 .padtop{
-	padding-top:20px;
+	padding-top: 10px;
 }
 
 .search {
 	color: rgb(5, 133, 205);
 }
 
-.product{
-	height: 190px;
-	border: 1px solid #ccc;
-}
-
-
 .products{
-	height:220px; 
+	height: 260px; 
 	border: 1px solid #ccc;
 }
 
 .prodimgnaam{
 	text-align: center;
-	background-color:rgba(102, 102, 102, 0.8);
+	background-color:rgba(102, 102, 102, 0.1);
 	font-size: 14px;
 	padding: 4px;
 	height:30px;
@@ -53,10 +47,6 @@ body{
 	border-bottom: 1px solid #eee
 }
 
-.agiimg{
-	width:250px;
-	height:35px;
-}
 .engineers{
 	border: 1px solid #ccc;
 }
@@ -76,30 +66,12 @@ body{
 	color: black;
 }
 
-.engiimg{
-	width:50%;
-	height:100px;
-	float:left;
-	margin-bottom: 10px;
-}
-
-.engistyle{
-	width:50%;
-	height:100px;
-	float:right;
-}
-
 .engiimglvl{
 	text-align: center;
 	color: #eee;
 }
 .engithpad{
 	padding-bottom:2px;
-}
-
-.engiinfo{
-	clear:left;
-	font-size:10px;
 }
 .engiinfofont{
 	font-size:12px;
@@ -113,13 +85,6 @@ body{
 	padding-top:3px;
 	padding-bottom:3px;
 	padding-right:0px;
-}
-
-.filtertable{
-	margin-bottom: 3px;
-	font-family: "ShreeDev0714","Shree Devanagari 714";
-	font-size: 12px;
-	color: rgb(255,255,255);
 }
 
 /* hides the default search bar of DataTables */
@@ -137,65 +102,12 @@ div#DataTables_Table_1_filter label {
     line-height: 1.7;
 }
 
-table.click {
-    border-collapse: collapse;
-}
-#click tr {
-    background-color: #eee;
-    border-top: 1px solid #fff;
-}
-.click tr:hover {
-    background-color: #ccc;
-}
-.click th {
-    background-color: #fff;
-}
-.click th, #example td {
-    padding: 3px 5px;
-}
-.click  td:hover {
-    cursor: pointer;
+/*Styling for the country button. Below we give the fa-globe icon the color of the logo */
+.countrybutton {
+    padding: 0px 9px;
+    font-size: 19px;
 }
 
-.fa-caret-square-o-right{
-	margin-top:8px;
-}
-
-.modal-content{
-	background-color: rgb(51, 51, 51);
-	opacity: 0.9;
-}
-
-.modal-header{
-	border-bottom:0px;
-}
-
-.modal-title{
-	text-align:center;
-	color:white;
-}
-
-.modal-body{
-	text-align:center;
-}
-
-.filterlanden{
-	width:300px;
-}
-
-.modal-footer{
-	text-align:center;
-	border-top:0px;
-}
-
-.log{
-	padding-top:4px;
-}
-
-.fa-filter{
-	color: #C9C9C9;
-}
-
-.fa-caret-square-o-right{
-	color: #C9C9C9;
+.countrybutton i.fa.fa-globe {
+  color: rgb(5, 133, 205);
 }
