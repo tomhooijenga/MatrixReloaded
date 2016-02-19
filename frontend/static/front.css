@@ -26,6 +26,10 @@ body{
 	border: 1px solid #ccc;
 }
 
+.productsnaam {
+        width: 125%;
+}
+
 .prodimgnaam{
 	text-align: center;
 	background-color:rgba(102, 102, 102, 0.1);
@@ -39,8 +43,13 @@ body{
 	margin-top: 30px;
 }
 
-.enginaam{
+.card{
 	border: 1px solid #ccc;
+        width: 125%;
+}
+
+.card .panel-body {
+        padding: 10px;
 }
 
 .border {
@@ -110,4 +119,16 @@ div#DataTables_Table_1_filter label {
 
 .countrybutton i.fa.fa-globe {
   color: rgb(5, 133, 205);
+}
+.engineerinfo { 
+    width: 100%; 
+    table-layout: fixed;
+}
+
+.engineerinfo td:first-child { 
+    width: 30%; 
+}
+
+.engineerinfo td:last-child { 
+    width: 35%; 
 }

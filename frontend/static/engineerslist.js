@@ -1,5 +1,6 @@
 // This file lists the engineers on the page
 $(document).ready(function () {
+        
     var cookie = getCookie("countries");
     // We will use this variable to create the JSON request
     var jsonUrl = "";
@@ -38,5 +39,12 @@ $(document).ready(function () {
     // Makes the search input search-bar work on the DataTable
     $('.search-bar').keyup(function () {
         table.search($(this).val()).draw();
+    });
+
+    table.on('click', 'tr', function (e) {
+        var data = table.row(this).data();
+         // Fill the card with data and make the card read-only
+        $('#engineer-carousel').form(data).form('editable', false).carousel(2);
+        //}
     });
 });
