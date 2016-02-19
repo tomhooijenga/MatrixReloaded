@@ -1,8 +1,11 @@
+// This file lists the products on the page
 $(document).ready(function () {
     // We initialize the DataTable with the json file required for the products page
     var table = $('.productslist').DataTable({
-        "sAjaxSource": "/api/products/?expand=category.parent&format=json",
-        "sAjaxDataProp": "results",
+        ajax: {
+            url: "/api/products/?expand=category.parent&format=json",
+            dataSrc: ''
+        },
         "bInfo" : false,
         "bPaginate": false,
         // The part below makes our table scrollable when showing more than 16 items.

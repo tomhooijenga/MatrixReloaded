@@ -6,5 +6,8 @@
     <th>Category name</th>
     <th>Add / remove subcategory</th>
 </thead>
-<script type='text/javascript' src='{% static "categories.js" %}'></script>
 {% endblock table %}
+{% block javascript %}
+    {{ block.super }}
+    <script type='text/javascript' src='{% static "categories.js" %}'></script>
+{% endblock javascript %}

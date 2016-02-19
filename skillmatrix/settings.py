@@ -53,7 +53,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'skill_matrix.urls'
+ROOT_URLCONF = 'skillmatrix.urls'
 
 TEMPLATES = [
     {
@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'skill_matrix.wsgi.application'
+WSGI_APPLICATION = 'skillmatrix.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -119,7 +119,7 @@ MEDIA_URL = '/media/'
 
 # Rest framework settings
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 200,
+    'PAGE_SIZE': False,
     # A request needs to be at least logged in. Extra required permissions are
     # defined in the Views
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
@@ -128,6 +128,13 @@ REST_FRAMEWORK = {
 
 # Override the default User model with our own
 AUTH_USER_MODEL = 'api.User'
+
+LOGIN_URL = '/admin/login/'
+
+# When there's no next url to go to, send them to the engineers part
+LOGIN_REDIRECT_URL = '/admin/engineers'
+
+LOGOUT_URL = '/admin/logout'
 
 LOGGING = {
     'disable_existing_loggers': True,

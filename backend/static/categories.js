@@ -23,12 +23,12 @@ $(document).ready(function() {
     // We create an array to store the categories from the json request
     var categories = [];
     function getArray(){
-        return $.getJSON("/api/categories/?expand=children&format=json");
+        return $.getJSON("/api/categories/?expand=children");
     }
     getArray().done(function(json) {
         // Only show the categories by filtering the items.
         // Only items with parent = null should be shown.
-        $.each(json.results, function(key, val) {
+        $.each(json, function(key, val) {
             if (val.parent === null) {
                 categories.push(val);
             }
@@ -36,13 +36,9 @@ $(document).ready(function() {
         // We initialize the DataTable with the json file required for the categories page
         var table = $('.table').DataTable({
             "aaData": categories,
-            "bInfo" : false,
+            "bInfo": false,
             "bPaginate": false,
-            // The part below makes our table scrollable when showing more than 16 items.
-            "deferRender": true,
-            "fixedHeader": true,
-            "bScrollCollapse": true,
-            "scrollY": '64vh',
+            autoWidth: false,
             // We initialize the column fields with the required details (Name) and add some HTML with the render function.
             "columns": [
                         { "data": "name",
