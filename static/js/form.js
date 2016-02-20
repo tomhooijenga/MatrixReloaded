@@ -16,6 +16,31 @@
             return methods.init.apply(this, arguments);
         }
     };
+    
+    // Function for returning the full category name to display on the front page
+    function categoryName(data) {
+        var category = "";
+        // Creates a string that holds the category and subcategory
+        for (var val in data) {
+            if (val == "parent") {
+                category += data[val].name + " ";
+            }
+        }
+        return category += data.name;
+    }
+    
+    /* Function for creating and returning a string with the Countries and Languages of an engineer */
+    function valuesToString(data) {
+        var values = "";
+        // Splits the data into a string separated by commas
+        for (var val in data) {
+            if (val == 0) { 
+                values += data[val].name;
+            } else {
+                values += ", " + data[val].name;
+            }
+        } return values;
+    }
 
     var methods = {
         /**
@@ -26,27 +51,34 @@
         init: function (data) {
             return this.each(function () {
                 var $this = $(this);
-
                 for (var key in data) {
                     if (!data.hasOwnProperty(key)) continue;
-
                     // Replace all _ with - then find that element in our current scope
                     // Searches by class and by name
                     var name = key.replace(/_/g, '-'),
                         selector = '.' + name + ', [name="' + name + '"]',
                         $el = $this.find(selector).addBack(selector);
-
+                        
                     $el.each(function () {
                         var $el = $(this),
                             autofill = $el.data('autofill');
-
+                            
                         // It is not possible to set a file input with javascript
                         if ($el.is('[type="file"]')) {
                             return;
                         }
 
                         if (autofill) {
-                            $el.prop(autofill, data[key]);
+                            // If statements to check what is asked for displaying
+                            if (key == "countries" || key == "languages") {
+                                $el.prop(autofill, valuesToString(data[key]));
+                            } else if (key == "country") {
+                                $el.prop(autofill, data.country.name);
+                            } else if (key == "category") {
+                                $el.prop(autofill, categoryName(data[key]));
+                            } else {
+                                $el.prop(autofill, data[key]);
+                            };
                         } else {
                             // If the data is not an array, make it an array
                             var value = $.isArray(data[key]) ? data[key] : [data[key]];
