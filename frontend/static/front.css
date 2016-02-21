@@ -134,6 +134,10 @@ div#DataTables_Table_1_filter label {
     width: 35%; 
 }
 
-tr {
+.engineers tr {
+    cursor: pointer;
+}
+
+.products tr {
     cursor: pointer;
 }

@@ -2,7 +2,8 @@ $(document).ready(function () {
 
     // Fetch our elements for later use
     var select = $('.filterlanden'),
-        save = $("#savefilt"),
+        save = $(".savefilt"),
+        close = $(".closefilt"),
         modal = $('.selectCountries')
 
     // We get the JSON from the API.
@@ -22,6 +23,17 @@ $(document).ready(function () {
 
         var countries = getCookie('countries');
 
+        if (countries) {
+            // If the cookie is set, we split it into an array
+            var filter = countries.split(",");
+
+            // Set the selected values and trigger for an update
+            select.val(filter).trigger('change');
+        }
+    });
+    
+    close.on('click', function () {
+        var countries = getCookie('countries');
         if (countries) {
             // If the cookie is set, we split it into an array
             var filter = countries.split(",");
