@@ -46,6 +46,10 @@ body{
         visibility: hidden;
 }
 
+.card .fa {
+    color: rgb(5, 133, 205);
+}
+
 .card .panel-body {
         padding: 10px;
 }
@@ -119,7 +123,7 @@ div#DataTables_Table_1_filter label {
 }
 
 .countrybutton i.fa.fa-globe {
-  color: rgb(5, 133, 205);
+    color: rgb(5, 133, 205);
 }
 .engineerinfo { 
     width: 100%; 
