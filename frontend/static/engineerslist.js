@@ -1,5 +1,6 @@
 // This file lists the engineers on the page
-$(document).ready(function () {  
+$(document).ready(function () {
+    new Clipboard('.fa-copy');
     var cookie = getCookie("countries");
     // We will use this variable to create the JSON request
     var jsonUrl = "";
