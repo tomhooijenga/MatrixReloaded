@@ -53,10 +53,6 @@ body{
 	border-bottom: 1px solid #eee
 }
 
-.agiimg{
-	width:250px;
-	height:35px;
-}
 .engineers{
 	border: 1px solid #ccc;
 }
@@ -158,7 +154,7 @@ table.click {
 }
 
 .fa-caret-square-o-right{
-	margin-top:8px;
+	padding-top:5px;
 }
 
 .modal-content{
@@ -183,13 +179,26 @@ table.click {
 	width:300px;
 }
 
+.agiimg{
+	width:100%;
+}
+
+.searchbar{
+	padding-top:10px;
+}
+
 .modal-footer{
 	text-align:center;
 	border-top:0px;
 }
 
-.log{
-	padding-top:4px;
+.loginknop{
+	padding-top:12px;
+	cursor:pointer;
+}
+
+.fa-caret-square-o-right{
+	padding-top:10px;
 }
 
 /*Styling for the country button. Below we give the fa-globe icon the color of the logo */
