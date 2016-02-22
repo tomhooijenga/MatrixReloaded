@@ -20,6 +20,7 @@
     /* Function for creating and returning a string with the Countries and Languages of an engineer */
     function formatString(data, key) {
         var value = "";
+        // Added separate if statements to check in which format the data should return
         if (key == "countries" || key == "languages") {
             // Splits the data into a string separated by commas
             for (var val in data) {

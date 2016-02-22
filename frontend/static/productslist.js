@@ -3,7 +3,7 @@ $(document).ready(function () {
     // We initialize the DataTable with the json file required for the products page
     var table = $('.productslist').DataTable({
         ajax: {
-            url: "/api/products/?expand=category.parent",
+            url: "/api/products/?expand=category.parent,skills.engineer.country",
             dataSrc: ''
         },
         "bInfo" : false,
@@ -25,11 +25,19 @@ $(document).ready(function () {
     }); 
     
     table.on('click', 'tr', function (e) {
+        // We check if the tr is not empty.
         if ($("td").hasClass("dataTables_empty")) {
             $(".productdetails").css("visibility", "hidden");
         } else {
             $(".productdetails").css("visibility", "visible");
             var data = table.row(this).data();
+            var newData = [];
+            for (var obj in data.skills) {
+                newData.push(data.skills[obj].engineer);
+            }
+            $('.engineerslist').DataTable().clear().draw();
+            $('.engineerslist').DataTable().rows.add(newData);
+            $('.engineerslist').DataTable().columns.adjust().draw();
              // Fill the card with data and make the card read-only
             $('.productdetails').form(data).form('editable', false).carousel(2);
         }

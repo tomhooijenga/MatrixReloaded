@@ -227,3 +227,8 @@ table.click {
 .products tr {
     cursor: pointer;
 }
+
+tr.even.selected {
+    background-color: #f5f5f5;
+}
+
