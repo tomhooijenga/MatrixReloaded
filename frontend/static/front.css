@@ -227,3 +227,7 @@ table.click {
 .products tr {
     cursor: pointer;
 }
+
+.fa-copy {
+	cursor: pointer;
+}
