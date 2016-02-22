@@ -112,9 +112,8 @@ input[type="search"] {
 .image-input > label {
     height: auto;
     position: relative;
-    box-sizing: content-box;
-    width: auto;
     padding: 0 0 100% 0;
+    padding-bottom: calc(100% - 2px);
     overflow: hidden;
 }
 
@@ -144,31 +143,18 @@ input[type="search"] {
     position: absolute;
     display: block;
     z-index: 1;
-
-    /*
-    Yes really:
-    http://stackoverflow.com/questions/18673900/how-to-center-and-crop-an-image-to-square-with-css
-    */
-    left: -100%;
-    right: -100%;
-    top: -100%;
-    bottom: -100%;
-    margin: auto;
-}
-
-.image-input .image-square {
-    width: 100%;
-    height: 100%;
 }
 
 .image-input .image-horizontal {
     width: auto;
     height: 100%;
+    transform: translateX(-25%);
 }
 
 .image-input .image-vertical {
     width: 100%;
     height: auto;
+    transform: translateY(-25%);
 }
 
 /* hides the default search bar of DataTables */

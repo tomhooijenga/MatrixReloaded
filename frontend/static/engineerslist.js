@@ -1,15 +1,15 @@
 // This file lists the engineers on the page
-$(document).ready(function () {
+$(document).ready(function () {  
     var cookie = getCookie("countries");
     // We will use this variable to create the JSON request
     var jsonUrl = "";
     // Checks if cookie is empty
     // If it's empty, it requests the normal JSON url
     if (cookie == "") {
-        jsonUrl = "/api/engineers/?expand=country";
+        jsonUrl = "/api/engineers/?expand=country,countries,languages";
     } else {
         // If the cookie is not empty it filters the results.
-        jsonUrl = "/api/engineers/?expand=country&countries=" + cookie;
+        jsonUrl = "/api/engineers/?expand=country,countries,languages&countries=" + cookie;
     };
     // We initialize the DataTable with the json file required for the engineer page
     var table = $('.engineerslist').DataTable({
@@ -38,5 +38,13 @@ $(document).ready(function () {
     // Makes the search input search-bar work on the DataTable
     $('.search-bar').keyup(function () {
         table.search($(this).val()).draw();
+    });
+    
+    // Shows the engineers details in the card panel when the table row is clicked
+    table.on('click', 'tr', function (e) {
+        $(".card").css("visibility", "visible");
+        var data = table.row(this).data();
+         // Fill the card with data and make the card read-only
+        $('.card').form(data).form('editable', false).carousel(2);
     });
 });

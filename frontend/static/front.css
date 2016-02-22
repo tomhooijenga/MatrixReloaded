@@ -28,25 +28,40 @@ body{
 
 
 .products{
-	height:220px; 
 	border: 1px solid #ccc;
 }
 
-.prodimgnaam{
-	text-align: center;
-	background-color:rgba(102, 102, 102, 0.8);
-	font-size: 14px;
-	padding: 4px;
-	height:30px;
-}
-
-.prodimg{
-	margin: auto;
-	margin-top: 30px;
-}
-
-.enginaam{
+.productdetails {
 	border: 1px solid #ccc;
+        height: 28vh;
+        width: 115%;
+        visibility: hidden;
+}
+
+.productdetails .panel-body {
+        padding: 10px;
+}
+
+.productdetails .panel-heading {
+        padding: 10px;
+}
+
+.card {
+	border: 1px solid #ccc;
+        width: 115%;
+        visibility: hidden;
+}
+
+.card .fa {
+    color: rgb(5, 133, 205);
+}
+
+.card .panel-body {
+        padding: 10px;
+}
+
+.card .panel-heading {
+        padding: 10px;
 }
 
 .border {
@@ -64,7 +79,6 @@ body{
 .table{
 	margin-bottom: 3px;
 	border-color:#ccc;
-	/*color: rgb(5, 133, 205);*/
 }
 
 .table thead {
@@ -199,5 +213,25 @@ table.click {
 }
 
 .countrybutton i.fa.fa-globe {
-  color: rgb(5, 133, 205);
+    color: rgb(5, 133, 205);
+}
+.engineerinfo { 
+    width: 100%; 
+    table-layout: fixed;
+}
+
+.engineerinfo td:first-child { 
+    width: 30%; 
+}
+
+.engineerinfo td:last-child { 
+    width: 35%; 
+}
+
+.engineers tr {
+    cursor: pointer;
+}
+
+.products tr {
+    cursor: pointer;
 }
