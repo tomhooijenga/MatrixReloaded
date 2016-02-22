@@ -3,7 +3,6 @@ $(document).ready(function () {
     // Fetch our elements for later use
     var select = $('.filterlanden'),
         save = $(".savefilt"),
-        close = $(".closefilt"),
         modal = $('.selectCountries'),
         filter = [];
         
@@ -33,8 +32,9 @@ $(document).ready(function () {
         }
     });
     
-    // If close is clicked, the values from the cookie will reload
-    close.on('click', function () {
+    // If close is clicked, or the mouse clicks outside the modal box, the values from the cookie will reload
+    $('.selectCountries').on('hidden.bs.modal', function () {
+        // do something…
         select.val(filter).trigger('change');
     });
 

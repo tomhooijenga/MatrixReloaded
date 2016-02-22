@@ -17,29 +17,28 @@
         }
     };
     
-    // Function for returning the full category name to display on the front page
-    function categoryName(data) {
-        var category = "";
-        // Creates a string that holds the category and subcategory
-        for (var val in data) {
-            if (val == "parent") {
-                category += data[val].name + " ";
-            }
-        }
-        return category += data.name;
-    }
-    
     /* Function for creating and returning a string with the Countries and Languages of an engineer */
-    function valuesToString(data) {
-        var values = "";
-        // Splits the data into a string separated by commas
-        for (var val in data) {
-            if (val == 0) { 
-                values += data[val].name;
-            } else {
-                values += ", " + data[val].name;
-            }
-        } return values;
+    function formatString(data, key) {
+        var value = "";
+        if (key == "countries" || key == "languages") {
+            // Splits the data into a string separated by commas
+            for (var val in data) {
+                if (val == 0) { 
+                    value += data[val].name;
+                } else {
+                    value += ", " + data[val].name;
+                };
+            };
+        } else if (key == "category") {
+            // Creates a string that holds the category and subcategory
+            value = data.parent.name;
+            value += " " + data.name;
+        } else if (key == "country") {
+            for (var val in data) {
+                value = data.name;
+            };
+        }
+        return value;
     }
 
     var methods = {
@@ -69,13 +68,9 @@
                         }
 
                         if (autofill) {
-                            // If statements to check what is asked for displaying
-                            if (key == "countries" || key == "languages") {
-                                $el.prop(autofill, valuesToString(data[key]));
-                            } else if (key == "country") {
-                                $el.prop(autofill, data.country.name);
-                            } else if (key == "category") {
-                                $el.prop(autofill, categoryName(data[key]));
+                            // If the typeof information is an object it will be formatted to a string
+                            if (typeof data[key] == "object") {
+                                $el.prop(autofill, formatString(data[key], key));
                             } else {
                                 $el.prop(autofill, data[key]);
                             };
