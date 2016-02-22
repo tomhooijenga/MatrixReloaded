@@ -42,9 +42,13 @@ $(document).ready(function () {
     
     // Shows the engineers details in the card panel when the table row is clicked
     table.on('click', 'tr', function (e) {
-        $(".card").css("visibility", "visible");
-        var data = table.row(this).data();
-         // Fill the card with data and make the card read-only
-        $('.card').form(data).form('editable', false).carousel(2);
+        if ($("td").hasClass("dataTables_empty")) {
+            $(".card").css("visibility", "hidden");
+        } else {
+            $(".card").css("visibility", "visible");
+            var data = table.row(this).data();
+             // Fill the card with data and make the card read-only
+            $('.card').form(data).form('editable', false).carousel(2);
+        }
     });
 });

@@ -25,9 +25,13 @@ $(document).ready(function () {
     }); 
     
     table.on('click', 'tr', function (e) {
-        $(".productdetails").css("visibility", "visible");
-        var data = table.row(this).data();
-         // Fill the card with data and make the card read-only
-        $('.productdetails').form(data).form('editable', false).carousel(2);
+        if ($("td").hasClass("dataTables_empty")) {
+            $(".productdetails").css("visibility", "hidden");
+        } else {
+            $(".productdetails").css("visibility", "visible");
+            var data = table.row(this).data();
+             // Fill the card with data and make the card read-only
+            $('.productdetails').form(data).form('editable', false).carousel(2);
+        }
     });
 });
