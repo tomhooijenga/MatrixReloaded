@@ -1,13 +1,68 @@
 {% extends 'template.html' %}
+
 {% load static from staticfiles %}
+
 {% block table %}
-<!--Table headers-->
-<thead>
-    <th>Category name</th>
-    <th>Add / remove subcategory</th>
-</thead>
+    <!--Table headers-->
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
 {% endblock table %}
+
+{% block card %}
+
+    <form class="form-horizontal parent-form">
+        <div class="form-group">
+            <label for="name" class="control-label col-xs-2">
+                <i class="fa fa-header"></i>
+            </label>
+            <div class="col-xs-10">
+                <input id="name" type="text" class="form-control" name="name" placeholder="Name" maxlength="100" required/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="short-name" class="control-label col-xs-2">
+                <i class=""></i>
+            </label>
+            <div class="col-xs-10">
+                <input id="short-name" type="text" class="form-control" name="short-name" placeholder="Abbreviation" maxlength="100" required/>
+            </div>
+        </div>
+    </form>
+
+    <form class="form-horizontal child-form">
+        <div class="form-group">
+            <label for="parent" class="control-label col-xs-2">
+                <i class="fa fa-tag"></i>
+            </label>
+            <div class="col-xs-10">
+                <input id="parent" type="text" class="form-control" name="parent" placeholder="Parent" maxlength="100" required/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="control-label col-xs-2">
+                <i class="fa fa-header"></i>
+            </label>
+            <div class="col-xs-10">
+                <input id="name" type="text" class="form-control" name="name" placeholder="Name" maxlength="100" required/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="short-name" class="control-label col-xs-2">
+                <i class=""></i>
+            </label>
+            <div class="col-xs-10">
+                <input id="short-name" type="text" class="form-control" name="short-name" placeholder="Abbreviation" maxlength="100" required/>
+            </div>
+        </div>
+    </form>
+
+{% endblock card %}
+
 {% block javascript %}
     {{ block.super }}
-    <script type='text/javascript' src='{% static "categories.js" %}'></script>
+    <script src="{% static 'categories.js' %}"></script>
 {% endblock javascript %}

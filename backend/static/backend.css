@@ -179,3 +179,15 @@ div#DataTables_Table_0_filter label {
     padding: 10px;
     max-width: 70%;
 }
+
+.table .table {
+    margin: 0 0 12px 12px;
+}
+
+.table .table tr:first-child td{
+    border-top: none;
+}
+
+.child-form {
+    display: none;
+}
