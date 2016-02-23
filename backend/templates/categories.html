@@ -14,52 +14,33 @@
 
 {% block card %}
 
-    <form class="form-horizontal parent-form">
-        <div class="form-group">
-            <label for="name" class="control-label col-xs-2">
-                <i class="fa fa-header"></i>
-            </label>
-            <div class="col-xs-10">
-                <input id="name" type="text" class="form-control" name="name" placeholder="Name" maxlength="100" required/>
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>Category</legend>
+            <div class="form-group">
+                <label for="name" class="control-label col-xs-2">
+                    <i class="fa fa-header"></i>
+                </label>
+                <div class="col-xs-10">
+                    <input id="name" type="text" class="form-control" name="name" placeholder="Name" maxlength="100"
+                           required/>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="short-name" class="control-label col-xs-2">
-                <i class=""></i>
-            </label>
-            <div class="col-xs-10">
-                <input id="short-name" type="text" class="form-control" name="short-name" placeholder="Abbreviation" maxlength="100" required/>
+            <div class="form-group">
+                <label for="short-name" class="control-label col-xs-2">
+                    <i class=""></i>
+                </label>
+                <div class="col-xs-10">
+                    <input id="short-name" type="text" class="form-control" name="short-name" placeholder="Abbreviation"
+                           maxlength="100" required/>
+                </div>
             </div>
-        </div>
+        </fieldset>
     </form>
 
-    <form class="form-horizontal child-form">
-        <div class="form-group">
-            <label for="parent" class="control-label col-xs-2">
-                <i class="fa fa-tag"></i>
-            </label>
-            <div class="col-xs-10">
-                <input id="parent" type="text" class="form-control" name="parent" placeholder="Parent" maxlength="100" required/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="name" class="control-label col-xs-2">
-                <i class="fa fa-header"></i>
-            </label>
-            <div class="col-xs-10">
-                <input id="name" type="text" class="form-control" name="name" placeholder="Name" maxlength="100" required/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="short-name" class="control-label col-xs-2">
-                <i class=""></i>
-            </label>
-            <div class="col-xs-10">
-                <input id="short-name" type="text" class="form-control" name="short-name" placeholder="Abbreviation" maxlength="100" required/>
-            </div>
-        </div>
-    </form>
-
+    <div class="form-horizontal">
+        <h2 class="legend">Child categories</h2>
+    </div>
 {% endblock card %}
 
 {% block javascript %}

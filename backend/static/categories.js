@@ -21,18 +21,10 @@ $(function () {
     // Load the initial data of the table
     reload();
 
-    $table.on('click', 'tr', function () {
+    $table.on('click', 'tr:not(.child)', function () {
         var row = table.row(this),
             data = row.data();
 
-        if (row.child.isShown()) {
-            // This row is already open - close it
-            row.child.hide();
-        }
-        else {
-            // Open this row and append the child rows
-            row.child(format(data)).show();
-        }
 
     }).on('click', '.edit', function (e) {
         e.stopPropagation();
@@ -40,17 +32,6 @@ $(function () {
         var parent = $(this).closest('tr'),
             data = table.row(parent).data();
 
-        $parent.show().form(data);
-        $child.hide();
-    }).on('click', '.child-edit', function (e) {
-        e.stopPropagation();
-
-        // Fetching the data is a little different because this is a child row
-        var parent = $(this).closest('tr'),
-            data = parent.data('category.parent');
-
-        $parent.hide();
-        $child.show().form(data);
     });
 
     // Makes the search input form-control work on the DataTable
@@ -71,38 +52,5 @@ $(function () {
             table.clear();
             table.rows.add(data).draw();
         });
-    }
-
-    /**
-     *
-     * @param data
-     * @returns {Element}
-     */
-    function format(data) {
-        var table = $('<table class="table"><tbody></tbody></table>'),
-            tbody = table.find('tbody');
-
-        data.children.forEach(function (child) {
-            var td1 = $('<td></td>', {
-                text: child.name
-            });
-
-            var td2 = $('<td></td>')
-                .append($('<a></a>', {
-                    class: 'child-edit',
-                    text: 'Edit'
-                }));
-
-            var tr = $('<tr></tr>')
-                .data({
-                    category: child,
-                    'category.parent': data
-                })
-                .append(td1, td2);
-
-            tbody.append(tr);
-        });
-
-        return table;
     }
 });

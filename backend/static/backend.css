@@ -180,14 +180,9 @@ div#DataTables_Table_0_filter label {
     max-width: 70%;
 }
 
-.table .table {
-    margin: 0 0 12px 12px;
-}
-
-.table .table tr:first-child td{
-    border-top: none;
-}
-
-.child-form {
-    display: none;
+.legend {
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 21px;
+    border-bottom: 1px solid #e5e5e5;
 }
