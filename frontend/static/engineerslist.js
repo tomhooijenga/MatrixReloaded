@@ -9,7 +9,7 @@ $(document).ready(function () {
     $('.search-bar').keyup(function () {
         table.search($(this).val()).draw();
     });
-    
+
     // Shows the engineers details in the card panel when the table row is clicked
     table.on('click', 'tr', function () {
         // We set the data of the clicked row in a variable for later use
@@ -17,17 +17,24 @@ $(document).ready(function () {
         var tr = $(this).closest('tr');
         // We check if the tr is not empty.
         if (tr.has("td.dataTables_empty").length > 0) {
-            $(".productdetails").css("visibility", "hidden");
+            $(".card").css("visibility", "hidden");
         } else {
             $(".card").css("visibility", "visible");
-            
-             // Fill the card with data and make the card read-only
+            var data = table.row(this).data();
+            var newData = [];
+            for (var obj in data.skills) {
+                    console.log(data.skills[obj]);
+            };
+            //$('.productslist').DataTable().clear().draw();
+            //$('.productslist').DataTable().rows.add(newData);
+           // $('.productslist').DataTable().columns.adjust().draw();
+            // Fill the card with data and make the card read-only
             $('.card').form(data).form('editable', false).carousel(2);
         }
     });
-    
-    $('.search-bar').click(function() {
-       $('.engineerslist').DataTable().destroy();
-       table = createEngineerTable(jsonUrl);
+
+    $('.search-bar').click(function () {
+        $('.engineerslist').DataTable().destroy();
+        table = createEngineerTable(jsonUrl);
     });
 });

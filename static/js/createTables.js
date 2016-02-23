@@ -7,10 +7,10 @@ function setEngineerUrl () {
     // Checks if cookie is empty
     // If it's empty, it requests the normal JSON url
     if (cookie == "") {
-        return jsonUrl = "/api/engineers/?expand=country,countries,languages";
+        return jsonUrl = "/api/engineers/?expand=country,countries,languages,skills.product";
     } else {
         // If the cookie is not empty it filters the results.
-        return jsonUrl = "/api/engineers/?expand=country,countries,languages&countries=" + cookie;
+        return jsonUrl = "/api/engineers/?expand=country,countries,languages,skills.product&countries=" + cookie;
     };
 }
 
