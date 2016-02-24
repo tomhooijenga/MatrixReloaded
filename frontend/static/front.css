@@ -68,10 +68,6 @@ body{
 	border-bottom: 1px solid #eee
 }
 
-.agiimg{
-	width:250px;
-	height:35px;
-}
 .engineers{
 	border: 1px solid #ccc;
 }
@@ -202,10 +198,6 @@ table.click {
 	border-top:0px;
 }
 
-.log{
-	padding-top:4px;
-}
-
 /*Styling for the country button. Below we give the fa-globe icon the color of the logo */
 .countrybutton {
     padding: 0px 9px;
@@ -234,4 +226,8 @@ table.click {
 
 .products tr {
     cursor: pointer;
+}
+
+.fa-copy {
+	cursor: pointer;
 }

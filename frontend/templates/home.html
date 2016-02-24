@@ -12,6 +12,7 @@
               <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs/dt-1.10.10/datatables.min.css"/>
+        <link rel="stylesheet" type="text/css" href='{% static "toast/dist/jquery.toast.min.css" %}'/>
         <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
     </head>
     <body>
@@ -125,6 +126,7 @@
                         <div id="card" class="panel panel-default card">
                             <div class="panel-heading">
                                 <div class="row">
+                                    <!-- HTML to write -->
                                     <div class="col-md-2 first-name" data-autofill="textContent"></div>
                                     <div class="col-md-1 last-name" data-autofill="textContent"></div>
                                 </div>
@@ -140,75 +142,75 @@
                                 <h3>Details:</h3>
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-map-marker"></i></div>
-                                    <div class="col-md-10 droppoint" data-autofill="textContent"></div>
-                                    <div class="col-md-1"></div>
+                                    <div class="col-md-9 droppoint" data-autofill="textContent"></div>
+                                    <div class="col-md-1"><i class="fa fa-copy" data-clipboard-target=".droppoint"></i></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-phone"></i></div>
-                                    <div class="col-md-10 phone" data-autofill="textContent"></div>
-                                    <div class="col-md-1"></div>
+                                    <div class="col-md-9 phone" data-autofill="textContent"></div>
+                                    <div class="col-md-1"><i class="fa fa-copy" data-clipboard-target=".phone"></i></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-envelope"></i></div>
-                                    <div class="col-md-10 email" data-autofill="textContent"></div>
-                                    <div class="col-md-1"></div>
+                                    <div class="col-md-9 email" data-autofill="textContent"></div>
+                                    <div class="col-md-1"><i class="fa fa-copy" data-clipboard-target=".email"></i></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-user"></i></div>
-                                    <div class="col-md-10 employee-number" data-autofill="textContent"></div>
+                                    <div class="col-md-9 employee-number" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-language"></i></div>
-                                    <div class="col-md-10 languages" data-autofill="textContent"></div>
+                                    <div class="col-md-9 languages" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
                                 </div>
                                 <h3>VCA:</h3>
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-graduation-cap"></i></div>
-                                    <div class="col-md-10 vca-number" data-autofill="textContent"></div>
-                                    <div class="col-md-1"></div>
+                                    <div class="col-md-9 vca-number" data-autofill="textContent"></div>
+                                    <div class="col-md-1"><i class="fa fa-copy" data-clipboard-target=".vca-number"></i></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-calendar"></i></div>
-                                    <div class="col-md-10 vca-date" data-autofill="textContent"></div>
+                                    <div class="col-md-9 vca-date" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
                                 </div>
                                 <h3>Car:</h3>
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-road"></i></div>
-                                    <div class="col-md-10 license-plate" data-autofill="textContent"></div>
-                                    <div class="col-md-1"></div>
+                                    <div class="col-md-9 license-plate" data-autofill="textContent"></div>
+                                    <div class="col-md-1"><i class="fa fa-copy" data-clipboard-target=".license-plate"></i></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-car"></i></div>
-                                    <div class="col-md-10 car-type" data-autofill="textContent"></div>
+                                    <div class="col-md-9 car-type" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-paint-brush"></i></div>
-                                    <div class="col-md-10 car-color" data-autofill="textContent"></div>
+                                    <div class="col-md-9 car-color" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
                                 </div>
                                 <h3>Address:</h3>
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-map-signs"></i></div>
-                                    <div class="col-md-10 street" data-autofill="textContent"></div>
+                                    <div class="col-md-9 street" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-map-pin"></i></div>
-                                    <div class="col-md-10 zip-code" data-autofill="textContent"></div>
+                                    <div class="col-md-9 zip-code" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-map-o"></i></div>
-                                    <div class="col-md-10 city" data-autofill="textContent"></div>
+                                    <div class="col-md-9 city" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-globe"></i></div>
-                                    <div class="col-md-10 country" data-autofill="textContent"></div>
+                                    <div class="col-md-9 country" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
                                 </div>
                             </div>
@@ -228,6 +230,9 @@
         <script type='text/javascript' src='{% static "productslist.js" %}'></script>
         <script type='text/javascript' src='{% static "engineerslist.js" %}'></script>
         <script src="{% static "js/form.js" %}"></script>
+        <script type='text/javascript' src='{% static "clipboard/dist/clipboard.min.js" %}'></script>
+        <script type='text/javascript' src='{% static "toast/dist/jquery.toast.min.js" %}'></script>
         {% endblock javascript %}
     </body>
 </html>
+          
