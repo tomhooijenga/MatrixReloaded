@@ -107,6 +107,8 @@ $(document).ready(function () {
         // Set the form editable
         $skills.form('editable', true);
 
+        $skills.form(data);
+
         // Enable all skills, so they can be filtered later
         $select.find('option').prop('disabled', false);
 
