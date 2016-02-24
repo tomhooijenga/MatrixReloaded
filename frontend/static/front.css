@@ -14,7 +14,20 @@ body{
 }
 
 .padtop{
+	padding-top:25px;
+}
+
+.padtopprod{
 	padding-top:20px;
+}
+
+.padtopengi{
+	padding-top:30px;
+}
+
+.col5edit{
+	max-width: 300px;
+	padding-left:0px;
 }
 
 .search {
@@ -195,6 +208,11 @@ table.click {
 .loginknop{
 	padding-top:12px;
 	cursor:pointer;
+	padding-left:0px;
+}
+
+.col4edit{
+	padding-left:0px;
 }
 
 .fa-caret-square-o-right{
@@ -209,4 +227,9 @@ table.click {
 
 .countrybutton i.fa.fa-globe {
   color: rgb(5, 133, 205);
+}
+
+.close{
+	color:#ffffff;
+	opacity:1;
 }
