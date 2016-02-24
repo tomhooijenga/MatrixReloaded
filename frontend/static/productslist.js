@@ -12,7 +12,7 @@ $(document).ready(function () {
         var table = createProductTable();
         
         // Makes the search input search-bar work on the DataTable
-        $('.search-bar').keyup(function () {
+        $('.search-product').keyup(function () {
             table.search($(this).val()).draw();
         });
 
@@ -20,6 +20,9 @@ $(document).ready(function () {
             // We set the data of the clicked row in a variable for later use
             var data = table.row(this).data();
             var tr = $(this).closest('tr');
+            //for (var val in data) {
+            //    console.log(data[val]);
+            //}
             // We check if the tr is not empty.
             if (tr.has("td.dataTables_empty").length > 0) {
                 $(".productdetails").css("visibility", "hidden");
