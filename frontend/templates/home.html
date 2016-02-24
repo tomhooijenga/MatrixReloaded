@@ -35,9 +35,17 @@
                         <img class="img-responsive agiimg" src="{% static "img/logo.jpg" %}" alt="Agilent">
                     </div>
                     <!-- Inlogknop -->
-                    <div class="col-xs-1 loginknop">
-                            <a class="{% if request.resolver_match.url_name == 'backend-engineers' %}active{% endif %}" href="{% url 'backend-engineers' %}"><i class="fa fa-caret-square-o-right fa-lg"></i></a>
+                    <div class="dropdown col-xs-1 loginknop">
+                        <i class="fa fa-caret-square-o-right fa-lg dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                      <ul class="dropdown-menu" aria-lab col-xelledby="dropdownMenu1">
+                        <li><a href="{% url 'backend-engineers' %}">Back-End</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'logout' %}">Log-Out</a></li>
+                      </ul>
                     </div>
+                    <!--<div class="col-xs-1 loginknop">-->
+                            <!--<a class="{% if request.resolver_match.url_name == 'backend-engineers' %}active{% endif %}" href="{% url 'backend-engineers' %}"><i class="fa fa-caret-square-o-right fa-lg"></i></a>-->
+                    <!--</div>-->
                 </div><!-- einde row -->
                 <!-- modal voor filter -->
                 <div class="modal fade selectCountries" id="filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

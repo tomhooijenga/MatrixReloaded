@@ -207,7 +207,6 @@ table.click {
 
 .loginknop{
 	padding-top:12px;
-	cursor:pointer;
 	padding-left:0px;
 }
 
@@ -232,4 +231,9 @@ table.click {
 .close{
 	color:#ffffff;
 	opacity:1;
+}
+
+.fa-lg{
+	color:rgb(5, 133, 205);
+	cursor:pointer;
 }
