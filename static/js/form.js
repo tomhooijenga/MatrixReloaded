@@ -101,7 +101,7 @@
         submit: function () {
             var url = this[0].action,
                 data = new FormData(),
-                method = this.data('method') || this.method;
+                method = this.data('method') || this[0].method;
 
             // Find all file inputs and append all files of these inputs to the data
             this.find('input[type="file"]')

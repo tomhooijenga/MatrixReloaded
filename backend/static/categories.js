@@ -1,7 +1,9 @@
 $(function () {
     var $table = $('.table'),
-        $parent = $('#card').find('.parent-form'),
-        $child = $('#card').find('.child-form'),
+        $parent = $("#parent-form"),
+        $child = $("#child-form"),
+        $children = $('#child-categories'),
+        $template = $($('#category-template').html()),
         table = $table.DataTable({
             paging: false,
             info: false,
@@ -21,17 +23,120 @@ $(function () {
     // Load the initial data of the table
     reload();
 
-    $table.on('click', 'tr:not(.child)', function () {
-        var row = table.row(this),
-            data = row.data();
+    $('.add-new').on('click', function () {
+        $parent.form('clear')
+            .prop('action', '/api/categories/')
+            .data('method', 'post');
 
+        $child.hide();
+        $children.hide();
+    });
 
+    var row = null;
+
+    $table.on('click', 'tr', function () {
+        row = this;
+
+        var data = table.row(this).data();
+
+        $parent.data('method', 'patch')
+            .form(data)
+            .form('editable', false);
+
+        children(data.children);
+
+        $child.hide().form('editable', false);
+
+        $children.form('editable', false);
     }).on('click', '.edit', function (e) {
         e.stopPropagation();
 
-        var parent = $(this).closest('tr'),
-            data = table.row(parent).data();
+        row = $(this).closest('tr');
 
+        var data = table.row(row).data();
+
+        $parent.data('method', 'patch')
+            .form(data)
+            .form('editable', true);
+
+        children(data.children);
+
+        $child.show()
+            .form('editable', true)
+            .find('input[name="parent"]')
+            .val(data.url);
+
+        $children.form('editable', true);
+    });
+
+    $parent.on('submit', function (e) {
+        e.preventDefault();
+
+        $parent.form('submit')
+            .done(function () {
+                // TODO: notify user
+
+                $parent.data('method', 'patch');
+                $child.show();
+
+                reload();
+            })
+            .fail(function (data) {
+                // TODO: notify user what went wrong
+            });
+    });
+
+    $child.on('submit', function (e) {
+        e.preventDefault();
+
+        var parent = table.row(row).data();
+
+        $child.form('submit')
+            .done(function (data) {
+                // TODO: notify user
+
+                $child.form('clear');
+
+                parent.children.push(data);
+                children(parent.children);
+
+                // row is no longer valid after reload
+                row = null;
+                reload()
+            })
+            .fail(function (data) {
+                // TODO: notify user
+            });
+    });
+
+    $children.on('click', '.btn-danger', function () {
+        if (!confirm('Are you sure you want to delete this category?')) {
+            return;
+        }
+
+        var $child = $(this).closest('form');
+
+        $child.data('method', 'delete')
+            .form('submit')
+            .done(function () {
+                $child.remove();
+
+                // TODO: notify user
+                reload();
+            });
+    }).on('submit', 'form', function (e) {
+        e.preventDefault();
+
+        $(this).data('method', 'patch')
+            .form('submit')
+            .done(function (data) {
+                // TODO: notify user
+
+                reload();
+            })
+            .fail(function (data) {
+                // TODO: notify user what is wrong
+            });
     });
 
     // Makes the search input form-control work on the DataTable
@@ -40,12 +145,42 @@ $(function () {
     });
 
     /**
+     * Append the child categories to the parent category form
+     * @param children A list of categories that belong to a parent
+     */
+    function children(children) {
+        var html = [];
+
+        $children.empty();
+
+        children.forEach(function (child) {
+            var template = $template.clone(),
+                products = child.products.length,
+                text = products + ' product';
+
+            if (products == 0 || products > 1) {
+                text += 's';
+            }
+
+            template.form(child)
+                .data('category', child);
+
+            template.find('.btn-danger').prop('disabled', child.products.length > 0);
+            template.find('.products').text(text);
+
+            html.push(template);
+        });
+
+        $children.append.apply($children, html);
+    }
+
+    /**
      * Reload the DataTable's data
      */
     function reload() {
-        $.getJSON('/api/categories/?expand=children').done(function (data) {
+        return $.getJSON('/api/categories/?expand=children').done(function (data) {
             data = data.filter(function (category) {
-                return category.children.length > 0;
+                return category.parent === null;
             });
 
             // Set the data in the table

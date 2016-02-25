@@ -14,7 +14,7 @@
 
 {% block card %}
 
-    <form class="form-horizontal">
+    <form id="parent-form" class="form-horizontal url" data-autofill="action">
         <fieldset>
             <legend>Category</legend>
             <div class="form-group">
@@ -28,22 +28,97 @@
             </div>
             <div class="form-group">
                 <label for="short-name" class="control-label col-xs-2">
-                    <i class=""></i>
+                    <i class="fa fa-bolt"></i>
                 </label>
                 <div class="col-xs-10">
                     <input id="short-name" type="text" class="form-control" name="short-name" placeholder="Abbreviation"
-                           maxlength="100" required/>
+                           maxlength="5" required/>
                 </div>
             </div>
         </fieldset>
+        <div class="form-group">
+            <div class="col-xs-10 col-xs-offset-2 text-center">
+                <button type="submit" class="btn btn-default pull-right">
+                    Submit
+                </button>
+            </div>
+        </div>
     </form>
 
-    <div class="form-horizontal">
-        <h2 class="legend">Child categories</h2>
+    <form id="child-form" class="form-horizontal" action="/api/categories/" method="post">
+        <fieldset>
+            <legend>Add child category</legend>
+            <input type="hidden" name="parent" />
+            <div class="form-group">
+                <label for="name" class="control-label col-xs-2">
+                    <i class="fa fa-header"></i>
+                </label>
+                <div class="col-xs-10">
+                    <input id="name" type="text" class="form-control" name="name" placeholder="Name" maxlength="100"
+                           required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="short-name" class="control-label col-xs-2">
+                    <i class="fa fa-bolt"></i>
+                </label>
+                <div class="col-xs-10">
+                    <input id="short-name" type="text" class="form-control" name="short-name" placeholder="Abbreviation"
+                           maxlength="5" required/>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <div class="col-xs-10 col-xs-offset-2 text-center">
+                <button type="submit" class="btn btn-default pull-right">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <h2 class="legend">Child categories</h2>
+    <div id="child-categories" class="form-list">
     </div>
 {% endblock card %}
 
 {% block javascript %}
     {{ block.super }}
     <script src="{% static 'categories.js' %}"></script>
+
+    <script type="text/html" id="category-template">
+        <form class="form-horizontal url" data-autofill="action" method="post" data-method="patch">
+            <div class="form-group">
+                <label class="control-label col-xs-2">
+                    <i class="fa fa-header"></i>
+                </label>
+                <div class="col-xs-10">
+                    <input type="text" class="form-control" name="name" placeholder="Name" maxlength="100"
+                           required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="short-name" class="control-label col-xs-2">
+                    <i class="fa fa-bolt"></i>
+                </label>
+                <div class="col-xs-10">
+                    <input id="short-name" type="text" class="form-control" name="short-name" placeholder="Abbreviation"
+                           maxlength="5" required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-10 col-xs-offset-2 text-center">
+                    <button type="button" class="btn btn-danger pull-left">
+                        <i class="fa fa-times"></i>
+                    </button>
+
+                    <span class="products"></span>
+
+                    <button type="submit" class="btn btn-default pull-right">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+    </script>
 {% endblock javascript %}
