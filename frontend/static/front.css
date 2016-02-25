@@ -33,7 +33,7 @@ body{
 
 .productdetails {
 	border: 1px solid #ccc;
-        height: 28vh;
+        /*height: 28vh;*/
         width: 115%;
         visibility: hidden;
 }
@@ -230,4 +230,17 @@ table.click {
 
 .fa-copy {
 	cursor: pointer;
+}
+
+.fillspace{
+	height: 20px;
+}
+
+.minheight{
+	height: 25px;
+}
+
+.image{
+	max-width:100%;
+	max-height:100%;
 }
