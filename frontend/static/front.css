@@ -4,26 +4,26 @@
     font-family: 'Open Sans';
 }
 
-.col-centered{
+.col-centered {
     float: none;
     margin: 0 auto;
 }
 
-body{
-	min-width: 640px;
+body {
+    min-width: 640px;
 }
 
-.paddingtop{
-	padding-top:25px;
-}
+/*.paddingtop {*/
+/*padding-top: 25px;*/
+/*}*/
 
-.paddingtopproduct{
-	padding-top:20px;
-}
+/*.paddingtopproduct {*/
+/*padding-top: 20px;*/
+/*}*/
 
-.col5edit{
-	max-width: 300px;
-	padding-left:0px;
+.col5edit {
+    max-width: 300px;
+    padding-left: 0px;
 }
 
 input.form-control.search-product {
@@ -34,39 +34,14 @@ input.form-control.search-engineer {
     width: 50%;
 }
 
-.products{
-	border: 1px solid #ccc;
-}
-
-.productdetails {
-	border: 1px solid #ccc;
-	visibility: hidden;
-	/*height:250px;*/
-	border-radius: 0px;
-}
-
-.productdetails .panel-body {
-        padding: 10px;
-}
-
-.productdetails .panel-heading {
-        padding: 10px;
-}
-
-.panel-default>.panel-heading{
-	background-color:rgba(102, 102, 102, 0.8);
-	color:white;
-	border-radius: 0px;
-}
-
-.panel{
-	margin-bottom:5px;
+.panel-default > .panel-heading {
+    background-color: rgba(102, 102, 102, 0.8);
+    color: white;
 }
 
 .card {
-	border: 1px solid #ccc;
-        visibility: hidden;
-	border-radius:0px;
+    border: 1px solid #ccc;
+    visibility: hidden;
 }
 
 .card .fa {
@@ -74,26 +49,10 @@ input.form-control.search-engineer {
 }
 
 .card .panel-body {
-        padding: 10px;
+    padding: 10px;
 }
 
 .card .panel-heading {
-	padding: 10px;
-	height: 30px;
-	padding-top:5px;
-}
-
-.border {
-	border-bottom: 1px solid #eee
-}
-
-.engineers{
-	border: 1px solid #ccc;
-}
-
-.table{
-	margin-bottom: 3px;
-	border-color:#ccc;
 }
 
 .table thead {
@@ -118,116 +77,70 @@ div#DataTables_Table_1_filter label {
 table.click {
     border-collapse: collapse;
 }
+
 #click tr {
     background-color: #eee;
     border-top: 1px solid #fff;
 }
+
 .click tr:hover {
     background-color: #ccc;
 }
+
 .click th {
     background-color: #fff;
 }
+
 .click th, #example td {
     padding: 3px 5px;
 }
-.click  td:hover {
+
+.click td:hover {
     cursor: pointer;
 }
 
-.fa-caret-square-o-right{
-	padding-top:5px;
+.modal-content {
+    background-color: rgb(51, 51, 51);
+    opacity: 0.9;
 }
 
-.modal-content{
-	background-color: rgb(51, 51, 51);
-	opacity: 0.9;
+.modal-header {
+    border-bottom: 0px;
 }
 
-.modal-header{
-	border-bottom:0px;
+.modal-title {
+    text-align: center;
+    color: white;
 }
 
-.modal-title{
-	text-align:center;
-	color:white;
+.modal-body {
+    text-align: center;
 }
 
-.modal-body{
-	text-align:center;
+.filterlanden {
+    width: 300px;
 }
 
-.filterlanden{
-	width:300px;
+.searchbar {
+    padding-top: 10px;
 }
 
-.agilentimage{
-	width:100%;
-}
-
-.searchbar{
-	padding-top:10px;
-}
-
-.modal-footer{
-	text-align:center;
-	border-top:0px;
-}
-
-.loginknop{
-	padding-top:12px;
-	padding-left:0px;
-}
-
-.col4edit{
-	padding-left:0px;
-}
-
-.fa-caret-square-o-right{
-	padding-top:10px;
+.modal-footer {
+    text-align: center;
+    border-top: 0px;
 }
 
 /*Styling for the country button. Below we give the fa-globe icon the color of the logo */
-.countrybutton {
-    padding: 0px 9px;
-    font-size: 19px;
-}
-
-.countrybutton i.fa.fa-globe {
-    color: rgb(5, 133, 205);
-}
-
-/*Styling for the refresh button. Below we give the fa-refresh icon the color of the logo */
+.countrybutton,
 .refreshbutton {
-    padding: 2px 9px;
-    font-size: 19px;
-    margin-left: 0px;
-    margin-right: 0px;
+    height: 34px;
 }
 
-.refreshbutton i.fa.fa-refresh {
-    color: rgb(5, 133, 205);
-}
-
-.engineerinfo { 
-    width: 100%; 
-    table-layout: fixed;
-}
-
-.engineerinfo td:first-child { 
-    width: 30%; 
-}
-
-.engineerinfo td:last-child { 
-    width: 35%; 
-}
-
-.engineers tr {
-    cursor: pointer;
-}
-
-.products tr {
-    cursor: pointer;
+.countrybutton i,
+.refreshbutton i {
+    color: #0085d5;
+    line-height: 20px;
+    font-size: 20px;
 }
 
 tr.even.selected {
@@ -235,20 +148,48 @@ tr.even.selected {
 }
 
 .fa-copy {
-	cursor: pointer;
+    cursor: pointer;
 }
 
-.close{
-	color:#ffffff;
-	opacity:1;
+.close {
+    color: #ffffff;
+    opacity: 1;
 }
 
 .fa-lg {
-	color: rgb(5, 133, 205);
-	cursor: pointer;
+    color: rgb(5, 133, 205);
+    cursor: pointer;
 }
 
-.image{
-	max-height: 100%;
-	max-width: 100%;
+.panel {
+    margin: 2vh 0;
+}
+
+.row-search {
+    height: 10vh;
+}
+
+.row-search .col-xs-8 {
+    display: table;
+}
+
+.row-search .vertical-center {
+    display: table-cell;
+    vertical-align: middle;
+    height: 10vh;
+}
+
+.row-product .panel {
+    height: 26vh;
+}
+
+.row-engineer .panel {
+    height: 56vh;
+}
+
+.legend {
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 21px;
+    border-bottom: 1px solid #e5e5e5;
 }
