@@ -29,9 +29,20 @@ $(document).ready(function () {
                 $(".productdetails").css("visibility", "visible");
                 var data = table.row(this).data();
                 var newData = [];
+                product = data;
+                $( ".engineerlevel" ).remove();
                 // We replace the engineers that are trained for the product with an engineer object
                 for (var obj in data.skills) {
                     newData.push(engineers[data.skills[obj].engineer]);
+                    // The section below is required to show the skill level on the selected product.
+                    for (var val in engineer.skills) {
+                        if (engineer.skills[val].engineer == data.skills[obj].engineer) {
+                            $( ".topdetails" ).append("<div class='col-md-6 engineerlevel'>" +
+                                    "<div class='col-md-4'>Level:</div>" +
+                                    "<div class='col-md-8'>"+ engineer.skills[val].level +"</div>" +
+                                    "</div>");
+                        }
+                    };
                 };
                 // We clear the datatable and reset it with the new engineers
                 $('.engineerslist').DataTable().clear().draw();
