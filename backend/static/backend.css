@@ -111,9 +111,9 @@ input[type="search"] {
 
 .image-input > label {
     height: auto;
+    width: auto;
     position: relative;
-    padding: 0 0 100% 0;
-    padding-bottom: calc(100% - 2px);
+    box-sizing: content-box;
     overflow: hidden;
 }
 
@@ -143,18 +143,30 @@ input[type="search"] {
     position: absolute;
     display: block;
     z-index: 1;
+    /*
+     Yes really:
+     http://stackoverflow.com/questions/18673900/how-to-center-and-crop-an-image-to-square-with-css
+     */
+    left: -100%;
+    right: -100%;
+    top: -100%;
+    bottom: -100%;
+    margin: auto;
+}
+
+.image-input .image-square {
+    width: 100%;
+    height: 100%;
 }
 
 .image-input .image-horizontal {
     width: auto;
     height: 100%;
-    transform: translateX(-25%);
 }
 
 .image-input .image-vertical {
     width: 100%;
     height: auto;
-    transform: translateY(-25%);
 }
 
 /* hides the default search bar of DataTables */
@@ -181,32 +193,33 @@ div#DataTables_Table_0_filter label {
 }
 
 /* Styling for the modal panel */
-.modal-content{
-	background-color: rgb(51, 51, 51);
-	opacity: 0.9;
+.modal-content {
+    background-color: rgb(51, 51, 51);
+    opacity: 0.9;
 }
 
-.modal-header{
-	border-bottom:0px;
+.modal-header {
+    border-bottom: 0px;
 }
 
-.modal-title{
-	text-align:center;
-	color:white;
+.modal-title {
+    text-align: center;
+    color: white;
 }
 
-.modal-body{
-	text-align:center;
+.modal-body {
+    text-align: center;
 }
 
-.filterlanden{
-	width:300px;
+.filterlanden {
+    width: 300px;
 }
 
 .modal-footer {
     text-align: center;
     border-top: 0px;
 }
+
 .legend {
     padding: 0;
     margin-bottom: 20px;
