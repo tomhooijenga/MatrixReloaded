@@ -1,12 +1,12 @@
 // This file lists the products on the page
 $(document).ready(function () {
-    $.getJSON("/api/languages/").done(function (json) {
-        var languages = {};
+    // We get all the current engineers in the database to filter the results later
+    jsonUrl = setEngineerUrl();
+    $.getJSON(jsonUrl).done(function (json) {
+        var engineers = {};
         json.forEach(function (val) {
-            languages[val.url] = val;
+            engineers[val.url] = val;
         });
-        
-        jsonUrl = setEngineerUrl();
         
         // We initialize the DataTable from a JavaScript file in static, with the required JSON file
         var table = createProductTable();
@@ -20,9 +20,6 @@ $(document).ready(function () {
             // We set the data of the clicked row in a variable for later use
             var data = table.row(this).data();
             var tr = $(this).closest('tr');
-            //for (var val in data) {
-            //    console.log(data[val]);
-            //}
             // We check if the tr is not empty.
             if (tr.has("td.dataTables_empty").length > 0) {
                 $(".productdetails").css("visibility", "hidden");
@@ -32,26 +29,17 @@ $(document).ready(function () {
                 $(".productdetails").css("visibility", "visible");
                 var data = table.row(this).data();
                 var newData = [];
+                // We replace the engineers that are trained for the product with an engineer object
                 for (var obj in data.skills) {
-                    if (typeof data.skills[obj].engineer.languages[0] == "object") { newData.push(data.skills[obj].engineer); } 
-                    else {
-                        data.skills[obj].engineer.languages = data.skills[obj].engineer.languages.map(function(url) {
-                            return languages[url];
-                        });
-                    newData.push(data.skills[obj].engineer);
-                    };
+                    newData.push(engineers[data.skills[obj].engineer]);
                 };
+                // We clear the datatable and reset it with the new engineers
                 $('.engineerslist').DataTable().clear().draw();
                 $('.engineerslist').DataTable().rows.add(newData);
                 $('.engineerslist').DataTable().columns.adjust().draw();
                 // Fill the card with data and make the card read-only
                 $('.productdetails').form(data).form('editable', false).carousel(2);
             }
-        });
-
-        $('.search-bar').click(function() {
-           $('.productslist').DataTable().destroy();
-           table = createProductTable(jsonUrl);
         });
     });
 });

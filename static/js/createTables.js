@@ -45,7 +45,7 @@ function createEngineerTable(jsonUrl) {
 function createProductTable () {
     var table = $('.productslist').DataTable({
         ajax: {
-            url: "/api/products/?expand=category.parent,skills.engineer.country",
+            url: "/api/products/?expand=category.parent,skills",
             dataSrc: ''
         },
         "bInfo": false,
