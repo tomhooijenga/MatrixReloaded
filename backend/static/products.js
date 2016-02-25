@@ -85,7 +85,17 @@ $(document).ready(function () {
                 $this.form(data).data('method', 'patch');
 
                 // TODO: notify user
-
+                // Toast pop-up function
+                $.toast({
+                    text: "Submitted!",
+                    icon: 'success',
+                    showHideTransition: 'fade',
+                    allowToastClose: true,
+                    hideAfter: 3000,
+                    stack: false,
+                    position: 'bottom-right',
+                    textAlign: 'center'
+                });
                 // Reload the table with new data
                 table.ajax.reload();
             })
