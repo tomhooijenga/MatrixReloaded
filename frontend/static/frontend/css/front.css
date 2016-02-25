@@ -174,11 +174,11 @@ tr.even.selected {
 }
 
 .row-product .panel {
-    height: 26vh;
+    height: 36vh;
 }
 
 .row-engineer .panel {
-    height: 56vh;
+    height: 46vh;
 }
 
 .legend {
