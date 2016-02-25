@@ -5,6 +5,9 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter()
+
+# Users
+router.register(r'users', views.UserViewSet)
 # Engineers
 router.register(r'engineers', views.EngineerViewSet)
 router.register(r'engineers/(?P<engineer>\d+)/countries', views.EngineerCountriesViewSet)

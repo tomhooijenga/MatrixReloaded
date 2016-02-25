@@ -16,7 +16,16 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = get_user_model()
 
         # Attributes to exclude from serialization
-        exclude = ('password', 'groups', 'user_permissions')
+        exclude = ('password', 'user_permissions')
+
+
+# class GroupSerializer(serializers.HyperlinkedModelSerializer):
+#     """
+#     This class is responsible for the serialization of the 'Group' model
+#     """
+#
+#     class Meta:
+#         include = ('name',)
 
 
 class CountrySerializer(serializers.HyperlinkedModelSerializer):

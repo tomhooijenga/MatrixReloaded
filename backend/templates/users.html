@@ -5,8 +5,12 @@
 <thead>
     <tr>
         <th>User</th>
-        <th>Rights</th>
-        <th>Edit</th>
     </tr>
 </thead>
 {% endblock table %}
+
+{% block javascript %}
+    {{ block.super }}
+
+    <script src="{% static 'users.js' %}"></script>
+{% endblock javascript %}
