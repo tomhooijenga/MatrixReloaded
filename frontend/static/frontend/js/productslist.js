@@ -40,8 +40,8 @@ $(document).ready(function () {
                     for (var val in product.skills) {
                         if (engineer.skills[key].url == product.skills[val].url) {
                             $( ".topdetails" ).append("<div class='col-md-6 engineerlevel'>" +
-                                    "<div class='col-md-4'>Level:</div>" +
-                                    "<div class='col-md-8'>"+ product.skills[val].level +"</div>" +
+                                    "<div class='col-md-6'>Level: </div>" +
+                                    "<div class='col-md-6'>"+ product.skills[val].level +"</div>" +
                                     "</div>");
                         }
                     }
