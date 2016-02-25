@@ -64,7 +64,10 @@
                             autofill = $el.data('autofill');
                             
                         // It is not possible to set a file input with javascript
+                        // Trigger the change anyway, because the image-upload depends on it
                         if ($el.is('[type="file"]')) {
+                            $el.trigger('change');
+
                             return;
                         }
 
@@ -74,7 +77,7 @@
                                 $el.prop(autofill, formatString(data[key], key));
                             } else {
                                 $el.prop(autofill, data[key]);
-                            };
+                            }
                         } else {
                             // If the data is not an array, make it an array
                             var value = $.isArray(data[key]) ? data[key] : [data[key]];
