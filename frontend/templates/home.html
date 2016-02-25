@@ -52,13 +52,15 @@
         <!-- Inlogknop -->
         <div class="dropdown col-xs-1 loginknop">
             <div class="vertical-center">
-                <i class="fa fa-caret-square-o-right fa-lg dropdown-toggle" type="button" id="dropdownMenu1"
+                <button class="btn btn-default menubutton">
+                <i class="fa fa-navicon fa-lg dropdown-toggle" type="button" id="dropdownMenu1"
                    data-toggle="dropdown"></i>
                 <ul class="dropdown-menu">
                     <li><a href="{% url 'backend-engineers' %}">Back-End</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="{% url 'logout' %}">Log-Out</a></li>
                 </ul>
+                </button>
             </div>
 
         </div>
@@ -70,6 +72,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Choose Your Country</h4>
                 </div>
                 <div class="modal-body">
@@ -78,7 +81,6 @@
                     </select>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary savefilt">Save changes</button>
                 </div>
             </div>
