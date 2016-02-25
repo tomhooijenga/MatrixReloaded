@@ -14,9 +14,21 @@ body{
 }
 
 .padtop{
+	padding-top:25px;
+}
+
+.padtopprod{
 	padding-top:20px;
 }
 
+.padtopengi{
+	padding-top:30px;
+}
+
+.col5edit{
+	max-width: 300px;
+	padding-left:0px;
+}
 
 input.form-control.search-product {
     width: 50%;
@@ -173,7 +185,7 @@ table.click {
 }
 
 .fa-caret-square-o-right{
-	margin-top:8px;
+	padding-top:5px;
 }
 
 .modal-content{
@@ -198,9 +210,30 @@ table.click {
 	width:300px;
 }
 
+.agiimg{
+	width:100%;
+}
+
+.searchbar{
+	padding-top:10px;
+}
+
 .modal-footer{
 	text-align:center;
 	border-top:0px;
+}
+
+.loginknop{
+	padding-top:12px;
+	padding-left:0px;
+}
+
+.col4edit{
+	padding-left:0px;
+}
+
+.fa-caret-square-o-right{
+	padding-top:10px;
 }
 
 /*Styling for the country button. Below we give the fa-globe icon the color of the logo */
@@ -239,4 +272,14 @@ tr.even.selected {
 
 .fa-copy {
 	cursor: pointer;
+}
+
+.close{
+	color:#ffffff;
+	opacity:1;
+}
+
+.fa-lg{
+	color:rgb(5, 133, 205);
+	cursor:pointer;
 }
