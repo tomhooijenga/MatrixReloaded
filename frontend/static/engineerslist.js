@@ -51,24 +51,22 @@ $(document).ready(function () {
                 var data = table.row(this).data();
                 var newData = [];
                 engineer = data;
-                $( ".engineerlevel" ).remove();
+                $(".engineerlevel").remove(".engineerlevel");
                 // We replace the products with the products which the engineer is trained for
                 for (var obj in data.skills) {
-                    newData.push(products[data.skills[obj].product]);
-                    // The section below is required to show the skill level on the selected product.
-                    for (var val in product.skills) {
-                        if (product.skills[val].engineer == data.skills[obj].engineer) {
+                    newData.push(products[data.skills[obj].product]);              
+                }
+                // The section below is required to show the skill level on the selected product.  
+                for (var key in product.skills) {
+                    for (var val in engineer.skills) {
+                        if (product.skills[key].url == engineer.skills[val].url) {
                             $( ".topdetails" ).append("<div class='col-md-6 engineerlevel'>" +
                                     "<div class='col-md-4'>Level:</div>" +
-                                    "<div class='col-md-8'>"+ product.skills[val].level +"</div>" +
+                                    "<div class='col-md-8'>"+ engineer.skills[val].level +"</div>" +
                                     "</div>");
                         }
-                    };
+                    }
                 }
-                //for (var val in product.skills) {
-                //    if (product.skills[val].engineer == )
-                //    console.log(product.skills[val].engineer);
-                //}
                 // We clear the datatable and reset it with the new engineers
                 $('.productslist').DataTable().clear().draw();
                 $('.productslist').DataTable().rows.add(newData);
