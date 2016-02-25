@@ -80,24 +80,21 @@
                     <div class="col-xs-5">
                         <div class="panel panel-default productdetails">
                             <div class="panel-heading">
-                                <b>Product:</b>
-                            </div>
-                            <div class="panel-body">
-                                <!-- Needs to display the image here
-                                <div class="image-input col-xs-6">
-                                    <img data-autofill="textContent" class="image"/>
-                                </div>-->
                                 <table class="engineerinfo">
-                                    <tr>
-                                        <td><h3>Details:</h3></td>
-                                    </tr>
-                                    <tr>
+                                <tr>
                                         <td class="category" data-autofill="textContent" />
                                     </tr>
                                     <tr>
                                         <td class="name" data-autofill="textContent" />
                                     </tr>
-                                </table>
+                                    </table>
+                            </div>
+                            <div class="panel-body">
+                                <img data-autofill="src" class="image"/>
+                                <!-- Needs to display the image here
+                                <div class="image-input col-xs-6">
+                                    <img data-autofill="textContent" class="image"/>
+                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -127,8 +124,8 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <!-- HTML to write -->
-                                    <div class="col-md-2 first-name" data-autofill="textContent"></div>
-                                    <div class="col-md-1 last-name" data-autofill="textContent"></div>
+                                    <div class="col-md-3 first-name" data-autofill="textContent"></div>
+                                    <div class="col-md-2 last-name" data-autofill="textContent"></div>
                                 </div>
                             </div>
                             <div class="panel-body">
@@ -136,11 +133,11 @@
                                     <div class="col-md-6"><img data-autofill="src" class="image"/></div>
                                     <div class="col-md-6"></div>
                                 </div>
-                                <div class="image-input col-xs-6">
-                                    <img data-autofill="textContent" class="image"/>
-                                </div>
-                                <h3>Details:</h3>
+                                <!--<div class="image-input col-xs-6">-->
+                                    <!--<img data-autofill="textContent" class="image"/>-->
+                                <!--</div>-->
                                 <div class="row">
+                                    <div class="col-md-12 minheight"><h4>Details:</h4></div>
                                     <div class="col-md-1"><i class="fa fa-map-marker"></i></div>
                                     <div class="col-md-9 droppoint" data-autofill="textContent"></div>
                                     <div class="col-md-1"><i class="fa fa-copy" data-clipboard-target=".droppoint"></i></div>
@@ -160,13 +157,10 @@
                                     <div class="col-md-9 employee-number" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-1"><i class="fa fa-language"></i></div>
-                                    <div class="col-md-9 languages" data-autofill="textContent"></div>
-                                    <div class="col-md-1"></div>
+                                <div class="row fillspace">
                                 </div>
-                                <h3>VCA:</h3>
                                 <div class="row">
+                                   <div class="col-md-12 minheight"><h4>VCA:</h4></div>
                                     <div class="col-md-1"><i class="fa fa-graduation-cap"></i></div>
                                     <div class="col-md-9 vca-number" data-autofill="textContent"></div>
                                     <div class="col-md-1"><i class="fa fa-copy" data-clipboard-target=".vca-number"></i></div>
@@ -176,8 +170,10 @@
                                     <div class="col-md-9 vca-date" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
                                 </div>
-                                <h3>Car:</h3>
+                                <div class="row fillspace">
+                                </div>
                                 <div class="row">
+                                    <div class="col-md-12 minheight"><h4>Car:</h4></div>
                                     <div class="col-md-1"><i class="fa fa-road"></i></div>
                                     <div class="col-md-9 license-plate" data-autofill="textContent"></div>
                                     <div class="col-md-1"><i class="fa fa-copy" data-clipboard-target=".license-plate"></i></div>
@@ -192,8 +188,10 @@
                                     <div class="col-md-9 car-color" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
                                 </div>
-                                <h3>Address:</h3>
+                                <div class="row fillspace">
+                                </div>
                                 <div class="row">
+                                    <div class="col-md-12 minheight"><h4>Address:</h4></div>
                                     <div class="col-md-1"><i class="fa fa-map-signs"></i></div>
                                     <div class="col-md-9 street" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
@@ -211,6 +209,14 @@
                                 <div class="row">
                                     <div class="col-md-1"><i class="fa fa-globe"></i></div>
                                     <div class="col-md-9 country" data-autofill="textContent"></div>
+                                    <div class="col-md-1"></div>
+                                </div>
+                                <div class="row fillspace">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 minheight"><h4>Languages</h4></div>
+                                    <div class="col-md-1"><i class="fa fa-language"></i></div>
+                                    <div class="col-md-9 languages" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
                                 </div>
                             </div>
