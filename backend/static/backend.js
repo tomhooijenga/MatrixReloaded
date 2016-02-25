@@ -29,4 +29,12 @@ $(function () {
                 .addClass(isHorizontal ? 'image-horizontal' : 'image-vertical');
         }, 50);
     });
+
+    $('.add-new').on('click', function () {
+        $('#card').show();
+    });
+
+    $('.table').on('click', 'tr, .edit', function () {
+        $('#card').show();
+    })
 });

@@ -89,7 +89,7 @@ input[type="search"] {
 }
 
 .card {
-    /* display: none; */
+    display: none;
     overflow: auto;
 }
 
@@ -203,7 +203,26 @@ div#DataTables_Table_0_filter label {
 	width:300px;
 }
 
-.modal-footer{
-	text-align:center;
-	border-top:0px;
+.modal-footer {
+    text-align: center;
+    border-top: 0px;
+}
+.legend {
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 21px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.form-list form:not(:last-child) {
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 20px;
+}
+
+.form-list .btn[disabled] {
+    display: none;
+}
+
+.form-list span {
+    line-height: 34px;
 }

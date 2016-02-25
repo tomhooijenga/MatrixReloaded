@@ -1,78 +1,191 @@
-/* This is the function for showing subcategories */
-function listSubcategories (d) {
-    $(this).addClass("test123");
-    // `d` is the original data object for the row
-    // create an empty string which will contain the categories in a table
-    var mytable = '';
-    mytable += '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; style="background-color:red><thead><tr><td><b>Subcategories:</b></td></tr></thead>';
-    // if d.children[0] = null there are no subcategories
-    if (d.children[0] != null)
-    {
-        for (var key in d.children) {
-            mytable += '<tr><td>' + d.children[key].name + '</td></tr>';
-        };
-    } else {
-        mytable += '<tr><td>No subcategories</td></tr>';
-    };
-    mytable += '</table>';
-    // return the subcategories to show below the original category
-    return mytable;
-};
-
-$(document).ready(function() {
-    // We create an array to store the categories from the json request
-    var categories = [];
-    function getArray(){
-        return $.getJSON("/api/categories/?expand=children");
-    }
-    getArray().done(function(json) {
-        // Only show the categories by filtering the items.
-        // Only items with parent = null should be shown.
-        $.each(json, function(key, val) {
-            if (val.parent === null) {
-                categories.push(val);
-            }
-        });
-        // We initialize the DataTable with the json file required for the categories page
-        var table = $('.table').DataTable({
-            "aaData": categories,
-            "bInfo": false,
-            "bPaginate": false,
+$(function () {
+    var $table = $('.table'),
+        $parent = $("#parent-form"),
+        $child = $("#child-form"),
+        $children = $('#child-categories'),
+        $template = $($('#category-template').html()),
+        table = $table.DataTable({
+            paging: false,
+            info: false,
             autoWidth: false,
-            // We initialize the column fields with the required details (Name) and add some HTML with the render function.
-            "columns": [
-                        { "data": "name",
-                        "className": 'details-control'},
-                        { render: function () {
-                                  return '<a class="add-remove">Add / remove subcategory</a>';  
-                                  }, orderable: false,
-                                    searchable: false},
-                        ]
+            columns: [
+                {
+                    data: 'name'
+                },
+                {
+                    render: function () {
+                        return '<a class="edit">Edit</a>'
+                    }
+                }
+            ]
         });
-        // Makes the search input form-control work on the DataTable
-        $('.search-bar').keyup(function(){
-            table.search($(this).val()).draw() ;
-        }); 
-        // Add event listener for opening and closing subcategory listing
-        $('table tbody').on('click', 'td.details-control', function () {
-            var tr = $(this).closest('tr');
-            var row = table.row( tr );
 
-            if ( row.child.isShown() ) {
-                // This row is already open - close it
-                row.child.hide();
-                tr.removeClass('shown');
-            }
-            else {
-                // Open this row
-                row.child( listSubcategories(row.data()) ).show();
-                tr.addClass('shown');
-            }
-        });   
-        // On click functions for the HTML elements in the DataTable
-        // On click they should open the details panel on the right
-        $("table").on("click", ".add-remove", function(){
-            $("div.panel.panel-default.details").show();
-        });
+    // Load the initial data of the table
+    reload();
+
+    $('.add-new').on('click', function () {
+        $parent.form('clear')
+            .prop('action', '/api/categories/')
+            .data('method', 'post');
+
+        $child.hide();
+        $children.hide();
     });
-}); 
+
+    var row = null;
+
+    $table.on('click', 'tr', function () {
+        row = this;
+
+        var data = table.row(this).data();
+
+        $parent.data('method', 'patch')
+            .form(data)
+            .form('editable', false);
+
+        children(data.children);
+
+        $child.hide().form('editable', false);
+
+        $children.form('editable', false);
+    }).on('click', '.edit', function (e) {
+        e.stopPropagation();
+
+        row = $(this).closest('tr');
+
+        var data = table.row(row).data();
+
+        $parent.data('method', 'patch')
+            .form(data)
+            .form('editable', true);
+
+        children(data.children);
+
+        $child.show()
+            .form('editable', true)
+            .find('input[name="parent"]')
+            .val(data.url);
+
+        $children.form('editable', true);
+    });
+
+    $parent.on('submit', function (e) {
+        e.preventDefault();
+
+        $parent.form('submit')
+            .done(function () {
+                // TODO: notify user
+
+                $parent.data('method', 'patch');
+                $child.show();
+
+                reload();
+            })
+            .fail(function (data) {
+                // TODO: notify user what went wrong
+            });
+    });
+
+    $child.on('submit', function (e) {
+        e.preventDefault();
+
+        var parent = table.row(row).data();
+
+        $child.form('submit')
+            .done(function (data) {
+                // TODO: notify user
+
+                $child.form('clear');
+
+                parent.children.push(data);
+                children(parent.children);
+
+                // row is no longer valid after reload
+                row = null;
+                reload()
+            })
+            .fail(function (data) {
+                // TODO: notify user
+            });
+    });
+
+    $children.on('click', '.btn-danger', function () {
+        if (!confirm('Are you sure you want to delete this category?')) {
+            return;
+        }
+
+        var $child = $(this).closest('form');
+
+        $child.data('method', 'delete')
+            .form('submit')
+            .done(function () {
+                $child.remove();
+
+                // TODO: notify user
+                reload();
+            });
+    }).on('submit', 'form', function (e) {
+        e.preventDefault();
+
+        $(this).data('method', 'patch')
+            .form('submit')
+            .done(function (data) {
+                // TODO: notify user
+
+                reload();
+            })
+            .fail(function (data) {
+                // TODO: notify user what is wrong
+            });
+    });
+
+    // Makes the search input form-control work on the DataTable
+    $('.search-bar').keyup(function () {
+        table.search($(this).val()).draw();
+    });
+
+    /**
+     * Append the child categories to the parent category form
+     * @param children A list of categories that belong to a parent
+     */
+    function children(children) {
+        var html = [];
+
+        $children.empty();
+
+        children.forEach(function (child) {
+            var template = $template.clone(),
+                products = child.products.length,
+                text = products + ' product';
+
+            if (products == 0 || products > 1) {
+                text += 's';
+            }
+
+            template.form(child)
+                .data('category', child);
+
+            template.find('.btn-danger').prop('disabled', child.products.length > 0);
+            template.find('.products').text(text);
+
+            html.push(template);
+        });
+
+        $children.append.apply($children, html);
+    }
+
+    /**
+     * Reload the DataTable's data
+     */
+    function reload() {
+        return $.getJSON('/api/categories/?expand=children').done(function (data) {
+            data = data.filter(function (category) {
+                return category.parent === null;
+            });
+
+            // Set the data in the table
+            table.clear();
+            table.rows.add(data).draw();
+        });
+    }
+});
