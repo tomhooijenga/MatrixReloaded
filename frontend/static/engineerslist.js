@@ -34,7 +34,8 @@ $(document).ready(function () {
         $('.search-engineer').keyup(function () {
             table.search($(this).val()).draw();
         });
-
+        
+        var skills = {};
         // Shows the engineers details in the card panel when the table row is clicked
         table.on('click', 'tr', function () {
             // We set the data of the clicked row in a variable for later use
@@ -49,11 +50,23 @@ $(document).ready(function () {
                 $(".card").css("visibility", "visible");
                 var data = table.row(this).data();
                 var newData = [];
+                engineer = data;
+                $(".engineerlevel").remove(".engineerlevel");
                 // We replace the products with the products which the engineer is trained for
                 for (var obj in data.skills) {
-                    newData.push(products[data.skills[obj].product]);
+                    newData.push(products[data.skills[obj].product]);              
                 }
-                ;
+                // The section below is required to show the skill level on the selected product.  
+                for (var key in product.skills) {
+                    for (var val in engineer.skills) {
+                        if (product.skills[key].url == engineer.skills[val].url) {
+                            $( ".topdetails" ).append("<div class='col-md-6 engineerlevel'>" +
+                                    "<div class='col-md-4'>Level:</div>" +
+                                    "<div class='col-md-8'>"+ engineer.skills[val].level +"</div>" +
+                                    "</div>");
+                        }
+                    }
+                }
                 // We clear the datatable and reset it with the new engineers
                 $('.productslist').DataTable().clear().draw();
                 $('.productslist').DataTable().rows.add(newData);
