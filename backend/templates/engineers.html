@@ -226,7 +226,7 @@
                             </label>
                             <div class="col-xs-10">
                                 <input id="license-plate" name="license-plate" class="form-control" type="text"
-                                       placeholder="License plate" maxlength="100" required>
+                                       placeholder="License plate" maxlength="10" required>
                             </div>
                         </div>
 
@@ -288,7 +288,7 @@
 {% block javascript %}
     {{ block.super }}
 
-    <script src='{% static "engineers.js" %}'></script>
+    <script src="{% static 'backend/js/engineers.js' %}"></script>
 
     <script type="text/html" id="skill-template">
         <li class="list-group-item">

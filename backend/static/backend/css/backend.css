@@ -115,6 +115,7 @@ input[type="search"] {
     position: relative;
     box-sizing: content-box;
     overflow: hidden;
+    padding-bottom: 100%;
 }
 
 .image-input > label > span {

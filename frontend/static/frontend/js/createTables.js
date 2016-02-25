@@ -23,20 +23,19 @@ function createEngineerTable(jsonUrl) {
             url: jsonUrl,
             dataSrc: ''
         },
-        "bInfo": false,
-        "bPaginate": false,
+        autoWidth: false,
+        info: false,
+        paging: false,
         // The part below makes our table scrollable when showing more than 16 items.
-        "deferRender": true,
-        "bScrollCollapse": true,
-        "scrollY": '45vh',
         // We initialize the column fields with the required details (First name, Last name) and add some HTML with the render function.
         "columns": [
-            {data: "first_name",
-                "className": 'details-control'},
+            {data: "first_name"},
             {data: "last_name"},
-            {render: function () {
+            {
+                render: function () {
                     return 'FSS / ASP';
-                }, orderable: false,
+                },
+                orderable: false,
                 searchable: false},
             {data: "country.code"}
         ]
@@ -50,12 +49,9 @@ function createProductTable () {
             url: "/api/products/?expand=category.parent,skills",
             dataSrc: ''
         },
-        "bInfo": false,
-        "bPaginate": false,
-        "scrollY": '30vh',
-        // The part below makes our table scrollable when showing more than 16 items.
-        "deferRender": true,
-        "bScrollCollapse": true,
+        autoWidth: false,
+        info: false,
+        paging: false,
         // We initialize the column fields with the required details (Category, Subcategory, Name) and add some HTML with the render function.
         "columns": [
             {data: "category.parent.short_name"},

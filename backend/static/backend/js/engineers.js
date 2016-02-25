@@ -8,7 +8,7 @@ $(document).ready(function () {
         $edit = $carousel.find('.engineer-edit'),
         $note = $carousel.find('.engineer-note'),
         $skills = $carousel.find('.engineer-skills');
-    
+
     // This cookie holds the current selected countries
     var cookie = getCookie("countries");
     // We will use this variable to create the JSON request
@@ -20,7 +20,8 @@ $(document).ready(function () {
     } else {
         // If the cookie is not empty it filters the results.
         jsonUrl = "/api/engineers/?expand=note&countries=" + cookie;
-    };
+    }
+    ;
 
     // We initialize the DataTable with the json file required for the engineer page
     var table = $table.DataTable({
@@ -63,11 +64,11 @@ $(document).ready(function () {
             }
         ]
     });
-    
+
     // Makes the search input form-control work on the DataTable
-        $('.search-bar').keyup(function(){
-            table.search($(this).val()).draw() ;
-        }); 
+    $('.search-bar').keyup(function () {
+        table.search($(this).val()).draw();
+    });
 
     $table.on('click', 'tr', function (e) {
         // Ignore clicks that started on the edit links. We can't use `stopPropagation`
@@ -210,39 +211,41 @@ $(document).ready(function () {
                 $this.form(data).data('method', 'patch');
                 // Toast pop-up function
                 $.toast({
-                text: "Submitted!",
-                icon: 'success',
-                showHideTransition: 'fade',
-                allowToastClose: true,
-                hideAfter: 3000,
-                stack: false,
-                position: 'bottom-right',
-                textAlign: 'center'
-            });
+                    text: "Submitted!",
+                    icon: 'success',
+                    showHideTransition: 'fade',
+                    allowToastClose: true,
+                    hideAfter: 3000,
+                    stack: false,
+                    position: 'bottom-right',
+                    textAlign: 'center'
+                });
+
                 // Reload the table with new data
                 table.ajax.reload();
             })
             // Error
-            .fail(function (errors) {
-                // Error handling goes here
-            //    var errortext = [];
-            //    var errorstring = Array.prototype.join.call(errors);
-            //        for (var error in errorstring){
-            //            var text = errortext.push(error + ': ' + errorstring[error].join('; '));
-            //        }
-            //    // Possibly show an notification
-            //    // TODO: notify user
-            //    $.toast({
-            //    heading: "Error!",
-            //    text: text,
-            //    icon: "error",
-            //    showHideTransition: 'fade',
-            //    allowToastClose: true,
-            //    hideAfter: 3000,
-            //    stack: false,
-            //    position: 'bottom-right',
-            //    textAlign: 'center',
-            //});
+            .fail(function (response) {
+                var errors = response.responseJSON,
+                    errortext = [];
+
+                for (var error in errors) {
+                    errortext.push(error + ': ' + errors[error].join('; '));
+                }
+
+                // Possibly show an notification
+                // TODO: notify user
+                $.toast({
+                    heading: "Error!",
+                    text: errortext.join('<br />'),
+                    icon: "error",
+                    showHideTransition: 'fade',
+                    allowToastClose: true,
+                    hideAfter: 3000,
+                    stack: false,
+                    position: 'bottom-right',
+                    textAlign: 'center'
+                });
             });
     });
 

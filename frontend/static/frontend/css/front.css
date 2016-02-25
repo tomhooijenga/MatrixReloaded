@@ -39,20 +39,13 @@ input.form-control.search-engineer {
     color: white;
 }
 
-.card {
-    border: 1px solid #ccc;
+.card,
+.productdetails {
     visibility: hidden;
 }
 
 .card .fa {
     color: rgb(5, 133, 205);
-}
-
-.card .panel-body {
-    padding: 10px;
-}
-
-.card .panel-heading {
 }
 
 .table thead {
@@ -163,6 +156,7 @@ tr.even.selected {
 
 .panel {
     margin: 2vh 0;
+    overflow: auto;
 }
 
 .row-search {
