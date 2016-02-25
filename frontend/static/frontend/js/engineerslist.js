@@ -1,7 +1,7 @@
 // This file lists the engineers on the page
 $(document).ready(function () {
     // We get all the current products in the database to filter the results later
-    $.getJSON("/api/products/?expand=category.parent,skills").done(function (json) {
+    $.getJSON("/api/products/?expand=category.parent,skills&is_active=true").done(function (json) {
         var products = {};
         json.forEach(function (val) {
             products[val.url] = val;
