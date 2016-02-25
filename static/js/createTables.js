@@ -1,3 +1,5 @@
+var product = {}, engineer = {};
+
 // Function for returning the jsonUrl with the country filter including.
 function setEngineerUrl () {
     // We initialize the DataTable with the json file required for the products page
