@@ -171,6 +171,20 @@ class SkillViewSet(viewsets.ModelViewSet):
 
     serializer_class = serializers.SkillSerializer
 
+    def filter_queryset(self, queryset):
+        # filter by active status. Is actually 3 values:
+        # true: active only
+        # false: not active only
+        # omitted: include all
+        is_active = self.request.query_params.get('is_active')
+        if is_active is not None:
+            if is_active.lower() in ('true', '1'):
+                queryset = queryset.filter(is_active=True)
+            elif is_active.lower() in ('false', '0'):
+                queryset = queryset.filter(is_active=False)
+
+        return queryset
+
 
 class ProductViewSet(viewsets.ModelViewSet):
     """

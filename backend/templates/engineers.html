@@ -3,7 +3,7 @@
 {% load static from staticfiles %}
 
 {% block table %}
-<!--Table headers-->
+    <!--Table headers-->
     <thead>
     <tr>
         <th>First name</th>
@@ -133,11 +133,23 @@
 
                         <div class="form-group">
                             <label for="droppoint" class="col-xs-2 control-label">
-                                <i class="fa"></i>
+                                <i class="fa fa-map-marker"></i>
                             </label>
                             <div class="col-xs-10">
                                 <input id="droppoint" name="droppoint" class="form-control" type="text"
                                        maxlength="20" placeholder="Droppoint">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type" class="col-xs-2 control-label">
+                                <i class="fa"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <select id="type" name="type" class="form-control" placeholder="Type" required>
+                                    <option value="0" selected>FSS</option>
+                                    <option value="1">ASP</option>
+                                </select>
                             </div>
                         </div>
 
@@ -269,7 +281,7 @@
                         <div class="col-xs-5 col-xs-offset-2">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="is-active" data-autofill="checked" value="true">
+                                    <input type="checkbox" name="is-active" data-autofill="checked" value="true" checked>
                                     Is active
                                 </label>
                             </div>

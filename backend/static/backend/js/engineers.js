@@ -16,12 +16,11 @@ $(document).ready(function () {
     // Checks if cookie is empty
     // If it's empty, it requests the normal JSON url.
     if (cookie == "") {
-        jsonUrl = "/api/engineers/?expand=country";
+        jsonUrl = "/api/engineers/?expand=note";
     } else {
         // If the cookie is not empty it filters the results.
         jsonUrl = "/api/engineers/?expand=note&countries=" + cookie;
     }
-    ;
 
     // We initialize the DataTable with the json file required for the engineer page
     var table = $table.DataTable({

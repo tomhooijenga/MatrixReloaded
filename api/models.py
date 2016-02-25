@@ -159,6 +159,11 @@ class Engineer(models.Model):
     # The note of this employee. Defined in the Note model
     # note
 
+    # The type of engineer.
+    type = models.SmallIntegerField(choices=(
+        (0, 'FSS'),
+        (1, 'ASP')
+    ))
 
 class Note(models.Model):
     """
