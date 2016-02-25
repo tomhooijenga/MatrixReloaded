@@ -68,7 +68,7 @@ $(document).ready(function() {
                 row.child( listSubcategories(row.data()) ).show();
                 tr.addClass('shown');
             }
-        } );   
+        });   
         // On click functions for the HTML elements in the DataTable
         // On click they should open the details panel on the right
         $("table").on("click", ".add-remove", function(){

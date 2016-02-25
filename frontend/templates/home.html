@@ -28,7 +28,8 @@
                             <span class="input-group-btn">
                                 <button class="btn btn-default btn-sm countrybutton" type="button" data-toggle="modal" data-target="#filter"><i class="fa fa-globe"></i></button>
                             </span>
-                            <input type="text" class="form-control search-bar" placeholder="Search">
+                            <input type="text" class="form-control search-product" placeholder="Product">
+                            <input type="text" class="form-control search-engineer" placeholder="Engineer">
                         </div>
                     </div>
                     <!-- Logo -->
@@ -36,8 +37,13 @@
                         <img class="img-responsive agiimg" src="{% static "img/logo.jpg" %}" alt="Agilent">
                     </div>
                     <!-- Inlogknop -->
-                    <div class="col-xs-1 log">
-                        <i class="fa fa-caret-square-o-right"></i>
+                    <div class="dropdown col-xs-1 loginknop">
+                        <i class="fa fa-caret-square-o-right fa-lg dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                      <ul class="dropdown-menu" aria-lab col-xelledby="dropdownMenu1">
+                        <li><a href="{% url 'backend-engineers' %}">Back-End</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'logout' %}">Log-Out</a></li>
+                      </ul>
                     </div>
                 </div><!-- einde row -->
                 <!-- modal voor filter -->
@@ -214,7 +220,7 @@
                                 <div class="row fillspace">
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12 minheight"><h4>Languages</h4></div>
+                                    <div class="col-md-12 minheight"><h4>Languages:</h4></div>
                                     <div class="col-md-1"><i class="fa fa-language"></i></div>
                                     <div class="col-md-9 languages" data-autofill="textContent"></div>
                                     <div class="col-md-1"></div>
@@ -233,12 +239,12 @@
         <script src="{% static "js/cookies.js" %}"></script>
         <script type='text/javascript' src='{% static "js/bootstrap.min.js" %}'></script>
         <script type='text/javascript' src='{% static "js/filter.js" %}'></script>
+        <script type='text/javascript' src='{% static "js/createTables.js" %}'></script>
         <script type='text/javascript' src='{% static "productslist.js" %}'></script>
         <script type='text/javascript' src='{% static "engineerslist.js" %}'></script>
         <script src="{% static "js/form.js" %}"></script>
-        <script type='text/javascript' src='{% static "clipboard/dist/clipboard.min.js" %}'></script>
+        <script type='text/javascript' src='{% static "js/clipboard/dist/clipboard.min.js" %}'></script>
         <script type='text/javascript' src='{% static "toast/dist/jquery.toast.min.js" %}'></script>
         {% endblock javascript %}
     </body>
 </html>
-          

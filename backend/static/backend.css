@@ -179,3 +179,31 @@ div#DataTables_Table_0_filter label {
     padding: 10px;
     max-width: 70%;
 }
+
+/* Styling for the modal panel */
+.modal-content{
+	background-color: rgb(51, 51, 51);
+	opacity: 0.9;
+}
+
+.modal-header{
+	border-bottom:0px;
+}
+
+.modal-title{
+	text-align:center;
+	color:white;
+}
+
+.modal-body{
+	text-align:center;
+}
+
+.filterlanden{
+	width:300px;
+}
+
+.modal-footer{
+	text-align:center;
+	border-top:0px;
+}
