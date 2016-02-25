@@ -125,12 +125,14 @@ table.click {
 
 /*Styling for the country button. Below we give the fa-globe icon the color of the logo */
 .countrybutton,
-.refreshbutton {
+.refreshbutton,
+.menubutton{
     height: 34px;
 }
 
 .countrybutton i,
-.refreshbutton i {
+.refreshbutton i,
+.menubutton i{
     color: #0085d5;
     line-height: 20px;
     font-size: 20px;
