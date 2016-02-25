@@ -13,16 +13,12 @@ body{
 	min-width: 640px;
 }
 
-.padtop{
+.paddingtop{
 	padding-top:25px;
 }
 
-.padtopprod{
+.paddingtopproduct{
 	padding-top:20px;
-}
-
-.padtopengi{
-	padding-top:30px;
 }
 
 .col5edit{
@@ -38,21 +34,15 @@ input.form-control.search-engineer {
     width: 50%;
 }
 
-.product{
-	height: 190px;
-	border: 1px solid #ccc;
-}
-
-
 .products{
 	border: 1px solid #ccc;
 }
 
 .productdetails {
 	border: 1px solid #ccc;
-        height: 28vh;
-        width: 115%;
-        visibility: hidden;
+	visibility: hidden;
+	/*height:250px;*/
+	border-radius: 0px;
 }
 
 .productdetails .panel-body {
@@ -63,10 +53,20 @@ input.form-control.search-engineer {
         padding: 10px;
 }
 
+.panel-default>.panel-heading{
+	background-color:rgba(102, 102, 102, 0.8);
+	color:white;
+	border-radius: 0px;
+}
+
+.panel{
+	margin-bottom:5px;
+}
+
 .card {
 	border: 1px solid #ccc;
-        width: 115%;
         visibility: hidden;
+	border-radius:0px;
 }
 
 .card .fa {
@@ -78,7 +78,9 @@ input.form-control.search-engineer {
 }
 
 .card .panel-heading {
-        padding: 10px;
+	padding: 10px;
+	height: 30px;
+	padding-top:5px;
 }
 
 .border {
@@ -96,57 +98,6 @@ input.form-control.search-engineer {
 
 .table thead {
     color: rgb(5, 133, 205);
-}
-
-.curlvl{
-	background-color: #ccc;
-	color: black;
-}
-
-.engiimg{
-	width:50%;
-	height:100px;
-	float:left;
-	margin-bottom: 10px;
-}
-
-.engistyle{
-	width:50%;
-	height:100px;
-	float:right;
-}
-
-.engiimglvl{
-	text-align: center;
-	color: #eee;
-}
-.engithpad{
-	padding-bottom:2px;
-}
-
-.engiinfo{
-	clear:left;
-	font-size:10px;
-}
-.engiinfofont{
-	font-size:12px;
-}
-.famargin{
-	margin-top:2px;
-	margin-left:10px;
-}
-
-.engitabpad > tbody > tr > td {
-	padding-top:3px;
-	padding-bottom:3px;
-	padding-right:0px;
-}
-
-.filtertable{
-	margin-bottom: 3px;
-	font-family: "ShreeDev0714","Shree Devanagari 714";
-	font-size: 12px;
-	color: rgb(255,255,255);
 }
 
 /* hides the default search bar of DataTables */
@@ -210,7 +161,7 @@ table.click {
 	width:300px;
 }
 
-.agiimg{
+.agilentimage{
 	width:100%;
 }
 
@@ -279,7 +230,12 @@ tr.even.selected {
 	opacity:1;
 }
 
-.fa-lg{
-	color:rgb(5, 133, 205);
-	cursor:pointer;
+.fa-lg {
+	color: rgb(5, 133, 205);
+	cursor: pointer;
+}
+
+.image{
+	max-height: 100%;
+	max-width: 100%;
 }
