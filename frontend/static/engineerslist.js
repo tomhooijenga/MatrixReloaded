@@ -75,5 +75,10 @@ $(document).ready(function () {
                 $('.card').form(data).form('editable', false).carousel(2);
             }
         });
+        
+        // The page refreshes when the refresh icon is clicked
+        $(".refreshbutton").click(function(){
+            location.reload();
+        });
     });
 });

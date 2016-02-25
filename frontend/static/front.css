@@ -245,6 +245,19 @@ table.click {
 .countrybutton i.fa.fa-globe {
     color: rgb(5, 133, 205);
 }
+
+/*Styling for the refresh button. Below we give the fa-refresh icon the color of the logo */
+.refreshbutton {
+    padding: 2px 9px;
+    font-size: 19px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.refreshbutton i.fa.fa-refresh {
+    color: rgb(5, 133, 205);
+}
+
 .engineerinfo { 
     width: 100%; 
     table-layout: fixed;
