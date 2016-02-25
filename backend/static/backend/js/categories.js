@@ -1,32 +1,55 @@
+/* This is the function for showing subcategories */
+function listSubcategories(d) {
+    // `d` is the original data object for the row
+    // create an empty string which will contain the categories in a table
+    var mytable = '';
+    mytable += '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; style="background-color:red><thead><tr><td><b>Subcategories:</b></td></tr></thead>';
+    // if d.children[0] = null there are no subcategories
+    if (d.children[0] != null)
+    {
+        for (var key in d.children) {
+            mytable += '<tr><td>' + d.children[key].name + '</td></tr>';
+        }
+        ;
+    } else {
+        mytable += '<tr><td>No subcategories</td></tr>';
+    }
+    ;
+    mytable += '</table>';
+    // return the subcategories to show below the original category
+    return mytable;
+}
+;
+
 $(function () {
     var $table = $('.table'),
-        $parent = $("#parent-form"),
-        $child = $("#child-form"),
-        $children = $('#child-categories'),
-        $template = $($('#category-template').html()),
-        table = $table.DataTable({
-            paging: false,
-            info: false,
-            autoWidth: false,
-            columns: [
-                {
-                    data: 'name'
-                },
-                {
-                    render: function () {
-                        return '<a class="edit">Edit</a>'
+            $parent = $("#parent-form"),
+            $child = $("#child-form"),
+            $children = $('#child-categories'),
+            $template = $($('#category-template').html()),
+            table = $table.DataTable({
+                paging: false,
+                info: false,
+                autoWidth: false,
+                columns: [
+                    {
+                        data: 'name'
+                    },
+                    {
+                        render: function () {
+                            return '<a class="edit">Edit</a>'
+                        }
                     }
-                }
-            ]
-        });
+                ]
+            });
 
     // Load the initial data of the table
     reload();
 
     $('.add-new').on('click', function () {
         $parent.form('clear')
-            .prop('action', '/api/categories/')
-            .data('method', 'post');
+                .prop('action', '/api/categories/')
+                .data('method', 'post');
 
         $child.hide();
         $children.hide();
@@ -40,8 +63,8 @@ $(function () {
         var data = table.row(this).data();
 
         $parent.data('method', 'patch')
-            .form(data)
-            .form('editable', false);
+                .form(data)
+                .form('editable', false);
 
         children(data.children);
 
@@ -56,15 +79,15 @@ $(function () {
         var data = table.row(row).data();
 
         $parent.data('method', 'patch')
-            .form(data)
-            .form('editable', true);
+                .form(data)
+                .form('editable', true);
 
         children(data.children);
 
         $child.show()
-            .form('editable', true)
-            .find('input[name="parent"]')
-            .val(data.url);
+                .form('editable', true)
+                .find('input[name="parent"]')
+                .val(data.url);
 
         $children.form('editable', true);
     });
@@ -73,17 +96,17 @@ $(function () {
         e.preventDefault();
 
         $parent.form('submit')
-            .done(function () {
-                // TODO: notify user
+                .done(function () {
+                    // TODO: notify user
 
-                $parent.data('method', 'patch');
-                $child.show();
+                    $parent.data('method', 'patch');
+                    $child.show();
 
-                reload();
-            })
-            .fail(function (data) {
-                // TODO: notify user what went wrong
-            });
+                    reload();
+                })
+                .fail(function (data) {
+                    // TODO: notify user what went wrong
+                });
     });
 
     $child.on('submit', function (e) {
@@ -92,21 +115,21 @@ $(function () {
         var parent = table.row(row).data();
 
         $child.form('submit')
-            .done(function (data) {
-                // TODO: notify user
+                .done(function (data) {
+                    // TODO: notify user
 
-                $child.form('clear');
+                    $child.form('clear');
 
-                parent.children.push(data);
-                children(parent.children);
+                    parent.children.push(data);
+                    children(parent.children);
 
-                // row is no longer valid after reload
-                row = null;
-                reload()
-            })
-            .fail(function (data) {
-                // TODO: notify user
-            });
+                    // row is no longer valid after reload
+                    row = null;
+                    reload()
+                })
+                .fail(function (data) {
+                    // TODO: notify user
+                });
     });
 
     $children.on('click', '.btn-danger', function () {
@@ -117,31 +140,47 @@ $(function () {
         var $child = $(this).closest('form');
 
         $child.data('method', 'delete')
-            .form('submit')
-            .done(function () {
-                $child.remove();
+                .form('submit')
+                .done(function () {
+                    $child.remove();
 
-                // TODO: notify user
-                reload();
-            });
+                    // TODO: notify user
+                    reload();
+                });
     }).on('submit', 'form', function (e) {
         e.preventDefault();
 
         $(this).data('method', 'patch')
-            .form('submit')
-            .done(function (data) {
-                // TODO: notify user
+                .form('submit')
+                .done(function (data) {
+                    // TODO: notify user
 
-                reload();
-            })
-            .fail(function (data) {
-                // TODO: notify user what is wrong
-            });
+                    reload();
+                })
+                .fail(function (data) {
+                    // TODO: notify user what is wrong
+                });
     });
 
     // Makes the search input form-control work on the DataTable
     $('.search-bar').keyup(function () {
         table.search($(this).val()).draw();
+    });
+
+    // Add event listener for opening and closing subcategory listing
+    $('table tbody').on('click', 'tr', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        } else {
+            // Open this row
+            row.child(listSubcategories(row.data())).show();
+            tr.addClass('shown');
+        }
     });
 
     /**
@@ -155,15 +194,15 @@ $(function () {
 
         children.forEach(function (child) {
             var template = $template.clone(),
-                products = child.products.length,
-                text = products + ' product';
+                    products = child.products.length,
+                    text = products + ' product';
 
             if (products == 0 || products > 1) {
                 text += 's';
             }
 
             template.form(child)
-                .data('category', child);
+                    .data('category', child);
 
             template.find('.btn-danger').prop('disabled', child.products.length > 0);
             template.find('.products').text(text);
