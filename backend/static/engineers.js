@@ -207,17 +207,42 @@ $(document).ready(function () {
         $this.form('submit')
             .done(function (data) {
                 $this.form(data).data('method', 'patch');
-
-                // TODO: notify user
-
+                // Toast pop-up function
+                $.toast({
+                text: "Submitted!", // Text that is to be shown in the toast
+                icon: 'success', // Type of toast icon
+                showHideTransition: 'fade', // fade, slide or plain
+                allowToastClose: true, // Boolean value true or false
+                hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                textAlign: 'center',  // Text alignment i.e. left, right or center
+            });
                 // Reload the table with new data
                 table.ajax.reload();
             })
             // Error
-            .fail(function (data) {
+            .fail(function (error) {
                 // Error handling goes here
+                var errortext = [];
+                    for (var error in errors){
+                        var errorstring = Array.prototype.join.call(errors);
+                        var x = errortext.push(error + ': ' + errorstring[error].join(': '));
+                    }
+                var text = x;
                 // Possibly show an notification
                 // TODO: notify user
+                $.toast({
+                heading: "Error!", // Text that is to be shown in the toast
+                text: text,
+                icon: "error", // Type of toast icon
+                showHideTransition: 'fade', // fade, slide or plain
+                allowToastClose: true, // Boolean value true or false
+                hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                textAlign: 'center',  // Text alignment i.e. left, right or center
+            });
             });
     });
 
