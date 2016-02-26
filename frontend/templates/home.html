@@ -46,23 +46,20 @@
         <!-- Logo -->
         <div class="col-xs-3 col4edit">
             <div class="vertical-center">
-                <img class="img-responsive" src="{% static "img/logo-color.png" %}" alt="Agilent">
+                <img class="img-responsive" src="{% static "img/logo-color.png" %}" alt="Agilent" width="100%">
             </div>
         </div>
         <!-- Inlogknop -->
-        <div class="dropdown col-xs-1 loginknop">
-            <div class="vertical-center">
-                <button class="btn btn-default menubutton">
-                <i class="fa fa-navicon fa-lg dropdown-toggle" type="button" id="dropdownMenu1"
-                   data-toggle="dropdown"></i>
-                <ul class="dropdown-menu">
+        <div class="dropdown col-xs-1 loginknop vertical-center">
+            <button class="btn btn-default dropdown-toggle menubutton" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <i class="fa fa-navicon fa-lg"></i>
+            </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li><a href="{% url 'backend-engineers' %}">Back-End</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="{% url 'logout' %}">Log-Out</a></li>
                 </ul>
-                </button>
-            </div>
-
+            
         </div>
     </div>
     <!-- einde row -->
