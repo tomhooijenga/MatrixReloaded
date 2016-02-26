@@ -19,6 +19,26 @@
     <div id="engineer-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
         <div class="carousel-inner" role="listbox">
             <div class="item">
+                <div class="col-xs-6">
+                    <legend>Details</legend>
+                    <div class="col-xs-offset-2">
+                        <p>
+                            <span class="first-name" data-autofill="textContent"></span>
+                            <span class="last-name" data-autofill="textContent"></span>
+                        </p>
+                        <p>
+                            <span class="employee-number" data-autofill="textContent"></span>
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="image-input col-xs-6">
+                    <input id="image" name="image" type="file"/>
+                    <label for="image" class="form-control">
+                        <img data-autofill="src" class="image"/>
+                    </label>
+                </div>
                 <form class="engineer-note form-horizontal url" method="post" data-autofill="action">
                     <fieldset>
                         <legend>Edit note</legend>
@@ -60,6 +80,26 @@
 
             <div class="item">
                 <div class="engineer-skills">
+                    <div class="col-xs-6">
+                        <legend>Details</legend>
+                        <div class="col-xs-offset-2">
+                            <p>
+                                <span class="first-name" data-autofill="textContent"></span>
+                                <span class="last-name" data-autofill="textContent"></span>
+                            </p>
+                            <p>
+                                <span class="employee-number" data-autofill="textContent"></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="image-input col-xs-6">
+                        <input id="image" name="image" type="file"/>
+                        <label for="image" class="form-control">
+                            <img data-autofill="src" class="image"/>
+                        </label>
+                    </div>
+                         <div class="col-xs-12"><legend>Add skills</legend></div>
                     <div class="form-group">
                         <select id="skills-select"></select>
                     </div>
