@@ -1,14 +1,41 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group, Permission
 from expander import ExpanderSerializerMixin
 from rest_framework import serializers
 
 from . import models
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class PermissionSerializer(serializers.ModelSerializer):
+    """
+    This class is responsible for the serialization of the 'Permission' model
+    """
+
+    class Meta:
+        model = Permission
+
+        fields = ('codename',)
+
+
+class GroupSerializer(serializers.ModelSerializer):
+    """
+    This class is responsible for the serialization of the 'Group' model
+    """
+
+    permissions = PermissionSerializer(many=True)
+
+    class Meta:
+        model = Group
+
+        fields = ('name', 'permissions')
+
+
+class UserSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSerializer):
     """
     This class is responsible for the serialization of the 'User' model
     """
+
+    groups = serializers.HyperlinkedRelatedField(view_name='group-detail', many=True, read_only=True)
 
     class Meta:
         # The 'User' model is pluggable, so use this function instead of an
@@ -17,15 +44,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
         # Attributes to exclude from serialization
         exclude = ('password', 'user_permissions')
-
-
-# class GroupSerializer(serializers.HyperlinkedModelSerializer):
-#     """
-#     This class is responsible for the serialization of the 'Group' model
-#     """
-#
-#     class Meta:
-#         include = ('name',)
 
 
 class CountrySerializer(serializers.HyperlinkedModelSerializer):
@@ -108,6 +126,10 @@ class EngineerSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSe
 # Python does not have 'hoisting'. That is, you can not reference a class that is later defined. Because the
 # SkillSerializer has a reference to the EngineerSerializer, we have to add this reference after the declaration of
 # the EngineerSerializer
+UserSerializer.Meta.expandable_fields = {
+    'groups': (GroupSerializer, (), {'many': True})
+}
+
 SkillSerializer.Meta.expandable_fields = {
     'engineer': EngineerSerializer,
     'product': ProductSerializer

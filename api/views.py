@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from rest_framework import status
 from rest_framework import viewsets, mixins
 from rest_framework.response import Response
@@ -13,10 +14,21 @@ class UserViewSet(viewsets.ModelViewSet):
     """
 
     # The default queryset
-    queryset = get_user_model().objects.all()
+    queryset = get_user_model().objects.all().prefetch_related('groups', 'groups__permissions')
 
     # The default serializer
     serializer_class = serializers.UserSerializer
+
+class GroupViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    API endpoint for user groups. Read only.
+    """
+
+    # The default queryset
+    queryset = Group.objects.all().prefetch_related('permissions')
+
+    # The default serializer
+    serializer_class = serializers.GroupSerializer
 
 
 class EngineerViewSet(viewsets.ModelViewSet):

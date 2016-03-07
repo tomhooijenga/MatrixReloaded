@@ -48,8 +48,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     - user_permissions
     """
 
-    # Fields
+    # The user's email address
     email = models.EmailField(unique=True)
+
+    # Is this user enabled?
     is_active = models.BooleanField(default=True)
 
     # Name of the field that uniquely identifies a User

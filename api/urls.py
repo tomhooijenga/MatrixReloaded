@@ -6,6 +6,8 @@ from . import views
 
 router = DefaultRouter()
 
+# Groups
+router.register(r'groups', views.GroupViewSet)
 # Users
 router.register(r'users', views.UserViewSet)
 # Engineers
