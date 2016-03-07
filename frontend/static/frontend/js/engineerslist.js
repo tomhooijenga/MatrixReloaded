@@ -38,6 +38,16 @@ $(document).ready(function () {
         var skills = {};
         // Shows the engineers details in the card panel when the table row is clicked
         table.on('click', 'tr', function () {
+            // We set the global variable currEngineer with the selected html <tr> element
+            currEngineer = $(this).html();
+            // Adds a color to the row when its selected
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            };
             // We set the data of the clicked row in a variable for later use
             var data = table.row(this).data();
             var tr = $(this).closest('tr');
@@ -71,6 +81,14 @@ $(document).ready(function () {
                 $('.productslist').DataTable().clear().draw();
                 $('.productslist').DataTable().rows.add(newData);
                 $('.productslist').DataTable().columns.adjust().draw();
+                // We compare the html elements. If they are the same a class selected will be added
+                if (currProduct != null) {
+                    $('.productslist tr').each(function(){
+                        if ($(this).html() === currProduct) {
+                            $(this).addClass('selected');
+                        }
+                    });
+                };
                 // Fill the card with data and make the card read-only
                 $('.card').form(data).form('editable', false).carousel(2);
             }

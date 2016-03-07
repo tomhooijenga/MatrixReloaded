@@ -1,4 +1,5 @@
 var product = {}, engineer = {};
+var currProduct = "", currEngineer = "";
 
 // Function for returning the jsonUrl with the country filter including.
 function setEngineerUrl () {
