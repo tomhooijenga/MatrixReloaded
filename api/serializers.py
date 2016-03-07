@@ -17,12 +17,12 @@ class PermissionSerializer(serializers.ModelSerializer):
         fields = ('codename',)
 
 
-class GroupSerializer(serializers.ModelSerializer):
+class GroupSerializer(serializers.HyperlinkedModelSerializer):
     """
     This class is responsible for the serialization of the 'Group' model
     """
 
-    permissions = PermissionSerializer(many=True)
+    permissions = PermissionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Group
@@ -34,8 +34,6 @@ class UserSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSerial
     """
     This class is responsible for the serialization of the 'User' model
     """
-
-    groups = serializers.HyperlinkedRelatedField(view_name='group-detail', many=True, read_only=True)
 
     class Meta:
         # The 'User' model is pluggable, so use this function instead of an
