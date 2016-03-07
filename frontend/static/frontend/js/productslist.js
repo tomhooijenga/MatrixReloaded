@@ -4,12 +4,13 @@ $(document).ready(function () {
     jsonUrl = setEngineerUrl();
     $.getJSON(jsonUrl).done(function (json) {
         var engineers = {};
+        var table;
         json.forEach(function (val) {
             engineers[val.url] = val;
         });
         
         // We initialize the DataTable from a JavaScript file in static, with the required JSON file
-        var table = createProductTable();
+        table = createProductTable();
         
         // Makes the search input search-bar work on the DataTable
         $('.search-product').keyup(function () {
@@ -48,7 +49,7 @@ $(document).ready(function () {
                 // The section below is required to show the skill level on the selected product.  
                 for (var key in engineer.skills) {
                     for (var val in product.skills) {
-                        if (engineer.skills[key].url == product.skills[val].url) {
+                        if (engineer.skills[key].url === product.skills[val].url) {
                             $( ".topdetails" ).append("<div class='col-md-6 engineerlevel'>" +
                                     "<div class='col-md-6'>Level: </div>" +
                                     "<div class='col-md-6'>"+ product.skills[val].level +"</div>" +
@@ -71,6 +72,12 @@ $(document).ready(function () {
                 // Fill the card with data and make the card read-only
                 $('.productdetails').form(data).form('editable', false).carousel(2);
             }
+        });
+        
+        // The table refreshes when the refresh icon is clicked
+        $(".refreshbutton").click(function(){
+            table.destroy();
+            table = createProductTable();
         });
     });
 });

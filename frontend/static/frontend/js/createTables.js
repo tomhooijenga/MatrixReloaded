@@ -9,7 +9,7 @@ function setEngineerUrl () {
     var jsonUrl = "";
     // Checks if cookie is empty
     // If it's empty, it requests the normal JSON url
-    if (cookie == "") {
+    if (cookie === "") {
         return jsonUrl = "/api/engineers/?expand=skills,country,countries,languages";
     } else {
         // If the cookie is not empty it filters the results.
