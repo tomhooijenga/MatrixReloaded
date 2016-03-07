@@ -17,6 +17,16 @@ $(document).ready(function () {
         });
 
         table.on('click', 'tr', function () {
+            // We set the global variable currProduct with the selected html <tr> element
+            currProduct = $(this).html();
+            // Adds a color to the row when its selected
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            };
             // We set the data of the clicked row in a variable for later use
             var data = table.row(this).data();
             var tr = $(this).closest('tr');
@@ -50,6 +60,14 @@ $(document).ready(function () {
                 $('.engineerslist').DataTable().clear().draw();
                 $('.engineerslist').DataTable().rows.add(newData);
                 $('.engineerslist').DataTable().columns.adjust().draw();
+                // We compare the html elements. If they are the same a class selected will be added
+                if (currEngineer != null) {
+                    $('.engineerslist tr').each(function(){
+                        if ($(this).html() === currEngineer) {
+                            $(this).addClass('selected');
+                        }
+                    });
+                };
                 // Fill the card with data and make the card read-only
                 $('.productdetails').form(data).form('editable', false).carousel(2);
             }
