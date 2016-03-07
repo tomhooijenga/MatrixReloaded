@@ -3,6 +3,7 @@ $(document).ready(function () {
     // We get all the current products in the database to filter the results later
     $.getJSON("/api/products/?expand=category.parent,skills&is_active=true").done(function (json) {
         var products = {};
+        var table;
         json.forEach(function (val) {
             products[val.url] = val;
         });
@@ -29,7 +30,7 @@ $(document).ready(function () {
         // We will use this variable to create the JSON request
         var jsonUrl = setEngineerUrl();
         // We initialize the DataTable with the json file required for the engineer page
-        var table = createEngineerTable(jsonUrl);
+        table = createEngineerTable(jsonUrl);
         // Makes the search input search-bar work on the DataTable
         $('.search-engineer').keyup(function () {
             table.search($(this).val()).draw();
@@ -69,7 +70,7 @@ $(document).ready(function () {
                 // The section below is required to show the skill level on the selected product.  
                 for (var key in product.skills) {
                     for (var val in engineer.skills) {
-                        if (product.skills[key].url == engineer.skills[val].url) {
+                        if (product.skills[key].url === engineer.skills[val].url) {
                             $( ".topdetails" ).append("<div class='col-md-6 engineerlevel'>" +
                                     "<div class='col-md-6'>Level: </div>" +
                                     "<div class='col-md-6'>"+ engineer.skills[val].level +"</div>" +
@@ -94,9 +95,10 @@ $(document).ready(function () {
             }
         });
         
-        // The page refreshes when the refresh icon is clicked
+        // The table refreshes when the refresh icon is clicked
         $(".refreshbutton").click(function(){
-            location.reload();
+            table.destroy();
+            table = createEngineerTable(jsonUrl);
         });
     });
 });

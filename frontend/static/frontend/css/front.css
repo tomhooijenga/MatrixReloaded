@@ -78,10 +78,6 @@ table.click {
     background-color: #fff;
 }
 
-.click th, #example td {
-    padding: 3px 5px;
-}
-
 .click td:hover {
     cursor: pointer;
 }
@@ -122,6 +118,11 @@ table.click {
 .refreshbutton,
 .menubutton{
     height: 34px;
+}
+
+.refreshbutton i.fa.fa-refresh {
+    margin-left: -2px;
+    margin-right: -2px;
 }
 
 .countrybutton i,
