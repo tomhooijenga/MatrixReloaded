@@ -19,6 +19,23 @@ class UserViewSet(viewsets.ModelViewSet):
     # The default serializer
     serializer_class = serializers.UserSerializer
 
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+
+        # Users can have only one group at a time
+        groups = request.data.getlist('groups')
+        if groups is not None and len(groups) > 0:
+            request.data.setlist('groups', [groups[0]])
+
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+
+        self.perform_update(serializer)
+
+        return Response(serializer.data)
+
+
 class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint for user groups. Read only.
