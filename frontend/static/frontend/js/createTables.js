@@ -1,4 +1,6 @@
+// These vars will hold the current selected engineer or product as an object
 var product = {}, engineer = {};
+// This will hold the current product and engineer als a html tag
 var currProduct = "", currEngineer = "";
 
 // Function for returning the jsonUrl with the country filter including.
