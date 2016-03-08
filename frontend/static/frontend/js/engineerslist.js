@@ -97,6 +97,7 @@ $(document).ready(function () {
         
         // The table refreshes when the refresh icon is clicked
         $(".refreshbutton").click(function(){
+            $(".card").css("visibility", "hidden");
             table.destroy();
             table = createEngineerTable(jsonUrl);
         });

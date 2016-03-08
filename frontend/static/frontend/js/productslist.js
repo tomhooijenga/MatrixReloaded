@@ -76,6 +76,7 @@ $(document).ready(function () {
         
         // The table refreshes when the refresh icon is clicked
         $(".refreshbutton").click(function(){
+            $(".productdetails").css("visibility", "hidden");
             table.destroy();
             table = createProductTable();
         });
