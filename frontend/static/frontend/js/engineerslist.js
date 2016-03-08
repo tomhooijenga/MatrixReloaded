@@ -1,5 +1,6 @@
 // This file lists the engineers on the page
 $(document).ready(function () {
+    
     // We get all the current products in the database to filter the results later
     $.getJSON("/api/products/?expand=category.parent,skills&is_active=true").done(function (json) {
         var products = {};
@@ -27,31 +28,35 @@ $(document).ready(function () {
             });
 
         });
+        
         // We will use this variable to create the JSON request
         var jsonUrl = setEngineerUrl();
+        
         // We initialize the DataTable with the json file required for the engineer page
         table = createEngineerTable(jsonUrl);
+        
         // Makes the search input search-bar work on the DataTable
         $('.search-engineer').keyup(function () {
             table.search($(this).val()).draw();
         });
         
-        var skills = {};
         // Shows the engineers details in the card panel when the table row is clicked
-        table.on('click', 'tr', function () {
+        table.on('click', 'tr>td', function () {
+            
+            // We set the data of the clicked row in a variable for later use
+            var tr = $(this).closest('tr');
             // We set the global variable currEngineer with the selected html <tr> element
-            currEngineer = $(this).html();
-            // Adds a color to the row when its selected
-            if ( $(this).hasClass('selected') ) {
-                $(this).removeClass('selected');
+            currEngineer = tr.html();
+            
+            // Adds a selected class (bg-color) to the row when its selected
+            if ( tr.hasClass('selected') ) {
+                tr.removeClass('selected');
             }
             else {
                 table.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
+                tr.addClass('selected');
             };
-            // We set the data of the clicked row in a variable for later use
-            var data = table.row(this).data();
-            var tr = $(this).closest('tr');
+            
             // We check if the tr is not empty.
             if (tr.has("td.dataTables_empty").length > 0) {
                 $(".card").css("visibility", "hidden");
@@ -59,14 +64,17 @@ $(document).ready(function () {
                 // If the table is not empty, we show the details of the products
                 // After that we fill the datatable with the engineers who are trained for the selected program
                 $(".card").css("visibility", "visible");
-                var data = table.row(this).data();
+                // We save the data from the table row
+                var data = table.row(tr).data();
                 var newData = [];
                 engineer = data;
                 $(".engineerlevel").remove(".engineerlevel");
+                
                 // We replace the products with the products which the engineer is trained for
                 for (var obj in data.skills) {
                     newData.push(products[data.skills[obj].product]);              
                 }
+                
                 // The section below is required to show the skill level on the selected product.  
                 for (var key in product.skills) {
                     for (var val in engineer.skills) {
@@ -78,10 +86,12 @@ $(document).ready(function () {
                         }
                     }
                 }
+                
                 // We clear the datatable and reset it with the new engineers
                 $('.productslist').DataTable().clear().draw();
                 $('.productslist').DataTable().rows.add(newData);
                 $('.productslist').DataTable().columns.adjust().draw();
+                
                 // We compare the html elements. If they are the same a class selected will be added
                 if (currProduct != null) {
                     $('.productslist tr').each(function(){
@@ -90,6 +100,7 @@ $(document).ready(function () {
                         }
                     });
                 };
+                
                 // Fill the card with data and make the card read-only
                 $('.card').form(data).form('editable', false).carousel(2);
             }
@@ -97,6 +108,11 @@ $(document).ready(function () {
         
         // The table refreshes when the refresh icon is clicked
         $(".refreshbutton").click(function(){
+            // Hide the engineer panel on refresh
+            $(".card").css("visibility", "hidden");
+            // Reset the current engineer
+            currEngineer = "";
+            // Destroy the table and reset it
             table.destroy();
             table = createEngineerTable(jsonUrl);
         });
