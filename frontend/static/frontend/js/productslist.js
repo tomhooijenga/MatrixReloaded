@@ -17,7 +17,7 @@ $(document).ready(function () {
         $('.search-product').keyup(function () {
             table.search($(this).val()).draw();
         });
-
+        $(".productdetails").css("visibility", "visible");
         table.on('click', 'tr>td', function () {
             
             // We set the data of the clicked row in a variable for later use
@@ -35,9 +35,9 @@ $(document).ready(function () {
             };
             
             // We check if the tr is not empty.
-            if (tr.has("td.dataTables_empty").length > 0) {
-                $(".productdetails").css("visibility", "hidden");
-            } else {
+            //if (tr.has("td.dataTables_empty").length > 0) {
+            //    $(".productdetails").css("visibility", "visible");
+            //} else {
                 // If the table is not empty, we show the details of the products
                 // After that we fill the datatable with the engineers who are trained for the selected program
                 $(".productdetails").css("visibility", "visible");
@@ -84,7 +84,7 @@ $(document).ready(function () {
                 
                 // Fill the card with data and make the card read-only
                 $('.productdetails').form(data).form('editable', false).carousel(2);
-            }
+            //}
         });
         
         // The table refreshes when the refresh icon is clicked
