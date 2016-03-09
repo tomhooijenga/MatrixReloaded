@@ -49,7 +49,6 @@ $(document).ready(function () {
                 
                 // We replace the engineers that are trained for the product with an engineer object
                 for (var obj in data.skills) {
-                    console.log(data.skills[obj]);
                     for (var eng in engineers) {
                         if (engineers[eng].url === data.skills[obj].engineer) {
                             newData.push(engineers[data.skills[obj].engineer]);
