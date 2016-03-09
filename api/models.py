@@ -167,6 +167,7 @@ class Engineer(models.Model):
         (1, 'ASP')
     ))
 
+
 class Note(models.Model):
     """
     This class represents a single comment on an engineer

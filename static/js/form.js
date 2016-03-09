@@ -16,7 +16,7 @@
             return methods.init.apply(this, arguments);
         }
     };
-    
+
     /* Function for creating and returning a string with the Countries and Languages of an engineer */
     function formatString(data, key) {
         var value = "";
@@ -24,12 +24,14 @@
         if (key == "countries" || key == "languages") {
             // Splits the data into a string separated by commas
             for (var val in data) {
-                if (val == 0) { 
+                if (val == 0) {
                     value += data[val].name;
                 } else {
                     value += ", " + data[val].name;
-                };
-            };
+                }
+                ;
+            }
+            ;
         } else if (key == "category") {
             // Creates a string that holds the category and subcategory
             value = data.parent.name;
@@ -37,7 +39,8 @@
         } else if (key == "country") {
             for (var val in data) {
                 value = data.name;
-            };
+            }
+            ;
         }
         return value;
     }
@@ -58,11 +61,11 @@
                     var name = key.replace(/_/g, '-'),
                         selector = '.' + name + ', [name="' + name + '"]',
                         $el = $this.find(selector).addBack(selector);
-                        
+
                     $el.each(function () {
                         var $el = $(this),
                             autofill = $el.data('autofill');
-                            
+
                         // It is not possible to set a file input with javascript
                         // Trigger the change anyway, because the image-upload depends on it
                         if ($el.is('[type="file"]')) {
@@ -72,12 +75,21 @@
                         }
 
                         if (autofill) {
-                            // If the typeof information is an object it will be formatted to a string
-                            if (typeof data[key] == "object") {
-                                $el.prop(autofill, formatString(data[key], key));
+                            if (autofill.substr(0, 5) === 'data-') {
+                                if (typeof data[key] == "object") {
+                                    $el.data(autofill.slice(5), formatString(data[key], key));
+                                } else {
+                                    $el.data(autofill.slice(5), data[key]);
+                                }
                             } else {
-                                $el.prop(autofill, data[key]);
+                                // If the typeof information is an object it will be formatted to a string
+                                if (typeof data[key] == "object") {
+                                    $el.prop(autofill, formatString(data[key], key));
+                                } else {
+                                    $el.prop(autofill, data[key]);
+                                }
                             }
+
                         } else {
                             // If the data is not an array, make it an array
                             var value = $.isArray(data[key]) ? data[key] : [data[key]];

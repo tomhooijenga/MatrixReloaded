@@ -27,7 +27,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
 
-        fields = ('name', 'permissions')
+        fields = ('url', 'name', 'permissions')
 
 
 class UserSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSerializer):
@@ -41,7 +41,7 @@ class UserSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSerial
         model = get_user_model()
 
         # Attributes to exclude from serialization
-        exclude = ('password', 'user_permissions')
+        fields = ('url', 'email', 'groups', 'is_active')
 
 
 class CountrySerializer(serializers.HyperlinkedModelSerializer):
