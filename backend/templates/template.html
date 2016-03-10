@@ -18,10 +18,18 @@
     <img class="img-responsive logo" src="{% static "img/logo-white.png" %}" alt="Agilent">
     <p>Welcome, {{ request.user.email }}</p>
     <nav class="navigation">
-        <a class="{% if request.resolver_match.url_name == 'backend-engineers' %}active{% endif %}" href="{% url 'backend-engineers' %}">Engineers</a>
-        <a class="{% if request.resolver_match.url_name == 'backend-products' %}active{% endif %}" href="{% url 'backend-products' %}">Products</a>
-        <a class="{% if request.resolver_match.url_name == 'backend-categories' %}active{% endif %}" href="{% url 'backend-categories' %}">Categories</a>
-        <a class="{% if request.resolver_match.url_name == 'backend-users' %}active{% endif %}" href="{% url 'backend-users' %}">Users</a>
+        {% if perms.api.add_engineer or perms.api.change_engineer %}
+            <a class="{% if request.resolver_match.url_name == 'backend-engineers' %}active{% endif %}" href="{% url 'backend-engineers' %}">Engineers</a>
+        {% endif %}
+        {% if perms.api.add_product or perms.api.change_product %}
+            <a class="{% if request.resolver_match.url_name == 'backend-products' %}active{% endif %}" href="{% url 'backend-products' %}">Products</a>
+        {% endif %}
+        {% if perms.api.add_category or perms.api.change_category or perms.api.delete_category %}
+            <a class="{% if request.resolver_match.url_name == 'backend-categories' %}active{% endif %}" href="{% url 'backend-categories' %}">Categories</a>
+        {% endif %}
+        {% if perms.api.add_user or perms.api.change.change_user %}
+            <a class="{% if request.resolver_match.url_name == 'backend-users' %}active{% endif %}" href="{% url 'backend-users' %}">Users</a>
+        {% endif %}
         <hr />
         <a href="{% url 'index' %}">Skillmatrix</a>
         <a href="{% url 'logout' %}">Log out</a>
