@@ -39,7 +39,7 @@ $(document).ready(function () {
         $('.search-engineer').keyup(function () {
             table.search($(this).val()).draw();
         });
-        $(".card").css("visibility", "visible");
+
         // Shows the engineers details in the card panel when the table row is clicked
         table.on('click', 'tr>td', function () {
              $(".star").css("display", "none");
@@ -81,7 +81,6 @@ $(document).ready(function () {
                         if (product.skills[key].url === engineer.skills[val].url) {
                             x = $('.' + engineer.skills[val].level);
                             x.toggle();
-                            console.log('Error:', x);
                         }
                     }
                 }
