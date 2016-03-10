@@ -39,10 +39,10 @@ $(document).ready(function () {
         $('.search-engineer').keyup(function () {
             table.search($(this).val()).draw();
         });
-        
+
         // Shows the engineers details in the card panel when the table row is clicked
         table.on('click', 'tr>td', function () {
-            
+             $(".star").css("display", "none");
             // We set the data of the clicked row in a variable for later use
             var tr = $(this).closest('tr');
             // We set the global variable currEngineer with the selected html <tr> element
@@ -56,11 +56,11 @@ $(document).ready(function () {
                 table.$('tr.selected').removeClass('selected');
                 tr.addClass('selected');
             };
-            
+
             // We check if the tr is not empty.
-            if (tr.has("td.dataTables_empty").length > 0) {
-                $(".card").css("visibility", "hidden");
-            } else {
+            //if (tr.has("td.dataTables_empty").length > 0) {
+            //    $(".card").css("visibility", "visible");
+            //} else {
                 // If the table is not empty, we show the details of the products
                 // After that we fill the datatable with the engineers who are trained for the selected program
                 $(".card").css("visibility", "visible");
@@ -69,29 +69,27 @@ $(document).ready(function () {
                 var newData = [];
                 engineer = data;
                 $(".engineerlevel").remove(".engineerlevel");
-                
+
                 // We replace the products with the products which the engineer is trained for
                 for (var obj in data.skills) {
-                    newData.push(products[data.skills[obj].product]);              
+                    newData.push(products[data.skills[obj].product]);
                 }
-                
+
                 // The section below is required to show the skill level on the selected product.  
                 for (var key in product.skills) {
                     for (var val in engineer.skills) {
                         if (product.skills[key].url === engineer.skills[val].url) {
-                            $( ".topdetails" ).append("<div class='col-md-6 engineerlevel'>" +
-                                    "<div class='col-md-6'>Level: </div>" +
-                                    "<div class='col-md-6'>"+ engineer.skills[val].level +"</div>" +
-                                    "</div>");
+                            x = $('.' + engineer.skills[val].level);
+                            x.toggle();
                         }
                     }
                 }
-                
+
                 // We clear the datatable and reset it with the new engineers
                 $('.productslist').DataTable().clear().draw();
                 $('.productslist').DataTable().rows.add(newData);
                 $('.productslist').DataTable().columns.adjust().draw();
-                
+
                 // We compare the html elements. If they are the same a class selected will be added
                 if (currProduct != null) {
                     $('.productslist tr').each(function(){
@@ -100,10 +98,10 @@ $(document).ready(function () {
                         }
                     });
                 };
-                
+
                 // Fill the card with data and make the card read-only
                 $('.card').form(data).form('editable', false).carousel(2);
-            }
+            //}
         });
         
         // The table refreshes when the refresh icon is clicked
