@@ -1,3 +1,6 @@
+// Global variable which holds the productTable
+var productTable;
+
 // This file lists the products on the page
 $(document).ready(function () {
     
@@ -5,20 +8,19 @@ $(document).ready(function () {
     jsonUrl = setEngineerUrl();
     $.getJSON(jsonUrl).done(function (json) {
         var engineers = {};
-        var table;
         json.forEach(function (val) {
             engineers[val.url] = val;
         });
         
         // We initialize the DataTable from a JavaScript file in static, with the required JSON file
-        table = createProductTable();
+        productTable = createProductTable();
         
         // Makes the search input search-bar work on the DataTable
         $('.search-product').keyup(function () {
-            table.search($(this).val()).draw();
+            productTable.search($(this).val()).draw();
         });
 
-        table.on('click', 'tr>td', function () {
+        productTable.on('click', 'tr>td', function () {
             
             // We set the data of the clicked row in a variable for later use
             var tr = $(this).closest('tr');
@@ -28,9 +30,10 @@ $(document).ready(function () {
             // Adds a selected class (bg-color) to the row when its selected
             if ( $(tr).hasClass('selected') ) {
                 $(tr).removeClass('selected');
+                currProduct = "";
             }
             else {
-                table.$('tr.selected').removeClass('selected');
+                productTable.$('tr.selected').removeClass('selected');
                 $(tr).addClass('selected');
             };
             
@@ -42,7 +45,7 @@ $(document).ready(function () {
                 // After that we fill the datatable with the engineers who are trained for the selected program
                 $(".productdetails").css("visibility", "visible");
                 // We save the data from the table row
-                var data = table.row(tr).data();
+                var data = productTable.row(tr).data();
                 var newData = [];
                 product = data;
                 $( ".engineerlevel" ).remove();
@@ -94,8 +97,8 @@ $(document).ready(function () {
             // Reset the current product
             currProduct = "";
             // Destroy the table and reset it
-            table.destroy();
-            table = createProductTable();
+            productTable.destroy();
+            productTable = createProductTable();
         });
     });
 });
