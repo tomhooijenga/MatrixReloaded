@@ -45,7 +45,7 @@ $(document).ready(function () {
         // Shows the engineers details in the card panel when the table row is clicked
         engineerTable.on('click', 'tr>td', function () {
             
-             $(".star").css("display", "none");
+            $(".star").css("display", "none");
 
             // We set the data of the clicked row in a variable for later use
             var tr = $(this).closest('tr');
@@ -73,7 +73,6 @@ $(document).ready(function () {
                 var data = engineerTable.row(tr).data();
                 var newData = [];
                 engineer = data;
-                $(".engineerlevel").remove(".engineerlevel");
 
                 // We replace the products with the products which the engineer is trained for
                 for (var obj in data.skills) {

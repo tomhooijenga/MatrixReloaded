@@ -22,6 +22,8 @@ $(document).ready(function () {
 
         productTable.on('click', 'tr>td', function () {
             
+            $(".star").css("display", "none");
+            
             // We set the data of the clicked row in a variable for later use
             var tr = $(this).closest('tr');
             
@@ -48,7 +50,6 @@ $(document).ready(function () {
                 var data = productTable.row(tr).data();
                 var newData = [];
                 product = data;
-                $( ".engineerlevel" ).remove();
                 
                 // We replace the engineers that are trained for the product with an engineer object
                 for (var obj in data.skills) {
@@ -62,8 +63,8 @@ $(document).ready(function () {
                 // The section below is required to show the skill level on the selected product.  
                 for (var key in engineer.skills) {
                     for (var val in product.skills) {
-                        if (engineer.skills[key].url === product.skills[val].url) {
-                            $('.' + engineer.skills[val].level).toggle();
+                        if (engineer.skills[key].url === product.skills[val].url) {                           
+                            $('.' + product.skills[val].level).toggle();
                         }
                     }
                 }
