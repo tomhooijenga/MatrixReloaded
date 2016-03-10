@@ -24,8 +24,6 @@ $(document).ready(function () {
             
             // We set the data of the clicked row in a variable for later use
             var tr = $(this).closest('tr');
-            // We set the global variable currProduct with the selected html <tr> element
-            currProduct = tr.html();
             
             // Adds a selected class (bg-color) to the row when its selected
             if ( $(tr).hasClass('selected') ) {
@@ -42,6 +40,8 @@ $(document).ready(function () {
                 $(".productdetails").css("visibility", "hidden");
             } else {
                 // If the table is not empty, we show the details of the products
+                // We set the global variable currProduct with the selected html <tr> element
+                currProduct = tr.html();
                 // After that we fill the datatable with the engineers who are trained for the selected program
                 $(".productdetails").css("visibility", "visible");
                 // We save the data from the table row
