@@ -17,7 +17,17 @@ aside {
     float: left;
     height: 100vh;
     background-color: #333333;
-    padding-top: 5vh;
+}
+
+aside img {
+    padding: 20px;
+}
+
+aside p {
+    color: #dddddd;
+    padding: 0 20px 20px 20px;
+    font-size: 12px;
+    border-bottom: 1px solid #494545;
 }
 
 aside nav a {
@@ -186,13 +196,6 @@ div#DataTables_Table_0_filter label {
     font-size: 19px;
 }
 
-.logo {
-    margin-top: -28px;
-    margin-bottom: 10px;
-    padding: 10px;
-    max-width: 70%;
-}
-
 /* Styling for the modal panel */
 .modal-content {
     background-color: rgb(51, 51, 51);
@@ -240,7 +243,3 @@ div#DataTables_Table_0_filter label {
 .form-list span {
     line-height: 34px;
 }
-
-/*.select2-container{*/
-    /*width:100%;*/
-/*}*/
