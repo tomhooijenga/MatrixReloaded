@@ -58,9 +58,9 @@ $(document).ready(function () {
             };
 
             // We check if the tr is not empty.
-            //if (tr.has("td.dataTables_empty").length > 0) {
-            //    $(".card").css("visibility", "visible");
-            //} else {
+            if (tr.has("td.dataTables_empty").length > 0) {
+                $(".card").css("visibility", "hidden");
+            } else {
                 // If the table is not empty, we show the details of the products
                 // After that we fill the datatable with the engineers who are trained for the selected program
                 $(".card").css("visibility", "visible");
@@ -79,7 +79,7 @@ $(document).ready(function () {
                 for (var key in product.skills) {
                     for (var val in engineer.skills) {
                         if (product.skills[key].url === engineer.skills[val].url) {
-                            x = $('.' + engineer.skills[val].level);
+                            var x = $('.' + engineer.skills[val].level);
                             x.toggle();
                         }
                     }
@@ -101,7 +101,7 @@ $(document).ready(function () {
 
                 // Fill the card with data and make the card read-only
                 $('.card').form(data).form('editable', false).carousel(2);
-            //}
+            }
         });
         
         // The table refreshes when the refresh icon is clicked
