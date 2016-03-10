@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.models import Group
 from rest_framework import status
 from rest_framework import viewsets, mixins
@@ -8,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from . import serializers, models
+from .forms import PasswordResetForm
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -27,7 +27,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
         form = PasswordResetForm({'email': serializer.validated_data['email']})
         form.is_valid()
-        form.save()
+        form.save(request=request)
 
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
@@ -61,7 +61,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
         form = PasswordResetForm({'email': user.email})
         form.is_valid()
-        form.save()
+        form.save(request=request)
 
         return Response(status=status.HTTP_200_OK)
 
