@@ -1,10 +1,12 @@
+// Global variable which holds the engineerTable
+var engineerTable;
+
 // This file lists the engineers on the page
 $(document).ready(function () {
     
     // We get all the current products in the database to filter the results later
     $.getJSON("/api/products/?expand=category.parent,skills&is_active=true").done(function (json) {
         var products = {};
-        var table;
         json.forEach(function (val) {
             products[val.url] = val;
         });
@@ -33,27 +35,28 @@ $(document).ready(function () {
         var jsonUrl = setEngineerUrl();
         
         // We initialize the DataTable with the json file required for the engineer page
-        table = createEngineerTable(jsonUrl);
+        engineerTable = createEngineerTable(jsonUrl);
         
         // Makes the search input search-bar work on the DataTable
         $('.search-engineer').keyup(function () {
-            table.search($(this).val()).draw();
+            engineerTable.search($(this).val()).draw();
         });
 
         // Shows the engineers details in the card panel when the table row is clicked
-        table.on('click', 'tr>td', function () {
+        engineerTable.on('click', 'tr>td', function () {
+            
              $(".star").css("display", "none");
+
             // We set the data of the clicked row in a variable for later use
             var tr = $(this).closest('tr');
-            // We set the global variable currEngineer with the selected html <tr> element
-            currEngineer = tr.html();
             
             // Adds a selected class (bg-color) to the row when its selected
             if ( tr.hasClass('selected') ) {
                 tr.removeClass('selected');
+                currEngineer = "";
             }
             else {
-                table.$('tr.selected').removeClass('selected');
+                engineerTable.$('tr.selected').removeClass('selected');
                 tr.addClass('selected');
             };
 
@@ -62,10 +65,12 @@ $(document).ready(function () {
                 $(".card").css("visibility", "hidden");
             } else {
                 // If the table is not empty, we show the details of the products
+                // We set the global variable currEngineer with the selected html <tr> element
+                currEngineer = tr.html();
                 // After that we fill the datatable with the engineers who are trained for the selected program
                 $(".card").css("visibility", "visible");
                 // We save the data from the table row
-                var data = table.row(tr).data();
+                var data = engineerTable.row(tr).data();
                 var newData = [];
                 engineer = data;
                 $(".engineerlevel").remove(".engineerlevel");
@@ -79,8 +84,7 @@ $(document).ready(function () {
                 for (var key in product.skills) {
                     for (var val in engineer.skills) {
                         if (product.skills[key].url === engineer.skills[val].url) {
-                            var x = $('.' + engineer.skills[val].level);
-                            x.toggle();
+                            $('.' + engineer.skills[val].level).toggle();
                         }
                     }
                 }
@@ -91,7 +95,7 @@ $(document).ready(function () {
                 $('.productslist').DataTable().columns.adjust().draw();
 
                 // We compare the html elements. If they are the same a class selected will be added
-                if (currProduct != null) {
+                if (currProduct !== null) {
                     $('.productslist tr').each(function(){
                         if ($(this).html() === currProduct) {
                             $(this).addClass('selected');
@@ -111,8 +115,8 @@ $(document).ready(function () {
             // Reset the current engineer
             currEngineer = "";
             // Destroy the table and reset it
-            table.destroy();
-            table = createEngineerTable(jsonUrl);
+            engineerTable.destroy();
+            engineerTable = createEngineerTable(jsonUrl);
         });
     });
 });
