@@ -40,6 +40,19 @@ input.form-control.search-engineer {
     color: rgb(5, 133, 205);
 }
 
+.card .fa-times {
+    color: red;
+    cursor: pointer;
+}
+
+.card .star {
+    display: none;
+}
+
+.stars {
+    padding-top: 4px;
+}
+
 .table thead {
     color: rgb(5, 133, 205);
 }
