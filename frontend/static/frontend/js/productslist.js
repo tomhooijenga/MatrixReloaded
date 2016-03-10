@@ -63,10 +63,7 @@ $(document).ready(function () {
                 for (var key in engineer.skills) {
                     for (var val in product.skills) {
                         if (engineer.skills[key].url === product.skills[val].url) {
-                            $( ".topdetails" ).append("<div class='col-md-6 engineerlevel'>" +
-                                    "<div class='col-md-6'>Level: </div>" +
-                                    "<div class='col-md-6'>"+ product.skills[val].level +"</div>" +
-                                    "</div>");
+                            $('.' + engineer.skills[val].level).toggle();
                         }
                     }
                 }
@@ -77,7 +74,7 @@ $(document).ready(function () {
                 $('.engineerslist').DataTable().columns.adjust().draw();
                 
                 // We compare the html elements. If they are the same a class selected will be added
-                if (currEngineer != null) {
+                if (currEngineer !== null) {
                     $('.engineerslist tr').each(function(){
                         if ($(this).html() === currEngineer) {
                             $(this).addClass('selected');
