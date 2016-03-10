@@ -1,4 +1,7 @@
+// These vars will hold the current selected engineer or product as an object
 var product = {}, engineer = {};
+// This will hold the current product and engineer als a html tag
+var currProduct = "", currEngineer = "";
 
 // Function for returning the jsonUrl with the country filter including.
 function setEngineerUrl () {
@@ -8,7 +11,7 @@ function setEngineerUrl () {
     var jsonUrl = "";
     // Checks if cookie is empty
     // If it's empty, it requests the normal JSON url
-    if (cookie == "") {
+    if (cookie === "") {
         return jsonUrl = "/api/engineers/?expand=skills,country,countries,languages";
     } else {
         // If the cookie is not empty it filters the results.

@@ -1,7 +1,7 @@
 /* Custom CSS for the whole webpage */
 * {
     font-size: 100%;
-    font-family: 'Open Sans';
+    font-family: 'open_sansregular';
 }
 
 .col-centered {
@@ -12,14 +12,6 @@
 body {
     min-width: 640px;
 }
-
-/*.paddingtop {*/
-/*padding-top: 25px;*/
-/*}*/
-
-/*.paddingtopproduct {*/
-/*padding-top: 20px;*/
-/*}*/
 
 .col5edit {
     max-width: 300px;
@@ -86,10 +78,6 @@ table.click {
     background-color: #fff;
 }
 
-.click th, #example td {
-    padding: 3px 5px;
-}
-
 .click td:hover {
     cursor: pointer;
 }
@@ -130,6 +118,11 @@ table.click {
 .refreshbutton,
 .menubutton{
     height: 34px;
+}
+
+.refreshbutton i.fa.fa-refresh {
+    margin-left: -2px;
+    margin-right: -2px;
 }
 
 .countrybutton i,
@@ -190,4 +183,15 @@ tr.even.selected {
     margin-bottom: 20px;
     font-size: 21px;
     border-bottom: 1px solid #e5e5e5;
+}
+
+tr.odd.selected,
+tr.even.selected{
+    background-color: rgb(5, 133, 205);
+    color: white;
+}
+
+.engineers .panel-body,
+.products .panel-body {
+    padding-top: 0px;
 }

@@ -8,33 +8,22 @@
 
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet"/>
     <link href="{% static "backend/css/backend.css" %}" rel="stylesheet"/>
-
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css"
-          href="https://cdn.datatables.net/t/bs/jq-2.2.0,dt-1.10.11,sc-1.4.1/datatables.min.css"/>
-    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet"/>
+    <link href="{% static "css/extern.css" %}" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href='{% static "css/jquery.toast.min.css" %}'/>
 
     <meta name="csrf-token" content="{{ csrf_token }}"/>
 </head>
 <body>
 <aside>
-    <section>
-        <img class="img-responsive logo" src="{% static "img/logo-white.png" %}" alt="Agilent">
-        <p>Welcome, {{ request.user.email }}</p>
-    </section>
+    <img class="img-responsive logo" src="{% static "img/logo-white.png" %}" alt="Agilent">
+    <p>Welcome, {{ request.user.email }}</p>
     <nav class="navigation">
-        <a class="{% if request.resolver_match.url_name == 'backend-engineers' %}active{% endif %}"
-           href="{% url 'backend-engineers' %}">Engineers</a>
-        <a class="{% if request.resolver_match.url_name == 'backend-products' %}active{% endif %}"
-           href="{% url 'backend-products' %}">Products</a>
-        <a class="{% if request.resolver_match.url_name == 'backend-categories' %}active{% endif %}"
-           href="{% url 'backend-categories' %}">Categories</a>
-        <a class="{% if request.resolver_match.url_name == 'backend-users' %}active{% endif %}"
-           href="{% url 'backend-users' %}">Users</a>
-        <hr/>
-        <a href="{% url 'index' %}">Frontend</a>
+        <a class="{% if request.resolver_match.url_name == 'backend-engineers' %}active{% endif %}" href="{% url 'backend-engineers' %}">Engineers</a>
+        <a class="{% if request.resolver_match.url_name == 'backend-products' %}active{% endif %}" href="{% url 'backend-products' %}">Products</a>
+        <a class="{% if request.resolver_match.url_name == 'backend-categories' %}active{% endif %}" href="{% url 'backend-categories' %}">Categories</a>
+        <a class="{% if request.resolver_match.url_name == 'backend-users' %}active{% endif %}" href="{% url 'backend-users' %}">Users</a>
+        <hr />
+        <a href="{% url 'index' %}">Skillmatrix</a>
         <a href="{% url 'logout' %}">Log out</a>
     </nav>
 </aside>
@@ -108,10 +97,7 @@
     </div>
 
     {% block javascript %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="https://cdn.datatables.net/s/bs/dt-1.10.10/datatables.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
-
+        <script src='{% static "js/extern.js" %}'></script>
         <script src="{% static "js/bootstrap.min.js" %}"></script>
         <script src="{% static "js/jquery.toast.min.js" %}"></script>
 
