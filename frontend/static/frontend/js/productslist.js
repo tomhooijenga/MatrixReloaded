@@ -39,7 +39,7 @@ $(document).ready(function () {
                 tr.removeClass('selected');
                 $(".productdetails").css("visibility", "hidden");
                 currProduct = "";
-
+                product = {};
                 // We clear the datatable and reset it with all the engineers
                 redrawEngineerTable(engData);
 
@@ -101,7 +101,7 @@ $(document).ready(function () {
             productTable.$('tr.selected').removeClass('selected');
             $(".productdetails").css("visibility", "hidden");
             currProduct = "";
-
+            product = {};
             // We clear the datatable and reset it with all the engineers
             redrawEngineerTable(engData);
             
@@ -115,6 +115,7 @@ $(document).ready(function () {
             $(".productdetails").css("visibility", "hidden");
             // Reset the current product
             currProduct = "";
+            product = {};
             // We clear the product table and reset it with the new engineers
             redrawProductTable(proData);
         });

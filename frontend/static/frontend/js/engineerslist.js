@@ -61,7 +61,7 @@ $(document).ready(function () {
                 tr.removeClass('selected');
                 $(".card").css("visibility", "hidden");
                 currEngineer = "";
-
+                engineer = {};
                 // We clear the datatable and reset it with the new engineers
                 redrawProductTable(proData);
 
@@ -117,7 +117,7 @@ $(document).ready(function () {
             engineerTable.$('tr.selected').removeClass('selected');
             $(".card").css("visibility", "hidden");
             currEngineer = "";
-
+            engineer = {};
             // We clear the datatable and reset it with the new engineers
             redrawProductTable(proData);
             
@@ -131,6 +131,7 @@ $(document).ready(function () {
             $(".card").css("visibility", "hidden");
             // Reset the current engineer
             currEngineer = "";
+            engineer = {};
             // Resets the engineer table with all engineers
             redrawEngineerTable(engData);
         });
