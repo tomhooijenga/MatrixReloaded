@@ -16,9 +16,18 @@ input.form-control.search-engineer {
     color: white;
 }
 
-.card,
+.panel {
+    margin: 2vh 0;
+    overflow: auto;
+}
+
 .productdetails {
     visibility: hidden;
+}
+
+.card {
+    visibility: hidden;
+    overflow: hidden;
 }
 
 .card .fa {
@@ -33,6 +42,11 @@ input.form-control.search-engineer {
 
 .card .star {
     display: none;
+}
+
+.card .panel-body {
+    overflow: auto;
+    height: calc(100% - 45px);
 }
 
 .stars {
@@ -153,11 +167,6 @@ tr.even.selected {
 .fa-lg {
     color: rgb(5, 133, 205);
     cursor: pointer;
-}
-
-.panel {
-    margin: 2vh 0;
-    overflow: auto;
 }
 
 .row-search {

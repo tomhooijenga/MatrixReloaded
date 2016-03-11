@@ -29,6 +29,7 @@ $(document).ready(function () {
         productTable.on('click', 'tr>td', function () {
 
             $(".star").css("display", "none");
+            $(".card .panel-body").css("height", "calc(100% - 45px");
 
             // We set the data of the clicked row in a variable for later use
             var tr = $(this).closest('tr');
@@ -39,7 +40,7 @@ $(document).ready(function () {
                 tr.removeClass('selected');
                 $(".productdetails").css("visibility", "hidden");
                 currProduct = "";
-
+                product = {};
                 // We clear the datatable and reset it with all the engineers
                 redrawEngineerTable(engData);
 
@@ -70,6 +71,7 @@ $(document).ready(function () {
                         for (var val in product.skills) {
                             if (engineer.skills[key].url === product.skills[val].url) {
                                 $('.level-' + product.skills[val].level).toggle();
+                                $(".card .panel-body").css("height", "calc(100% - 65px");
                             }
                         }
                     }
@@ -91,35 +93,23 @@ $(document).ready(function () {
                 }
             }
             // We compare the html elements. If they are the same a class selected will be added
-            if (currEngineer !== "") {
-                $('.engineerslist tr').each(function () {
-                    if ($(this).html() === currEngineer) {
-                        $(this).addClass('selected');
-                    }
-                });
-            }
-            ;
+            addSelectedItemEngineer();
         });
         
         // The event when the close button in the product panel is clicked
         $(".close-productpanel").on("click", function () {
             $(".star").css("display", "none");
+            $(".card .panel-body").css("height", "calc(100% - 45px");
             // Works the same as the toggle
             productTable.$('tr.selected').removeClass('selected');
             $(".productdetails").css("visibility", "hidden");
             currProduct = "";
-
+            product = {};
             // We clear the datatable and reset it with all the engineers
             redrawEngineerTable(engData);
             
             // We compare the html elements. If they are the same a class selected will be added
-            if (currEngineer !== "") {
-                $('.engineerslist tr').each(function () {
-                    if ($(this).html() === currEngineer) {
-                        $(this).addClass('selected');
-                    }
-                });
-            }
+            addSelectedItemEngineer();
         });
 
         // The table refreshes when the refresh icon is clicked
@@ -128,6 +118,7 @@ $(document).ready(function () {
             $(".productdetails").css("visibility", "hidden");
             // Reset the current product
             currProduct = "";
+            product = {};
             // We clear the product table and reset it with the new engineers
             redrawProductTable(proData);
         });

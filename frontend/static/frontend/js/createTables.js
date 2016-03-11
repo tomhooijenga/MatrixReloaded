@@ -80,3 +80,27 @@ function redrawProductTable(data) {
     $('.productslist').DataTable().rows.add(data);
     $('.productslist').DataTable().columns.adjust().draw();
 }
+
+// Function for adding a selected class to an engineer list item
+function addSelectedItemEngineer() {
+    // We compare the html elements. If they are the same a class selected will be added
+    if (currEngineer !== "") {
+        $('.engineerslist tr').each(function () {
+            if ($(this).html() === currEngineer) {
+                $(this).addClass('selected');
+            }
+        });
+    }
+}
+
+// Function for adding a selected class to a product list item
+function addSelectedItemProduct() {
+    // We compare the html elements. If they are the same a class selected will be added
+    if (currProduct !== "") {
+        $('.productslist tr').each(function () {
+            if ($(this).html() === currProduct) {
+                $(this).addClass('selected');
+            }
+        });
+    }
+}
