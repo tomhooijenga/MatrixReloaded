@@ -91,12 +91,6 @@ input[type="search"] {
     text-align: center;
 }
 
-.card:not(.card-edit) input[disabled] {
-    border: none;
-    cursor: auto;
-    background: transparent;
-    box-shadow: none;
-}
 
 .image-input input {
     visibility: hidden;

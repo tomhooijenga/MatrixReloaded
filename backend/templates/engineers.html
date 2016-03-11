@@ -19,9 +19,9 @@
     <div id="engineer-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
         <div class="carousel-inner" role="listbox">
             <div class="item">
-                <div class="col-xs-6">
-                    <legend>Details</legend>
-                    <div class="col-xs-offset-2">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h3 class="legend">Details</h3>
                         <p>
                             <span class="first-name" data-autofill="textContent"></span>
                             <span class="last-name" data-autofill="textContent"></span>
@@ -30,15 +30,11 @@
                             <span class="employee-number" data-autofill="textContent"></span>
                         </p>
                     </div>
+                    <div class="col-xs-6">
+                        <img data-autofill="src" class="img-responsive image"/>
+                    </div>
                 </div>
 
-
-                <div class="image-input col-xs-6">
-                    <input id="image" name="image" type="file"/>
-                    <label for="image" class="form-control">
-                        <img data-autofill="src" class="image"/>
-                    </label>
-                </div>
                 <form class="engineer-note form-horizontal url" method="post" data-autofill="action">
                     <fieldset>
                         <legend>Edit note</legend>
@@ -80,33 +76,34 @@
 
             <div class="item">
                 <div class="engineer-skills">
-                    <div class="col-xs-6">
-                        <legend>Details</legend>
-                        <div class="col-xs-offset-2">
-                            <p>
-                                <span class="first-name" data-autofill="textContent"></span>
-                                <span class="last-name" data-autofill="textContent"></span>
-                            </p>
-                            <p>
-                                <span class="employee-number" data-autofill="textContent"></span>
-                            </p>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <legend>Details</legend>
+                            <div class="col-xs-offset-2">
+                                <p>
+                                    <span class="first-name" data-autofill="textContent"></span>
+                                    <span class="last-name" data-autofill="textContent"></span>
+                                </p>
+                                <p>
+                                    <span class="employee-number" data-autofill="textContent"></span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <img data-autofill="src" class="img-responsive image"/>
                         </div>
                     </div>
 
-                    <div class="image-input col-xs-6">
-                        <input id="image" name="image" type="file"/>
-                        <label for="image" class="form-control">
-                            <img data-autofill="src" class="image"/>
-                        </label>
-                    </div>
-                         <div class="col-xs-12"><legend>Add skills</legend></div>
+                    <h3 class="legend">Add skills</h3>
                     <div class="form-group">
-                            <select id="skills-select" multiple style="width: 100%" data-placeholder="Click to add skills"></select>
-                        </div>
+                        <select id="skills-select" multiple style="width: 100%"
+                                data-placeholder="Click to add skills"></select>
+                    </div>
 
-                        <ul class="list-group">
+                    <ul class="list-group">
 
-                        </ul>
+                    </ul>
                 </div>
             </div>
 
@@ -198,7 +195,8 @@
                                 <i class="fa fa-language"></i>
                             </label>
                             <div class="col-xs-10">
-                                <select id="languages" name="languages" class="form-control" style="width: 100%" placeholder="Languages"
+                                <select id="languages" name="languages" class="form-control" style="width: 100%"
+                                        placeholder="Languages"
                                         multiple required></select>
                             </div>
                         </div>
@@ -208,7 +206,8 @@
                                 <i class="fa fa-globe"></i>
                             </label>
                             <div class="col-xs-10">
-                                <select id="countries" name="countries" class="form-control" style="width: 100%" placeholder="Countries"
+                                <select id="countries" name="countries" class="form-control" style="width: 100%"
+                                        placeholder="Countries"
                                         multiple required></select>
                             </div>
                         </div>
@@ -252,7 +251,8 @@
                                 <i class="fa fa-globe"></i>
                             </label>
                             <div class="col-xs-10">
-                                <select id="country" name="country" class="form-control" style="width: 100%" placeholder="Country"
+                                <select id="country" name="country" class="form-control" style="width: 100%"
+                                        placeholder="Country"
                                         required></select>
                             </div>
                         </div>
@@ -274,7 +274,7 @@
 
                         <div class="form-group">
                             <label for="license-plate" class="col-xs-2 control-label">
-                            <i class="fa fa-fw fa-road"></i>
+                                <i class="fa fa-fw fa-road"></i>
                             </label>
                             <div class="col-xs-10">
                                 <input id="license-plate" name="license-plate" class="form-control" type="text"
@@ -321,7 +321,8 @@
                         <div class="col-xs-5 col-xs-offset-2">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="is-active" data-autofill="checked" value="true" checked>
+                                    <input type="checkbox" name="is-active" data-autofill="checked" value="true"
+                                           checked>
                                     Is active
                                 </label>
                             </div>
