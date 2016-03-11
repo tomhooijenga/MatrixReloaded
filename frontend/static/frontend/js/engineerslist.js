@@ -107,13 +107,7 @@ $(document).ready(function () {
                 }
             }
             // We compare the html elements. If they are the same a class selected will be added
-            if (currProduct !== "") {
-                $('.productslist tr').each(function () {
-                    if ($(this).html() === currProduct) {
-                        $(this).addClass('selected');
-                    }
-                });
-            }
+            addSelectedItemProduct();
         });
 
         // The event where the close button in the engineer panel is clicked
@@ -128,13 +122,7 @@ $(document).ready(function () {
             redrawProductTable(proData);
             
             // We compare the html elements. If they are the same a class selected will be added
-            if (currProduct !== "") {
-                $('.productslist tr').each(function () {
-                    if ($(this).html() === currProduct) {
-                        $(this).addClass('selected');
-                    }
-                });
-            }
+            addSelectedItemProduct();
         });
 
         // The table refreshes when the refresh icon is clicked

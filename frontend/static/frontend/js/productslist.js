@@ -91,14 +91,7 @@ $(document).ready(function () {
                 }
             }
             // We compare the html elements. If they are the same a class selected will be added
-            if (currEngineer !== "") {
-                $('.engineerslist tr').each(function () {
-                    if ($(this).html() === currEngineer) {
-                        $(this).addClass('selected');
-                    }
-                });
-            }
-            ;
+            addSelectedItemEngineer();
         });
         
         // The event when the close button in the product panel is clicked
@@ -113,13 +106,7 @@ $(document).ready(function () {
             redrawEngineerTable(engData);
             
             // We compare the html elements. If they are the same a class selected will be added
-            if (currEngineer !== "") {
-                $('.engineerslist tr').each(function () {
-                    if ($(this).html() === currEngineer) {
-                        $(this).addClass('selected');
-                    }
-                });
-            }
+            addSelectedItemEngineer();
         });
 
         // The table refreshes when the refresh icon is clicked
