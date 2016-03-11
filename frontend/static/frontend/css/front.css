@@ -43,6 +43,22 @@ input.form-control.search-engineer {
 .card .fa-times {
     color: red;
     cursor: pointer;
+    float: right;
+}
+
+.card .fa-times:hover {
+    color: white;
+}
+
+
+.productdetails .fa-times {
+    color: red;
+    cursor: pointer;
+    float: right;
+}
+
+.productdetails .fa-times:hover {
+    color: white;
 }
 
 .card .star {
@@ -207,4 +223,8 @@ tr.even.selected{
 .engineers .panel-body,
 .products .panel-body {
     padding-top: 0px;
+}
+
+.stars i.fa.fa-star {
+    text-shadow: 1px 1px 1px #ccc;
 }

@@ -8,9 +8,8 @@ $(document).ready(function () {
 
     // We get all the current products in the database to filter the results later
     $.getJSON("/api/products/?expand=category.parent,skills&is_active=true").done(function (json) {
+        // All products from the Json request
         proData = json;
-        // Variable which holds the latest clicked table row
-        var tr;
         // Variable which holds all products in the database for later use in filtering
         var products = {};
         json.forEach(function (val) {
@@ -54,7 +53,7 @@ $(document).ready(function () {
             $(".star").css("display", "none");
 
             // We set the data of the clicked row in a variable for later use
-            tr = $(this).closest('tr');
+            var tr = $(this).closest('tr');
 
             // Adds a selected class (bg-color) to the row when its selected
             if (tr.hasClass('selected')) {
@@ -117,14 +116,17 @@ $(document).ready(function () {
             }
         });
 
-        // The event where the red cross next to the engineer name is clicked
+        // The event where the close button in the engineer panel is clicked
         $(".close-engineerpanel").on("click", function () {
-            tr.removeClass('selected');
+            $(".star").css("display", "none");
+            // Works the same as the toggle
+            engineerTable.$('tr.selected').removeClass('selected');
             $(".card").css("visibility", "hidden");
             currEngineer = "";
 
             // We clear the datatable and reset it with the new engineers
             redrawProductTable(proData);
+            
             // We compare the html elements. If they are the same a class selected will be added
             if (currProduct !== "") {
                 $('.productslist tr').each(function () {
