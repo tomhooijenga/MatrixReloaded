@@ -4,7 +4,7 @@ var product = {}, engineer = {};
 var currProduct = "", currEngineer = "";
 
 // Function for returning the jsonUrl with the country filter including.
-function setEngineerUrl () {
+function setEngineerUrl() {
     // We initialize the DataTable with the json file required for the products page
     var cookie = getCookie("countries");
     // We will use this variable to create the JSON request
@@ -16,7 +16,8 @@ function setEngineerUrl () {
     } else {
         // If the cookie is not empty it filters the results.
         return jsonUrl = "/api/engineers/?expand=skills,country,countries,languages&countries=" + cookie;
-    };
+    }
+    ;
 }
 
 // Function for creating the engineer dataTable.
@@ -42,11 +43,12 @@ function createEngineerTable(jsonUrl) {
                 searchable: false},
             {data: "country.code"}
         ]
-    }); return table;
+    });
+    return table;
 }
 
 // Function for creating the products dataTable.
-function createProductTable () {
+function createProductTable() {
     var table = $('.productslist').DataTable({
         ajax: {
             "url": "/api/products/?expand=category.parent,skills&is_active=true",
@@ -61,5 +63,20 @@ function createProductTable () {
             {data: "category.short_name"},
             {data: "name"}
         ]
-    }); return table;   
+    });
+    return table;
+}
+
+// A function which redraws the engineer table with new (filtered) data
+function redrawEngineerTable(data) {
+    $('.engineerslist').DataTable().clear().draw();
+    $('.engineerslist').DataTable().rows.add(data);
+    $('.engineerslist').DataTable().columns.adjust().draw();
+}
+
+// A function which redraws the product table with new (filtered) data
+function redrawProductTable(data) {
+    $('.productslist').DataTable().clear().draw();
+    $('.productslist').DataTable().rows.add(data);
+    $('.productslist').DataTable().columns.adjust().draw();
 }

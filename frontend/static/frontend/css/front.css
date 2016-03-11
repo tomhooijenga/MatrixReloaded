@@ -40,6 +40,35 @@ input.form-control.search-engineer {
     color: rgb(5, 133, 205);
 }
 
+.card .fa-times {
+    color: red;
+    cursor: pointer;
+    float: right;
+}
+
+.card .fa-times:hover {
+    color: white;
+}
+
+
+.productdetails .fa-times {
+    color: red;
+    cursor: pointer;
+    float: right;
+}
+
+.productdetails .fa-times:hover {
+    color: white;
+}
+
+.card .star {
+    display: none;
+}
+
+.stars {
+    padding-top: 4px;
+}
+
 .table thead {
     color: rgb(5, 133, 205);
 }
@@ -194,4 +223,8 @@ tr.even.selected{
 .engineers .panel-body,
 .products .panel-body {
     padding-top: 0px;
+}
+
+.stars i.fa.fa-star {
+    text-shadow: 1px 1px 1px #ccc;
 }
