@@ -31,11 +31,11 @@ $(document).ready(function () {
             }
         ]
     });
-    
+
     // Makes the search input form-control work on the DataTable
-        $('.search-bar').keyup(function(){
-            table.search($(this).val()).draw() ;
-        }); 
+    $('.search-bar').keyup(function () {
+        table.search($(this).val()).draw();
+    });
 
     $table.on('click', 'tr', function () {
         var data = table.row(this).data(),
@@ -107,35 +107,33 @@ $(document).ready(function () {
             });
     });
 
-    $.getJSON('/api/categories').done(function (data) {
-        var map = {},
-            arr = [];
+    $.getJSON('/api/categories/?expand=children').done(function (data) {
         // Build map of data
-        data.forEach(function (category) {
+        data = data.map(function (category) {
+            // Only take root categories
             if (category.parent === null) {
-                map[category.url] = {
+                // Add all children
+                var children = [];
+                if (category.children) {
+                    children = category.children.map(function (child) {
+                        return {
+                            id: child.url,
+                            text: child.name
+                        }
+                    });
+                }
+
+                return {
                     id: category.url,
                     text: category.name,
-                    children: []
+                    children: children
                 }
-            } else {
-                map[category.parent].children.push({
-                    id: category.url,
-                    text: category.name
-                });
             }
         });
 
-        // transform map to array
-        for (var url in map) {
-            if (!map.hasOwnProperty(url)) return;
-
-            arr.push(map[url]);
-        }
-
 
         $('#category').select2({
-            data: arr,
+            data: data,
             // Override the default matcher function to allow searching for
             // groups as well as specific categories.
             matcher: function modelMatcher(params, data) {
