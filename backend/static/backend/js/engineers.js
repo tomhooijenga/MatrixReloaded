@@ -88,6 +88,7 @@ $(document).ready(function () {
         // Enable the form and fill with data
         $note.data('method', 'patch')
             .form('editable', true)
+            .form(data)
             .form(data.note);
     }).on('click', '.skills', function () {
         // find closest parent

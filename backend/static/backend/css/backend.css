@@ -95,6 +95,7 @@ input[type="search"] {
 .image-input input {
     visibility: hidden;
     width: 0;
+    height: 0;
 }
 
 .image-input > label {
@@ -211,7 +212,7 @@ div#DataTables_Table_0_filter label {
 
 .legend {
     padding: 0;
-    margin-bottom: 20px;
+    margin: 0 0 20px 0;
     font-size: 21px;
     border-bottom: 1px solid #e5e5e5;
 }
