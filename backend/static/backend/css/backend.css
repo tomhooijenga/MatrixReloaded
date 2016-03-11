@@ -2,12 +2,6 @@
  * Backend css
  */
 
-/* Custom CSS for the whole webpage */
-* {
-    font-size: 100%;
-    font-family: 'open_sansregular';
-}
-
 html, body {
     background-color: #F5F5F5;
 }
