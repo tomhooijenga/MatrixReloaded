@@ -1,327 +1,345 @@
-{%       load static from staticfiles %}
+{% load static from staticfiles %}
 
 <!-- the front page agilent -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Agilent Skill Matrix</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Agilent Skill Matrix</title>
 
-        <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet"/>
-              <link href="{% static "css/jquery.toast.min.css" %}" rel="stylesheet"/>
-              <link href="{% static "css/extern.css" %}" rel="stylesheet"/>
-              <link href="{% static "frontend/css/front.css" %}" rel="stylesheet"/>
-              <link rel="stylesheet" type="text/css" href='{% static "css/jquery.toast.min.css" %}'/>
-    </head>
-    <body>
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet"/>
+    <link href="{% static "css/jquery.toast.min.css" %}" rel="stylesheet"/>
+    <link href="{% static "css/extern.css" %}" rel="stylesheet"/>
+    <link href="{% static "frontend/css/front.css" %}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href='{% static "css/jquery.toast.min.css" %}'/>
+</head>
+<body>
 
-        <div class="container">
-            <div class="row row-search">
-                <!-- Search + backendlogin -->
-                <!-- Search bar -->
-                <div class="col-xs-8">
-                    <div class="vertical-center">
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default countrybutton" type="button" data-toggle="modal"
-                                        data-target="#filter">
-                                    <i class="fa fa-globe"></i>
-                                </button>
-                                <button class="btn btn-default refreshbutton">
-                                    <i class="fa fa-refresh"></i>
-                                </button>
-                            </div>
-                            <input type="text" class="form-control search-product" placeholder="Product">
-                            <input type="text" class="form-control search-engineer" placeholder="Engineer">
-                        </div>
-                    </div>
-                </div>
-                <!-- Logo -->
-                <div class="col-xs-3 col4edit">
-                    <div class="vertical-center">
-                        <img class="img-responsive" src="{% static "img/logo-color.png" %}" alt="Agilent" width="100%">
-                    </div>
-                </div>
-                <!-- Inlogknop -->
-                <div class="dropdown col-xs-1 loginknop vertical-center">
-                    <div class="vertical-center">
-                        <button class="btn btn-default dropdown-toggle menubutton" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <i class="fa fa-navicon fa-lg"></i>
+<div class="container">
+    <div class="row row-search">
+        <!-- Search + backendlogin -->
+        <!-- Search bar -->
+        <div class="col-xs-8">
+            <div class="vertical-center">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default countrybutton" type="button" data-toggle="modal"
+                                data-target="#filter">
+                            <i class="fa fa-globe"></i>
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="{% url 'backend-engineers' %}">Admin</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{% url 'logout' %}">Log-Out</a></li>
-                        </ul>
+                        <button class="btn btn-default refreshbutton">
+                            <i class="fa fa-refresh"></i>
+                        </button>
                     </div>
+                    <input type="text" class="form-control search-product" placeholder="Product">
+                    <input type="text" class="form-control search-engineer" placeholder="Engineer">
                 </div>
             </div>
-            <!-- einde row -->
+        </div>
+        <!-- Logo -->
+        <div class="col-xs-3">
+            <div class="vertical-center">
+                <img class="img-responsive" src="{% static "img/logo-color.png" %}" alt="Agilent" width="100%">
+            </div>
+        </div>
+        <!-- Inlogknop -->
+        <div class="dropdown col-xs-1 loginknop vertical-center">
+            <div class="vertical-center">
+                <button class="btn btn-default dropdown-toggle menubutton" type="button" data-toggle="dropdown">
+                    <i class="fa fa-navicon fa-lg"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'backend-engineers' %}">Admin</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{% url 'logout' %}">Log-Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- einde row -->
 
-            <!-- modal voor filter -->
-            <div class="modal fade selectCountries" id="filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Choose Your Country</h4>
-                        </div>
-                        <div class="modal-body">
-                            <select class="filterlanden" multiple="multiple">
-                                <!--hier komt data -->
-                            </select>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary savefilt">Save changes</button>
-                        </div>
-                    </div>
+    <!-- modal voor filter -->
+    <div class="modal fade selectCountries" id="filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Choose Your Country</h4>
+                </div>
+                <div class="modal-body">
+                    <select class="filterlanden" multiple="multiple">
+                        <!--hier komt data -->
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary savefilt">Save changes</button>
                 </div>
             </div>
-            <!-- table voor filter -->
+        </div>
+    </div>
+    <!-- table voor filter -->
 
-            <!-- row 2 -->
-            <div class="row row-product">
-                <!-- Naamgeving -->
-                <!-- Naam vak products -->
-                <div class="col-xs-8">
-                    <!-- Table Products-->
-                    <div class="panel panel-default products">
-                        <div class="panel-body">
-                            <table class="table productslist clickinfo">
-                                <thead>
-                                    <tr>
-                                        <th>Category</th>
-                                        <th>Subcategory</th>
-                                        <th>Productname</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- Info vak products -->
-                <div class="col-xs-4">
-                    <div class="panel panel-default productdetails">
-                        <div class="panel-heading">
-                            <span class="category" data-autofill="textContent"></span>
-                            <span class="name" data-autofill="textContent"></span>
-                            <span><i class='fa fa-times close-productpanel'></i></span>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-xs-8 col-xs-offset-2">
-                                    <img data-autofill="src" class="image img-responsive"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- row 2 -->
+    <div class="row row-product">
+        <!-- Naamgeving -->
+        <!-- Naam vak products -->
+        <div class="col-xs-8">
+            <!-- Table Products-->
+            <div class="panel panel-default products">
+                <div class="panel-body">
+                    <table class="table productslist clickinfo">
+                        <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Subcategory</th>
+                            <th>Productname</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
-            <!-- row 3 -->
-            <div class="row row-engineer">
-                <!-- Naam vak engineers -->
-                <div class="col-xs-8">
-                    <!-- Table Engineer -->
-                    <div class="panel panel-default engineers">
-                        <div class="panel-body">
-                            <table class="table engineerslist clickinfo">
-                                <thead>
-                                    <tr>
-                                        <th>First name</th>
-                                        <th>Last name</th>
-                                        <th>Type</th>
-                                        <th>Country</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
+        </div>
+        <!-- Info vak products -->
+        <div class="col-xs-4">
+            <div class="panel panel-default productdetails">
+                <div class="panel-heading">
+                    <button type="button" class="close close-productpanel pull-right">
+                        &times;
+                    </button>
+                    <span class="category" data-autofill="textContent"></span>
+                    <span class="name" data-autofill="textContent"></span>
                 </div>
-                <!-- Info vak engineers -->
-                <div class="col-xs-4">
-                    <!-- Details panel -->
-                    <div id="card" class="panel panel-default card">
-                        <div class="panel-heading">
-                            <div>
-                            <span class="first-name" data-autofill="textContent"></span>
-                            <span class="last-name" data-autofill="textContent"></span>
-                            <span><i class='fa fa-times close-engineerpanel'></i></span>
-                            </div>
-                            <div class="stars">
-                            <span>
-                            <div class='1 star'><i class='fa fa-star'></i></div>
-                            <div class='2 star'><i class='fa fa-star'></i><i class='fa fa-star'></i></div>
-                            <div class='3 star'><i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i></div>
-                            <div class='4 star'><i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i></div>
-                            </span>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row topdetails">
-                                <div class="col-xs-6 col-xs-offset-3">
-                                    <img data-autofill="src" class="image img-responsive"/>
-                                </div>
-                            </div>
-
-                            <h2 class="legend">
-                                Details
-                            </h2>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-map-marker"></i>
-                                </div>
-                                <div class="col-xs-9 droppoint" data-autofill="textContent"></div>
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-copy" data-clipboard-target=".droppoint"></i>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-phone"></i>
-                                </div>
-                                <div class="col-xs-9 phone" data-autofill="textContent"></div>
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-copy" data-clipboard-target=".phone"></i>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-envelope"></i>
-                                </div>
-                                <div class="col-xs-9 email" data-autofill="textContent"></div>
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-copy" data-clipboard-target=".email"></i>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-user"></i>
-                                </div>
-                                <div class="col-xs-9 employee-number" data-autofill="textContent"></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-language"></i>
-                                </div>
-                                <div class="col-xs-9 languages" data-autofill="textContent"></div>
-                                <div class="col-xs-1"></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-globe"></i>
-                                </div>
-                                <div class="col-xs-9 countries" data-autofill="textContent"></div>
-                                <div class="col-xs-1"></div>
-                            </div>
-
-                            <h2 class="legend">VCA</h2>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-graduation-cap"></i>
-                                </div>
-                                <div class="col-xs-9 vca-number" data-autofill="textContent"></div>
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-copy" data-clipboard-target=".vca-number"></i>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-calendar"></i>
-                                </div>
-                                <div class="col-xs-9 vca-date" data-autofill="textContent"></div>
-                                <div class="col-xs-1"></div>
-                            </div>
-
-                            <h2 class="legend">Car</h2>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-road"></i>
-                                </div>
-                                <div class="col-xs-9 license-plate" data-autofill="textContent"></div>
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-copy" data-clipboard-target=".license-plate"></i>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-car"></i>
-                                </div>
-                                <div class="col-xs-9 car-type" data-autofill="textContent"></div>
-                                <div class="col-xs-1"></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-paint-brush"></i>
-                                </div>
-                                <div class="col-xs-9 car-color" data-autofill="textContent"></div>
-                                <div class="col-xs-1"></div>
-                            </div>
-
-                            <h2 class="legend">
-                                Address
-                            </h2>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-map-signs"></i>
-                                </div>
-                                <div class="col-xs-9 street" data-autofill="textContent"></div>
-                                <div class="col-xs-1"></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-map-pin"></i>
-                                </div>
-                                <div class="col-xs-9 zip-code" data-autofill="textContent"></div>
-                                <div class="col-xs-1"></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-map-o"></i>
-                                </div>
-                                <div class="col-xs-9 city" data-autofill="textContent"></div>
-                                <div class="col-xs-1"></div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <i class="fa fa-fw fa-globe"></i>
-                                </div>
-                                <div class="col-xs-9 country" data-autofill="textContent"></div>
-                                <div class="col-xs-1"></div>
-                            </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-8 col-xs-offset-2">
+                            <img data-autofill="src" class="image img-responsive"/>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        {% block javascript %}
-        <script src='{% static "js/extern.js" %}'></script>
-        <script src='{% static "js/bootstrap.min.js" %}'></script>
-        <script src='{% static "js/clipboard.min.js" %}'></script>
-        <script src='{% static "js/jquery.toast.min.js" %}'></script>
+    </div>
+    <!-- row 3 -->
+    <div class="row row-engineer">
+        <!-- Naam vak engineers -->
+        <div class="col-xs-8">
+            <!-- Table Engineer -->
+            <div class="panel panel-default engineers">
+                <div class="panel-body">
+                    <table class="table engineerslist clickinfo">
+                        <thead>
+                        <tr>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Type</th>
+                            <th>Country</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Info vak engineers -->
+        <div class="col-xs-4">
+            <!-- Details panel -->
+            <div id="card" class="panel panel-default card">
+                <div class="panel-heading">
+                    <div>
+                        <button type="button" class="close close-engineerpanel pull-right">
+                            &times;
+                        </button>
+                        <span class="first-name" data-autofill="textContent"></span>
+                        <span class="last-name" data-autofill="textContent"></span>
+                    </div>
+                    <div class="stars">
+                        <div class='level-1 star'>
+                            <i class='fa fa-star'></i>
+                        </div>
+                        <div class='level-2 star'>
+                            <i class='fa fa-star'></i>
+                            <i class='fa fa-star'></i>
+                        </div>
+                        <div class='level-3 star'>
+                            <i class='fa fa-star'></i>
+                            <i class='fa fa-star'></i>
+                            <i class='fa fa-star'></i>
+                        </div>
+                        <div class='level-4 star'>
+                            <i class='fa fa-star'></i>
+                            <i class='fa fa-star'></i>
+                            <i class='fa fa-star'></i>
+                            <i class='fa fa-star'></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row topdetails">
+                        <div class="col-xs-6 col-xs-offset-3">
+                            <img data-autofill="src" class="image img-responsive"/>
+                        </div>
+                    </div>
 
-        <script src="{% static "js/cookies.js" %}"></script>
-        <script src="{% static "js/form.js" %}"></script>
-        <script src='{% static "js/filter.js" %}'></script>
+                    <h2 class="legend">
+                        Details
+                    </h2>
 
-        <script src='{% static "frontend/js/createTables.js" %}'></script>
-        <script src='{% static "frontend/js/productslist.js" %}'></script>
-        <script src='{% static "frontend/js/engineerslist.js" %}'></script>
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-map-marker"></i>
+                        </div>
+                        <div class="col-xs-9 droppoint" data-autofill="textContent"></div>
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-copy" data-clipboard-target=".droppoint"></i>
+                        </div>
+                    </div>
 
-        {% endblock javascript %}
-    </body>
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-phone"></i>
+                        </div>
+                        <div class="col-xs-9 phone" data-autofill="textContent"></div>
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-copy" data-clipboard-target=".phone"></i>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-envelope"></i>
+                        </div>
+                        <div class="col-xs-9 email" data-autofill="textContent"></div>
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-copy" data-clipboard-target=".email"></i>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-user"></i>
+                        </div>
+                        <div class="col-xs-9 employee-number" data-autofill="textContent"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-language"></i>
+                        </div>
+                        <div class="col-xs-9 languages" data-autofill="textContent"></div>
+                        <div class="col-xs-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-globe"></i>
+                        </div>
+                        <div class="col-xs-9 countries" data-autofill="textContent"></div>
+                        <div class="col-xs-1"></div>
+                    </div>
+
+                    <h2 class="legend">VCA</h2>
+
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-graduation-cap"></i>
+                        </div>
+                        <div class="col-xs-9 vca-number" data-autofill="textContent"></div>
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-copy" data-clipboard-target=".vca-number"></i>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-calendar"></i>
+                        </div>
+                        <div class="col-xs-9 vca-date" data-autofill="textContent"></div>
+                        <div class="col-xs-1"></div>
+                    </div>
+
+                    <h2 class="legend">Car</h2>
+
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-road"></i>
+                        </div>
+                        <div class="col-xs-9 license-plate" data-autofill="textContent"></div>
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-copy" data-clipboard-target=".license-plate"></i>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-car"></i>
+                        </div>
+                        <div class="col-xs-9 car-type" data-autofill="textContent"></div>
+                        <div class="col-xs-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-paint-brush"></i>
+                        </div>
+                        <div class="col-xs-9 car-color" data-autofill="textContent"></div>
+                        <div class="col-xs-1"></div>
+                    </div>
+
+                    <h2 class="legend">
+                        Address
+                    </h2>
+
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-map-signs"></i>
+                        </div>
+                        <div class="col-xs-9 street" data-autofill="textContent"></div>
+                        <div class="col-xs-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-map-pin"></i>
+                        </div>
+                        <div class="col-xs-9 zip-code" data-autofill="textContent"></div>
+                        <div class="col-xs-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-map-o"></i>
+                        </div>
+                        <div class="col-xs-9 city" data-autofill="textContent"></div>
+                        <div class="col-xs-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <i class="fa fa-fw fa-globe"></i>
+                        </div>
+                        <div class="col-xs-9 country" data-autofill="textContent"></div>
+                        <div class="col-xs-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% block javascript %}
+    <script src='{% static "js/extern.js" %}'></script>
+    <script src='{% static "js/bootstrap.min.js" %}'></script>
+    <script src='{% static "js/clipboard.min.js" %}'></script>
+    <script src='{% static "js/jquery.toast.min.js" %}'></script>
+
+    <script src="{% static "js/cookies.js" %}"></script>
+    <script src="{% static "js/form.js" %}"></script>
+    <script src='{% static "js/filter.js" %}'></script>
+
+    <script src='{% static "frontend/js/createTables.js" %}'></script>
+    <script src='{% static "frontend/js/productslist.js" %}'></script>
+    <script src='{% static "frontend/js/engineerslist.js" %}'></script>
+
+{% endblock javascript %}
+</body>
 </html>

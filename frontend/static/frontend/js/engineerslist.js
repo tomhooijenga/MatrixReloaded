@@ -88,7 +88,7 @@ $(document).ready(function () {
                     for (var key in product.skills) {
                         for (var val in engineer.skills) {
                             if (product.skills[key].url === engineer.skills[val].url) {
-                                $('.' + engineer.skills[val].level).toggle();
+                                $('.level-' + engineer.skills[val].level).toggle();
                             }
                         }
                     }
