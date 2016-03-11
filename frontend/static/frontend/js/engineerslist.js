@@ -51,6 +51,7 @@ $(document).ready(function () {
         engineerTable.on('click', 'tr>td', function () {
 
             $(".star").css("display", "none");
+            $(".card .panel-body").css("height", "calc(100% - 45px");
 
             // We set the data of the clicked row in a variable for later use
             var tr = $(this).closest('tr');
@@ -89,6 +90,7 @@ $(document).ready(function () {
                         for (var val in engineer.skills) {
                             if (product.skills[key].url === engineer.skills[val].url) {
                                 $('.level-' + engineer.skills[val].level).toggle();
+                                $(".card .panel-body").css("height", "calc(100% - 65px");
                             }
                         }
                     }
@@ -113,6 +115,7 @@ $(document).ready(function () {
         // The event where the close button in the engineer panel is clicked
         $(".close-engineerpanel").on("click", function () {
             $(".star").css("display", "none");
+            $(".card .panel-body").css("height", "calc(100% - 45px");
             // Works the same as the toggle
             engineerTable.$('tr.selected').removeClass('selected');
             $(".card").css("visibility", "hidden");
