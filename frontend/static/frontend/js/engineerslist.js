@@ -143,5 +143,13 @@ $(document).ready(function () {
             // Resets the engineer table with all engineers
             redrawEngineerTable(engData);
         });
+        
+        // Options for the popover note
+        var options = {
+            content: "And here's some amazing content. It's very engaging. Right?",
+            placement: 'left'
+        };
+        
+        $(".note-popover").popover(options);
     });
 });

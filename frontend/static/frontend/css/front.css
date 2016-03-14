@@ -12,7 +12,7 @@ input.form-control.search-engineer {
 }
 
 .panel-default > .panel-heading {
-    background-color: rgba(102, 102, 102, 0.8);
+    background-color: rgba(102, 102, 102, 1);
     color: white;
 }
 
@@ -160,6 +160,10 @@ tr.even.selected {
     text-shadow: 0 1px 0 #000;
     opacity: 1;
 }
+.note {
+    float: right;
+    cursor: pointer;
+}
 
 .fa-copy {
     cursor: pointer;
@@ -208,4 +212,13 @@ tr.even.selected {
 .engineers .panel-body,
 .products .panel-body {
     padding-top: 0px;
+}
+
+.popover fade right in {
+    width: 100%;
+}
+
+/* The max width is dependant on the container (more info below) */
+.popover{
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
 }
