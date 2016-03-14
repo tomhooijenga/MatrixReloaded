@@ -122,7 +122,10 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': False,
     # A request needs to be at least logged in. Extra required permissions are
     # defined in the Views
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.DjangoModelPermissions'
+    ),
     'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.SessionAuthentication',)
 }
 
@@ -154,3 +157,12 @@ LOGGING = {
         },
     },
 }
+
+# TODO: Fill these with deployment mail server details
+# EMAIL_HOST = ''
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_PORT =
+# EMAIL_USE_SSL =
+# DEFAULT_FROM_EMAIL = ''
+# SERVER_EMAIL = ''

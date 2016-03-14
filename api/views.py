@@ -1,10 +1,13 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from rest_framework import status
 from rest_framework import viewsets, mixins
+from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from . import serializers, models
+from .forms import PasswordResetForm
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -13,10 +16,65 @@ class UserViewSet(viewsets.ModelViewSet):
     """
 
     # The default queryset
-    queryset = get_user_model().objects.all()
+    queryset = get_user_model().objects.all().prefetch_related('groups', 'groups__permissions')
 
     # The default serializer
     serializer_class = serializers.UserSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+
+        form = PasswordResetForm({'email': serializer.validated_data['email']})
+        form.is_valid()
+        form.save(request=request)
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+
+        # Users can have only one group at a time
+        groups = request.data.getlist('groups')
+        if groups is not None and len(groups) > 0:
+            request.data.setlist('groups', [groups[0]])
+
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+
+        self.perform_update(serializer)
+
+        return Response(serializer.data)
+
+    @detail_route(methods=['POST'])
+    def reset_password(self, request, pk=None):
+        """
+        Send a password reset mail to the user
+        """
+        user = self.get_object()
+        user.set_unusable_password()
+        user.save()
+
+        form = PasswordResetForm({'email': user.email})
+        form.is_valid()
+        form.save(request=request)
+
+        return Response(status=status.HTTP_200_OK)
+
+
+class GroupViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    API endpoint for user groups. Read only.
+    """
+
+    # The default queryset
+    queryset = Group.objects.all().prefetch_related('permissions')
+
+    # The default serializer
+    serializer_class = serializers.GroupSerializer
 
 
 class EngineerViewSet(viewsets.ModelViewSet):

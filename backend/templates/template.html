@@ -15,12 +15,21 @@
 </head>
 <body>
 <aside>
+    <img class="img-responsive logo" src="{% static "img/logo-white.png" %}" alt="Agilent">
+    <p>Welcome, {{ request.user.email }}</p>
     <nav class="navigation">
-        <img class="img-responsive logo" src="{% static "img/logo-white.png" %}" alt="Agilent">
-        <a class="{% if request.resolver_match.url_name == 'backend-engineers' %}active{% endif %}" href="{% url 'backend-engineers' %}">Engineers</a>
-        <a class="{% if request.resolver_match.url_name == 'backend-products' %}active{% endif %}" href="{% url 'backend-products' %}">Products</a>
-        <a class="{% if request.resolver_match.url_name == 'backend-categories' %}active{% endif %}" href="{% url 'backend-categories' %}">Categories</a>
-        <a class="{% if request.resolver_match.url_name == 'backend-users' %}active{% endif %}" href="{% url 'backend-users' %}">Users</a>
+        {% if perms.api.add_engineer or perms.api.change_engineer %}
+            <a class="{% if request.resolver_match.url_name == 'backend-engineers' %}active{% endif %}" href="{% url 'backend-engineers' %}">Engineers</a>
+        {% endif %}
+        {% if perms.api.add_product or perms.api.change_product %}
+            <a class="{% if request.resolver_match.url_name == 'backend-products' %}active{% endif %}" href="{% url 'backend-products' %}">Products</a>
+        {% endif %}
+        {% if perms.api.add_category or perms.api.change_category or perms.api.delete_category %}
+            <a class="{% if request.resolver_match.url_name == 'backend-categories' %}active{% endif %}" href="{% url 'backend-categories' %}">Categories</a>
+        {% endif %}
+        {% if perms.api.add_user or perms.api.change.change_user %}
+            <a class="{% if request.resolver_match.url_name == 'backend-users' %}active{% endif %}" href="{% url 'backend-users' %}">Users</a>
+        {% endif %}
         <hr />
         <a href="{% url 'index' %}">Skillmatrix</a>
         <a href="{% url 'logout' %}">Log out</a>
@@ -48,28 +57,30 @@
                     <div class="search-wrapper">
                         <div class="input-group">
                             <span class="input-group-btn">
-                                <button class="btn btn-default btn-sm countrybutton" type="button" data-toggle="modal" data-target="#filter"><i class="fa fa-globe"></i></button>
+                                <button class="btn btn-default btn-sm countrybutton" type="button" data-toggle="modal"
+                                        data-target="#filter"><i class="fa fa-globe"></i></button>
                             </span>
-                            <input type="search" class="form-control search-bar" placeholder="Search&hellip;" />
+                            <input type="search" class="form-control search-bar" placeholder="Search&hellip;"/>
                         </div>
                     </div>
-                    <div class="modal fade selectCountries" id="filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content" >
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Choose Your Country</h4>
-                            </div>
-                            <div class="modal-body">
-                                <select class="filterlanden" multiple="multiple">
-                                    <!--hier komt data -->
-                                </select>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary savefilt">Save changes</button>
+                    <div class="modal fade selectCountries" id="filter" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">Choose Your Country</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <select class="filterlanden" multiple="multiple">
+                                        <!--hier komt data -->
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary savefilt">Save changes</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                     <div class="panel-body">
                         <table class="table">
