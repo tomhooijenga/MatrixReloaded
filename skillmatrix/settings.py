@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'skillmatrix',
         'USER': 'agilent',
-        'PASSWORD': 'skillmatrix', # MUST CHANGE ON ACTUAL DEPLOYMENT
+        'PASSWORD': 'skillmatrix',  # MUST CHANGE ON ACTUAL DEPLOYMENT
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -137,3 +137,10 @@ LOGIN_URL = '/admin/login/'
 
 # When there's no next url to go to, send them to the engineers part
 LOGIN_REDIRECT_URL = '/admin/engineers'
+
+EMAIL_HOST = 'smtp.webfaction.com'
+EMAIL_PORT = 587
+USE_TLS = True
+EMAIL_HOST_USER = 'noreply@agilent.engineer'
+EMAIL_HOST_PASSWORD = '@g1l3nT'
+DEFAULT_FROM_EMAIL = 'Agilent SkillMatrix <noreply@agilent.engineer>'
