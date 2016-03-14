@@ -51,6 +51,11 @@ $(function () {
                 .prop('action', '/api/categories/')
                 .data('method', 'post');
 
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+          return "Add category";
+        });
+
         $child.hide();
         $children.hide();
     });
@@ -61,6 +66,11 @@ $(function () {
         row = this;
 
         var data = table.row(this).data();
+
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+          return "Details";
+        });
 
         $parent.data('method', 'patch')
                 .form(data)
@@ -77,6 +87,11 @@ $(function () {
         row = $(this).closest('tr');
 
         var data = table.row(row).data();
+
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+          return "Edit categorie";
+        });
 
         $parent.data('method', 'patch')
                 .form(data)

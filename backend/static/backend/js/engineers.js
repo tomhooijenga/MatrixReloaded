@@ -73,17 +73,22 @@ $(document).ready(function () {
         // Ignore clicks that started on the edit links. We can't use `stopPropagation`
         // on the link handlers because that breaks the carousel navigation
         if ($(e.target).is('a') === false) {
-            var data = table.row(this).data();
-
             // Fill the card with data and make the card read-only
+            var data = table.row(this).data();
             $carousel.form(data).form('editable', false).carousel(2);
+            // Add titel
+            $( ".panel-heading" ).text(function( x ) {
+              return "Details";
+            });
         }
     });
 
     $table.on('click', '.note', function () {
         var parent = $(this).closest('tr'),
             data = table.row(parent).data();
-
+            $( ".panel-heading" ).text(function( x ) {
+              return "Edit note";
+            });
         // Override the form's method
         // Enable the form and fill with data
         $note.data('method', 'patch')
@@ -102,6 +107,10 @@ $(document).ready(function () {
             $select = $('#skills-select'),
             $template = $($("#skill-template").html()),
             $html = $();
+        // Add titel
+            $( ".panel-heading" ).text(function( x ) {
+              return "Add/Remove skills";
+            });
 
         // set the current engineer
         engineer = data;
@@ -143,7 +152,10 @@ $(document).ready(function () {
     }).on('click', '.edit', function () {
         var parent = $(this).closest('tr'),
             data = table.row(parent).data();
-
+        // Add titel
+            $( ".panel-heading" ).text(function( x ) {
+              return "Edit engineer";
+            });
         // Override the form's method
         // Enable the form and fill with data
         $edit.data('method', 'patch')
@@ -253,6 +265,10 @@ $(document).ready(function () {
 
     $add.on('click', function () {
         // Empty the form
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+              return "Add engineer";
+        });
         // Make the details form editable and set it's action and method
         $edit.form('clear')
             .form('editable', true)

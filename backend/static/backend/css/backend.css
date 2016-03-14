@@ -232,3 +232,14 @@ div#DataTables_Table_0_filter label {
 .form-list span {
     line-height: 34px;
 }
+
+.panel-default > .panel-heading {
+    background-color: rgba(102, 102, 102, 0.8);
+    color: white;
+}
+
+.card .panel-body{
+    overflow: auto;
+    height: calc(100% - 41px);
+}
+
