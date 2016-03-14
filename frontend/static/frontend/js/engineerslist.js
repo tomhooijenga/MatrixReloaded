@@ -12,6 +12,7 @@ $(document).ready(function () {
         proData = json;
         // Variable which holds all products in the database for later use in filtering
         var products = {};
+        // Create products json object for comparison later
         json.forEach(function (val) {
             products[val.url] = val;
         });

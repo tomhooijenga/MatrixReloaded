@@ -14,6 +14,7 @@ $(document).ready(function () {
         engData = json;
         // Variable which holds all the current engineers in the database for later use
         var engineers = {};
+        // Create engineers json object for comparison later
         json.forEach(function (val) {
             engineers[val.url] = val;
         });
