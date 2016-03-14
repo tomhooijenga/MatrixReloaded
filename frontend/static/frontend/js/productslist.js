@@ -14,6 +14,7 @@ $(document).ready(function () {
         engData = json;
         // Variable which holds all the current engineers in the database for later use
         var engineers = {};
+        // Create engineers json object for comparison later
         json.forEach(function (val) {
             engineers[val.url] = val;
         });
@@ -116,6 +117,10 @@ $(document).ready(function () {
         $(".refreshbutton").click(function () {
             // Hide the product panel on refresh
             $(".productdetails").css("visibility", "hidden");
+            // We clear the product search field
+            // After that we redraw the table with no input
+            $('.search-product').val("");
+            productTable.search("").draw();
             // Reset the current product
             currProduct = "";
             product = {};

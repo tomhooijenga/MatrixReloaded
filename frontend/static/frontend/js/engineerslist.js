@@ -12,6 +12,7 @@ $(document).ready(function () {
         proData = json;
         // Variable which holds all products in the database for later use in filtering
         var products = {};
+        // Create products json object for comparison later
         json.forEach(function (val) {
             products[val.url] = val;
         });
@@ -132,6 +133,10 @@ $(document).ready(function () {
         $(".refreshbutton").click(function () {
             // Hide the engineer panel on refresh
             $(".card").css("visibility", "hidden");
+            // We clear the engineer search field
+            // After that we redraw the table with no input
+            $('.search-engineer').val("");
+            engineerTable.search("").draw();
             // Reset the current engineer
             currEngineer = "";
             engineer = {};
