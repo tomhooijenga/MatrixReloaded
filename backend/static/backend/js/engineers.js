@@ -84,10 +84,8 @@ $(document).ready(function () {
         var parent = $(this).closest('tr'),
             data = table.row(parent).data();
 
-        // Override the form's method
         // Enable the form and fill with data
-        $note.data('method', 'patch')
-            .form('editable', true)
+        $note.form('editable', true)
             .form(data)
             .form(data.note);
     }).on('click', '.skills', function () {
@@ -170,6 +168,8 @@ $(document).ready(function () {
                 // This skill can be removed
                 $item.remove();
 
+                successToast("Skill is deleted.");
+
                 // Also enable in the skill select
                 $('#skills-select').find('[value="' + skill.product.url + '"]').prop('disabled', false);
 
@@ -194,8 +194,7 @@ $(document).ready(function () {
                 },
                 method: 'patch'
             }).done(function () {
-                // TODO: notify user
-                alert("saved");
+                successToast("Skill is saved");
             });
 
             // Save the request
@@ -211,43 +210,14 @@ $(document).ready(function () {
             .done(function (data) {
                 $this.form(data).data('method', 'patch');
                 // Toast pop-up function
-                $.toast({
-                    text: "Submitted!",
-                    icon: 'success',
-                    showHideTransition: 'fade',
-                    allowToastClose: true,
-                    hideAfter: 3000,
-                    stack: false,
-                    position: 'bottom-right',
-                    textAlign: 'center'
-                });
+
+                successToast("Data is saved.");
 
                 // Reload the table with new data
                 table.ajax.reload();
             })
             // Error
-            .fail(function (response) {
-                var errors = response.responseJSON,
-                    errortext = [];
-
-                for (var error in errors) {
-                    errortext.push(error + ': ' + errors[error].join('; '));
-                }
-
-                // Possibly show an notification
-                // TODO: notify user
-                $.toast({
-                    heading: "Error!",
-                    text: errortext.join('<br />'),
-                    icon: "error",
-                    showHideTransition: 'fade',
-                    allowToastClose: true,
-                    hideAfter: 3000,
-                    stack: false,
-                    position: 'bottom-right',
-                    textAlign: 'center'
-                });
-            });
+            .fail(errorToast);
     });
 
 
@@ -346,11 +316,9 @@ $(document).ready(function () {
                         product: skill.product.url,
                         level: 1
                     }
-                }).done(function (data) {
-                    // TODO: notify user
-
-                    alert("saved");
-                })
+                }).done(function () {
+                    successToast("Skill is saved");
+                }).fail(errorToast)
             });
     });
 });

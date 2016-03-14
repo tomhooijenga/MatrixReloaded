@@ -91,50 +91,20 @@ $(function () {
         }
 
         $.post($(this).data('url') + 'reset_password/').done(function () {
-            $.toast({
-                text: "Password is reset!",
-                icon: 'success',
-                hideAfter: 3000,
-                stack: false,
-                position: 'bottom-right',
-                textAlign: 'center'
-            });
+            successToast("Password is reset.");
         });
     }).on('submit', function (e) {
         e.preventDefault();
 
         $form.form('submit').done(function (data) {
-            $.toast({
-                text: "Submitted!",
-                icon: 'success',
-                hideAfter: 3000,
-                stack: false,
-                position: 'bottom-right',
-                textAlign: 'center'
-            });
-
-            table.ajax.reload();
 
             $form.data('method', 'patch')
                 .form(data);
 
-        }).fail(function (response) {
-            var errors = response.responseJSON,
-                errortext = [];
+            table.ajax.reload();
 
-            for (var error in errors) {
-                errortext.push(error + ': ' + errors[error].join('; '));
-            }
+            successToast("User is saved.");
 
-            $.toast({
-                heading: "Error!",
-                text: errortext.join('<br />'),
-                icon: "error",
-                hideAfter: 3000,
-                stack: false,
-                position: 'bottom-right',
-                textAlign: 'center'
-            });
-        })
+        }).fail(errorToast)
     })
 });

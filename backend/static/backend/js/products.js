@@ -84,27 +84,13 @@ $(document).ready(function () {
             .done(function (data) {
                 $this.form(data).data('method', 'patch');
 
-                // TODO: notify user
-                // Toast pop-up function
-                $.toast({
-                    text: "Submitted!",
-                    icon: 'success',
-                    showHideTransition: 'fade',
-                    allowToastClose: true,
-                    hideAfter: 3000,
-                    stack: false,
-                    position: 'bottom-right',
-                    textAlign: 'center'
-                });
                 // Reload the table with new data
                 table.ajax.reload();
+
+                successToast('Product was saved.')
             })
             // Error
-            .fail(function (data) {
-                // Error handling goes here
-                // Possibly show an notification
-                // TODO: notify user
-            });
+            .fail(errorToast);
     });
 
     $.getJSON('/api/categories/?expand=children').done(function (data) {

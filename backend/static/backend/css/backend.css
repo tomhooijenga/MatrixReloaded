@@ -101,7 +101,6 @@ input[type="search"] {
     text-align: center;
 }
 
-
 .image-input input {
     visibility: hidden;
     width: 0;
@@ -231,4 +230,16 @@ div#DataTables_Table_0_filter label {
 
 .form-list span {
     line-height: 34px;
+}
+
+.child > td {
+    padding: 8px 0 8px 16px !important;
+}
+
+.child .table {
+    margin-bottom: 8px;
+}
+
+.child .table tr:first-child > td {
+    border-top: none;
 }

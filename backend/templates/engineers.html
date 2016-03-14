@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                <form class="form-horizontal url" method="post" data-autofill="action">
+                <form class="form-horizontal url" method="post" data-autofill="action" data-method="patch">
                     <fieldset>
                         <legend>Edit note</legend>
 
@@ -153,8 +153,11 @@
                                 <i class="fa fa-phone"></i>
                             </label>
                             <div class="col-xs-10">
-                                <input id="phone" name="phone" class="form-control" type="number" maxlength="11"
-                                       required placeholder="Phone number">
+                                <div class="input-group">
+                                    <span class="input-group-addon">+</span>
+                                    <input id="phone" name="phone" class="form-control" type="tel" maxlength="31"
+                                           required placeholder="Phone number" pattern="^\+[1-9]{1,31}">
+                                </div>
                             </div>
                         </div>
 
