@@ -50,8 +50,10 @@ $(document).ready(function () {
 
         // Shows the engineers details in the card panel when the table row is clicked
         engineerTable.on('click', 'tr>td', function () {
-
+            
+            // Adjust the CSS of different elements for correct diplay when a row is clicked
             $(".star").css("display", "none");
+            $(".note-popover").css("visibility", "hidden");
             $(".card .panel-body").css("height", "calc(100% - 45px");
 
             // We set the data of the clicked row in a variable for later use
@@ -85,13 +87,63 @@ $(document).ready(function () {
                     // We save the data from the table row
                     var data = engineerTable.row(tr).data();
                     engineer = data;
-
                     // The section below is required to show the skill level on the selected product.  
                     for (var key in product.skills) {
                         for (var val in engineer.skills) {
                             if (product.skills[key].url === engineer.skills[val].url) {
                                 $('.level-' + engineer.skills[val].level).toggle();
                                 $(".card .panel-body").css("height", "calc(100% - 65px");
+                            }
+                        }
+                    }
+
+                    // Check if the note is not null
+                    // If it's not null we check if the note should be displayed or not by comparing dates
+                    if (engineer.note !== null) {
+                        // Variables for the current date in string format
+                        var fullDate = new Date();
+                        //convert month to 2 digits
+                        var twoDigitMonth = ((fullDate.getMonth().length + 1) === 1) ? (fullDate.getMonth() + 1) : '0' + (fullDate.getMonth() + 1);
+                        var currentDate = fullDate.getFullYear() + "-" + twoDigitMonth + "-" + fullDate.getDate();
+                        // We convert the three dates to a integer for comparison in an if statement
+                        var currDate = Date.parse(currentDate);
+                        var fromDate = Date.parse(engineer.note.visible_from);
+                        // We set a tilldate variable for in our if statements later. If an end date is set it should do more checks
+                        var tillDate = null;
+                        if (engineer.note.visible_until !== null) {
+                            tillDate = Date.parse(engineer.note.visible_until);
+                        }
+
+                        // We compare the dates to see if the note button should be displayed
+                        if (currDate === fromDate || currDate > fromDate) {
+                            if (tillDate === null || currDate === tillDate || currDate < tillDate) {
+
+                                $(".note-popover").css("visibility", "visible");
+                                // Options for the popover note
+                                var options = {
+                                    //container: 'body',
+                                    content: function () {
+                                        var until;
+                                        if (engineer.note.visible_until !== null) {
+                                            until = engineer.note.visible_until;
+                                        } else {
+                                            until = "no end date set";
+                                        }
+                                        return '<div class="row">'
+                                                + '<div class="col-xs-1"><i class="fa fa-fw fa-hourglass-start"></i></div><div class="col-xs-8">' + engineer.note.visible_from + '</div>'
+                                                + '</div><div class="row">'
+                                                + '<div class="col-xs-1"><i class="fa fa-fw fa-hourglass-end"></i></div><div class="col-xs-8">' + until + '</div>'
+                                                + '</div>'
+                                                + '<hr>'
+                                                + '<div class="row"><div class="col-xs-12">' + engineer.note.content + '</div></div>'
+                                                ;
+
+                                    },
+                                    html: true,
+                                    placement: 'left'
+                                };
+                                // We set the popover
+                                $(".note-popover").popover(options);
                             }
                         }
                     }
@@ -115,7 +167,9 @@ $(document).ready(function () {
 
         // The event where the close button in the engineer panel is clicked
         $(".close-engineerpanel").on("click", function () {
+            // Adjust the CSS of different elements for correct diplay when the close button is clicked
             $(".star").css("display", "none");
+            $(".note-popover").css("visibility", "hidden");
             $(".card .panel-body").css("height", "calc(100% - 45px");
             // Works the same as the toggle
             engineerTable.$('tr.selected').removeClass('selected');
@@ -124,7 +178,7 @@ $(document).ready(function () {
             engineer = {};
             // We clear the datatable and reset it with the new engineers
             redrawProductTable(proData);
-            
+
             // We compare the html elements. If they are the same a class selected will be added
             addSelectedItemProduct();
         });
@@ -133,6 +187,7 @@ $(document).ready(function () {
         $(".refreshbutton").click(function () {
             // Hide the engineer panel on refresh
             $(".card").css("visibility", "hidden");
+            $(".note-popover").css("visibility", "hidden");
             // We clear the engineer search field
             // After that we redraw the table with no input
             $('.search-engineer').val("");
@@ -143,13 +198,6 @@ $(document).ready(function () {
             // Resets the engineer table with all engineers
             redrawEngineerTable(engData);
         });
-        
-        // Options for the popover note
-        var options = {
-            content: "And here's some amazing content. It's very engaging. Right?",
-            placement: 'left'
-        };
-        
-        $(".note-popover").popover(options);
+
     });
 });

@@ -168,9 +168,30 @@ tr.even.selected {
     text-shadow: 0 1px 0 #000;
     opacity: 1;
 }
-.note {
+
+/* Styling for the note part in the skill matrix */
+/* The max width is dependant on the container (more info below) */
+.popover{
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
+    width: 100%;
+}
+
+.popover hr{
+    margin: 10px;
+}
+
+.popover .fa {
+    color: rgb(5, 133, 205);
+}
+
+.popover-content {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.note-popover {
     float: right;
-    cursor: pointer;
+    visibility: hidden;
 }
 
 .fa-copy {
@@ -220,13 +241,4 @@ tr.even.selected {
 .engineers .panel-body,
 .products .panel-body {
     padding-top: 0px;
-}
-
-.popover fade right in {
-    width: 100%;
-}
-
-/* The max width is dependant on the container (more info below) */
-.popover{
-    max-width: 100%; /* Max Width of the popover (depending on the container!) */
 }
