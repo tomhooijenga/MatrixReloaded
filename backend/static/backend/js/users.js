@@ -52,6 +52,12 @@ $(function () {
     $table.on('click', 'tr', function () {
         var data = table.row(this).data();
 
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+          return "Details";
+        });
+
+
         // The group was expanded for the datatable. Reduce it to work with the form
         if (data.groups[0] && typeof data.groups[0] === 'object') {
             data.groups = data.groups.map(function (group) {
@@ -66,6 +72,12 @@ $(function () {
         e.stopPropagation();
 
         var data = table.row($(this).closest('tr')).data();
+
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+          return "Edit user";
+        });
+
 
         if (data.groups[0] && typeof data.groups[0] === 'object') {
             data.groups = data.groups.map(function (group) {
@@ -83,6 +95,12 @@ $(function () {
             .prop('action', '/api/users/')
             .form('editable', true)
             .form('clear');
+
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+          return "Add user";
+        });
+
     });
 
     $form.on('click', '.btn-danger', function () {

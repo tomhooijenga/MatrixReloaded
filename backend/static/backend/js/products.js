@@ -40,6 +40,10 @@ $(document).ready(function () {
     $table.on('click', 'tr', function () {
         var data = table.row(this).data(),
             category = data.category;
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+          return "Details";
+        });
 
         // Set the category to its URL
         data.category = category.url;
@@ -54,6 +58,11 @@ $(document).ready(function () {
         var $parent = $(this).closest('tr'),
             data = table.row($parent).data(),
             category = data.category;
+
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+          return "Edit product";
+        });
 
         // Set the category to its URL
         data.category = category.url;
@@ -73,6 +82,11 @@ $(document).ready(function () {
             .form('editable', true)
             .prop('action', '/api/products/')
             .data('method', 'post');
+
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+          return "Add product";
+        });
     });
 
     $form.on('submit', function (e) {
