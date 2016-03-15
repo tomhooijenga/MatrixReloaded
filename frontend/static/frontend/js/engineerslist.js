@@ -52,6 +52,7 @@ $(document).ready(function () {
         engineerTable.on('click', 'tr>td', function () {
 
             $(".star").css("display", "none");
+            $(".note-popover").css("visibility", "hidden");
             $(".card .panel-body").css("height", "calc(100% - 45px");
 
             // We set the data of the clicked row in a variable for later use
@@ -85,7 +86,7 @@ $(document).ready(function () {
                     // We save the data from the table row
                     var data = engineerTable.row(tr).data();
                     engineer = data;
-
+                    console.log(data.note);
                     // The section below is required to show the skill level on the selected product.  
                     for (var key in product.skills) {
                         for (var val in engineer.skills) {
@@ -94,6 +95,37 @@ $(document).ready(function () {
                                 $(".card .panel-body").css("height", "calc(100% - 65px");
                             }
                         }
+                    }
+                    
+                    // Check if the note is not null
+                    // If it's not null we display the note of the engineer
+                    if (engineer.note != null) {
+                        $(".note-popover").css("visibility", "visible");
+                        // Options for the popover note
+                        var options = {
+                            container: 'body',
+                            content: function () {
+                                var till;
+                                if (engineer.note.visible_until != null) {
+                                    till = engineer.note.visible_until;
+                                } else {
+                                    till = "No end date set";
+                                }
+                                return '<div class="row">'
+                                + '<div class="col-xs-1"><i class="fa fa-fw fa-hourglass-start"></i></div><div class="col-xs-8">' + engineer.note.visible_from + '</div>'
+                                + '</div><div class="row">'
+                                + '<div class="col-xs-1"><i class="fa fa-fw fa-hourglass-end"></i></div><div class="col-xs-8">' + till + '</div>'
+                                + '</div>'
+                                + '<hr>'
+                                + '<div class="row"><div class="col-xs-12">' + engineer.note.content + '</div></div>'
+                                ;
+                         
+                            },
+                            html : true,
+                            placement: 'left'
+                        };
+
+                        $(".note-popover").popover(options);
                     }
 
                     // Fill the card with data and make the card read-only
@@ -143,13 +175,6 @@ $(document).ready(function () {
             // Resets the engineer table with all engineers
             redrawEngineerTable(engData);
         });
-        
-        // Options for the popover note
-        var options = {
-            content: "And here's some amazing content. It's very engaging. Right?",
-            placement: 'left'
-        };
-        
-        $(".note-popover").popover(options);
+       
     });
 });
