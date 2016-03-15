@@ -61,8 +61,8 @@ tr {
 }
 
 .main header {
-    height: 15vh;
-    padding-top: 5vh;
+    height: 100px;
+    padding-top: 33px;
 }
 
 .main header > h1 {

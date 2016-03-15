@@ -54,7 +54,15 @@ input.form-control.search-engineer {
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
-.stars .fa-star {
+.stars .fa-star  {
+    color: #FF801A ;
+}
+
+.stars .fa-star-o  {
+    color: #FF801A ;
+}
+
+.stars .fa-shirtsinbulk  {
     color: #FF801A ;
 }
 
