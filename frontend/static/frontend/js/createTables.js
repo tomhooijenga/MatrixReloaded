@@ -36,8 +36,13 @@ function createEngineerTable(jsonUrl) {
             {data: "first_name"},
             {data: "last_name"},
             {
-                render: function () {
-                    return 'FSS / ASP';
+                data: "type",
+                render: function (data) {
+                    if (data === 0) {
+                        return "FSE";
+                    } else {
+                        return "ASP";
+                    }
                 },
                 orderable: false,
                 searchable: false},
@@ -61,7 +66,18 @@ function createProductTable() {
         "columns": [
             {data: "category.parent.short_name"},
             {data: "category.short_name"},
-            {data: "name"}
+            {data: "name"},
+            {
+                data: "is_crosslab",
+                render: function (data) {
+                    if (data === true) {
+                        return '<i class="fa fa-check"></i>';
+                    } else {
+                        return "";
+                    }
+                },
+                //orderable: false,
+                searchable: false}
         ]
     });
     return table;

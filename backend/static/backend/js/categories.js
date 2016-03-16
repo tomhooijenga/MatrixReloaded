@@ -21,6 +21,8 @@ $(function () {
         $child = $("#child-form"),
         $children = $('#child-categories'),
         $template = $($('#category-template').html()),
+        $card = $('.card'),
+        addNew,
         table = $table.DataTable({
             paging: false,
             info: false,
@@ -41,6 +43,7 @@ $(function () {
     reload();
 
     $('.add-new').on('click', function () {
+        addNew = true;
         $parent.form('clear')
             .form('editable', true)
             .prop('action', '/api/categories/')
@@ -58,6 +61,7 @@ $(function () {
     var row = null;
 
     $table.on('click', 'tr', function () {
+        addNew = false;
         row = this;
 
         var data = table.row(this).data();
@@ -77,6 +81,7 @@ $(function () {
 
         $children.form('editable', false);
     }).on('click', '.edit', function (e) {
+        addNew = false;
         e.stopPropagation();
 
         row = $(this).closest('tr');
@@ -115,6 +120,12 @@ $(function () {
                 successToast('Category was saved');
             })
             .fail(errorToast);
+    
+        if (addNew === true) {
+            $card.hide();
+        } else {
+            $card.show();
+        }
     });
 
     $child.on('submit', function (e) {
