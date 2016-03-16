@@ -21,6 +21,10 @@ input.form-control.search-engineer {
     overflow: auto;
 }
 
+.products .fa {
+    color: rgb(5, 133, 205);
+}
+
 .productdetails {
     visibility: hidden;
 }
@@ -98,6 +102,10 @@ table.click {
     background-color: #0085d5;
     color: white;
     cursor: pointer;
+}
+
+.clickinfo tbody tr:hover .fa {
+    color: white;
 }
 
 .click th {
@@ -235,6 +243,11 @@ tr.even.selected {
 tr.odd.selected,
 tr.even.selected {
     background-color: rgb(5, 133, 205);
+    color: white;
+}
+
+tr.odd.selected .fa,
+tr.even.selected .fa {
     color: white;
 }
 

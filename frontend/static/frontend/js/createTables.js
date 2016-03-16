@@ -66,7 +66,18 @@ function createProductTable() {
         "columns": [
             {data: "category.parent.short_name"},
             {data: "category.short_name"},
-            {data: "name"}
+            {data: "name"},
+            {
+                data: "is_crosslab",
+                render: function (data) {
+                    if (data === true) {
+                        return '<i class="fa fa-check"></i>';
+                    } else {
+                        return "";
+                    }
+                },
+                //orderable: false,
+                searchable: false}
         ]
     });
     return table;
