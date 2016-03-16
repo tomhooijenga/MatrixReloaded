@@ -36,8 +36,13 @@ function createEngineerTable(jsonUrl) {
             {data: "first_name"},
             {data: "last_name"},
             {
-                render: function () {
-                    return 'FSS / ASP';
+                data: "type",
+                render: function (data) {
+                    if (data === 0) {
+                        return "FSE";
+                    } else {
+                        return "ASP";
+                    }
                 },
                 orderable: false,
                 searchable: false},
