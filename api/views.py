@@ -101,7 +101,7 @@ class EngineerViewSet(viewsets.ModelViewSet):
         if countries is not None:
             # Convert to list of country codes
             countries = countries.upper().split(',')
-            queryset = queryset.filter(countries__code__in=countries)
+            queryset = queryset.filter(countries__code__in=countries).distinct()
 
         # filter by active status. Is actually 3 values:
         # true: active only
