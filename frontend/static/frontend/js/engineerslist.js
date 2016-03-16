@@ -102,8 +102,9 @@ $(document).ready(function () {
                     if (engineer.note !== null) {
                         // Variables for the current date in string format
                         var fullDate = new Date();
-                        //convert month to 2 digits
+                        // Convert month to 2 digits
                         var twoDigitMonth = ((fullDate.getMonth().length + 1) === 1) ? (fullDate.getMonth() + 1) : '0' + (fullDate.getMonth() + 1);
+                        // Convert the current date to string format for comparison later
                         var currentDate = fullDate.getFullYear() + "-" + twoDigitMonth + "-" + fullDate.getDate();
                         // We convert the three dates to a integer for comparison in an if statement
                         var currDate = Date.parse(currentDate);
@@ -115,9 +116,9 @@ $(document).ready(function () {
                         }
 
                         // We compare the dates to see if the note button should be displayed
-                        if (currDate === fromDate || currDate > fromDate) {
-                            if (tillDate === null || currDate === tillDate || currDate < tillDate) {
-
+                        if (currDate >= fromDate) {
+                            if (tillDate === null || currDate <= tillDate) {
+                                // We show the popover icon
                                 $(".note-popover").css("visibility", "visible");
                                 // Options for the popover note
                                 var options = {
