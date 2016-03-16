@@ -65,7 +65,7 @@
                             </label>
                             <div class="col-xs-10">
                                 <textarea id="content" class="form-control" name="content" placeholder="Content&hellip;"
-                                          required></textarea>
+                                          maxlength="254" required></textarea>
                             </div>
                         </div>
                     </fieldset>
@@ -128,7 +128,10 @@
                         <legend>Details</legend>
 
                         <div class="form-group">
-                            <div class="col-xs-5 col-xs-offset-2">
+                            <label for="email" class="col-xs-2 control-label">
+                                    <i class="fa fa-fw fa-male"></i>
+                            </label>
+                            <div class="col-xs-5">
                                 <input name="first-name" class="form-control" placeholder="First name" maxlength="100"
                                        required>
                             </div>
@@ -180,7 +183,7 @@
 
                         <div class="form-group">
                             <label for="type" class="col-xs-2 control-label">
-                                <i class="fa"></i>
+                                <i class="fa fa-fw fa-tag"></i>
                             </label>
                             <div class="col-xs-10">
                                 <select id="type" name="type" class="form-control" placeholder="Type" required>
@@ -218,7 +221,7 @@
 
                         <div class="form-group">
                             <label for="street" class="col-xs-2 control-label">
-                                <i class="fa fa-fw fa-home"></i>
+                                <i class="fa fa-fw fa-map-signs"></i>
                             </label>
                             <div class="col-xs-10">
                                 <input id="street" name="street" class="form-control" type="text" placeholder="Address"
@@ -228,7 +231,7 @@
 
                         <div class="form-group">
                             <label for="zip-code" class="col-xs-2 control-label">
-                                <i class="fa fa-fw fa-road"></i>
+                                <i class="fa fa-fw fa-map-pin"></i>
                             </label>
                             <div class="col-xs-10">
                                 <input id="zip-code" name="zip-code" class="form-control" type="text"
@@ -262,6 +265,16 @@
                         <legend>Car</legend>
 
                         <div class="form-group">
+                            <label for="license-plate" class="col-xs-2 control-label">
+                                <i class="fa fa-fw  fa-road"></i>
+                            </label>
+                            <div class="col-xs-10">
+                                <input id="license-plate" name="license-plate" class="form-control" type="text"
+                                       placeholder="License plate" maxlength="10" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label for="car-type" class="col-xs-2 control-label">
                                 <i class="fa fa-fw fa-car"></i>
                             </label>
@@ -269,16 +282,6 @@
                                 <input id="car-type" name="car-type" class="form-control" type="text"
                                        placeholder="Brand and model"
                                        maxlength="100" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="license-plate" class="col-xs-2 control-label">
-                                <i class="fa fa-fw  fa-road"></i>
-                            </label>
-                            <div class="col-xs-10">
-                                <input id="license-plate" name="license-plate" class="form-control" type="text"
-                                       placeholder="License plate" maxlength="10" required>
                             </div>
                         </div>
 

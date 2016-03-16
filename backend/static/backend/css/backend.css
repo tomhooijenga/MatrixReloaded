@@ -61,8 +61,8 @@ tr {
 }
 
 .main header {
-    height: 15vh;
-    padding-top: 5vh;
+    height: 100px;
+    padding-top: 33px;
 }
 
 .main header > h1 {
@@ -259,4 +259,14 @@ div#DataTables_Table_0_filter label {
 
 .child .table tr:first-child > td {
     border-top: none;
+}
+
+.panel-default > .panel-heading {
+    background-color: rgba(102, 102, 102, 1);
+    color: white;
+}
+
+.card .panel-body{
+    overflow: auto;
+    height: calc(100% - 41px);
 }
