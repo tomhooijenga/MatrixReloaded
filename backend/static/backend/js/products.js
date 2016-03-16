@@ -1,6 +1,8 @@
 $(document).ready(function () {
     var $table = $('.table'),
-        $form = $('#card').find('form');
+        $form = $('#card').find('form'),
+        $card = $('.card'),
+        addNew;
 
     // We initialize the DataTable with the json file required for the products page
     var table = $table.DataTable({
@@ -38,6 +40,7 @@ $(document).ready(function () {
     });
 
     $table.on('click', 'tr', function () {
+        addNew = false;
         var data = table.row(this).data(),
             category = data.category;
         // Add titel
@@ -53,6 +56,7 @@ $(document).ready(function () {
         // Restore the original category object
         data.category = category;
     }).on('click', '.edit', function (e) {
+        addNew = false;
         e.stopPropagation();
 
         var $parent = $(this).closest('tr'),
@@ -76,6 +80,7 @@ $(document).ready(function () {
     });
 
     $('.add-new').on('click', function () {
+        addNew = true;
         // Empty the form
         // Make the details form editable and set it's action and method
         $form.form('clear')
@@ -105,6 +110,11 @@ $(document).ready(function () {
             })
             // Error
             .fail(errorToast);
+            if (addNew === true) {
+                $card.hide();
+            } else {
+                $card.show();
+            }
     });
 
     $.getJSON('/api/categories/?expand=children').done(function (data) {

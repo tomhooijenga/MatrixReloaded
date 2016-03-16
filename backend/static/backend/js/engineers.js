@@ -7,7 +7,9 @@ $(document).ready(function () {
         $add = $('.add-new'),
         $edit = $carousel.find('.engineer-edit'),
         $note = $carousel.find('.engineer-note'),
-        $skills = $carousel.find('.engineer-skills');
+        $skills = $carousel.find('.engineer-skills'),
+        $card = $('.card'),
+        addNew;
 
     // This cookie holds the current selected countries
     var cookie = getCookie("countries");
@@ -70,6 +72,7 @@ $(document).ready(function () {
     });
 
     $table.on('click', 'tr', function (e) {
+        addNew = false;
         // Ignore clicks that started on the edit links. We can't use `stopPropagation`
         // on the link handlers because that breaks the carousel navigation
         if ($(e.target).is('a') === false) {
@@ -85,6 +88,7 @@ $(document).ready(function () {
     });
 
     $table.on('click', '.note', function () {
+        addNew = false;
         var parent = $(this).closest('tr'),
             data = table.row(parent).data();
             $( ".panel-heading" ).text(function( x ) {
@@ -96,6 +100,7 @@ $(document).ready(function () {
             .form(data)
             .form(data.note);
     }).on('click', '.skills', function () {
+        addNew = false;
         // find closest parent
         // grab this row's data
         // find the skills list
@@ -150,6 +155,7 @@ $(document).ready(function () {
             $list.html($html);
         });
     }).on('click', '.edit', function () {
+        addNew = false;
         var parent = $(this).closest('tr'),
             data = table.row(parent).data();
         // Add titel
@@ -232,10 +238,16 @@ $(document).ready(function () {
             })
             // Error
             .fail(errorToast);
+            if (addNew === true) {
+                $card.hide();
+            } else {
+                $card.show();
+            }
     });
 
 
     $add.on('click', function () {
+        addNew = true;
         // Empty the form
         // Add titel
         $( ".panel-heading" ).text(function( x ) {

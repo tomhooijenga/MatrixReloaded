@@ -1,5 +1,7 @@
 $(function () {
     var $table = $('.table'),
+        $card = $('.card'),
+        addNew,
         table = $table.DataTable({
             ajax: {
                 url: '/api/users/?expand=groups',
@@ -50,6 +52,7 @@ $(function () {
     var $form = $('#card').find('form');
 
     $table.on('click', 'tr', function () {
+        addNew = false;
         var data = table.row(this).data();
 
         // Add titel
@@ -69,6 +72,7 @@ $(function () {
             .form('editable', false)
             .form(data);
     }).on('click', '.edit', function (e) {
+        addNew = false;
         e.stopPropagation();
 
         var data = table.row($(this).closest('tr')).data();
@@ -91,12 +95,13 @@ $(function () {
     });
 
     $('.add-new').on('click', function () {
+        addNew = true;
         $form.data('method', 'post')
             .prop('action', '/api/users/')
             .form('editable', true)
             .form('clear');
 
-        // Add titel
+        // Add title
         $( ".panel-heading" ).text(function( x ) {
           return "Add user";
         });
@@ -124,5 +129,10 @@ $(function () {
             successToast("User is saved.");
 
         }).fail(errorToast)
+        if (addNew === true) {
+            $card.hide();
+        } else {
+            $card.show();
+        }
     })
 });
