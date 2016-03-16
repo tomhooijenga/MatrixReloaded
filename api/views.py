@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import Group
 from rest_framework import status
 from rest_framework import viewsets, mixins
@@ -32,6 +33,10 @@ class UserViewSet(viewsets.ModelViewSet):
         form.save(request=request)
 
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def perform_create(self, serializer):
+        # Set an unusable password
+        serializer.save(password=make_password(None))
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
@@ -111,19 +116,14 @@ class EngineerViewSet(viewsets.ModelViewSet):
 
         return queryset
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
+    def perform_create(self, serializer):
+        serializer.save()
 
         # give the fresh engineer a note
         note = models.Note()
         note.engineer = serializer.instance
         note.save()
 
-        headers = self.get_success_headers(serializer.data)
-
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class EngineerCountriesViewSet(mixins.RetrieveModelMixin,

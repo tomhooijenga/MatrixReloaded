@@ -164,7 +164,7 @@ class Engineer(models.Model):
 
     # The type of engineer.
     type = models.SmallIntegerField(choices=(
-        (0, 'FSS'),
+        (0, 'FSE'),
         (1, 'ASP')
     ))
 
@@ -239,6 +239,9 @@ class Skill(models.Model):
         MinValueValidator(1),
         MaxValueValidator(4)
     ])
+
+    # Is the engineer a specialist in this skill?
+    is_fss = models.BooleanField(default=False)
 
     class Meta:
         # Ensure there's always only one combination of engineer and product

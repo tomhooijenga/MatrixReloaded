@@ -123,8 +123,8 @@ $(document).ready(function () {
                 $tpl.data('skill', skill);
 
                 $tpl.find('.skill-name').text(skill.product.name);
-
-                $tpl.find('input').val(skill.level);
+                $tpl.find('.skill-level').val(skill.level);
+                $tpl.find('.skill-fss').prop('checked', skill.is_fss);
 
                 $html = $html.add($tpl);
 
@@ -150,7 +150,7 @@ $(document).ready(function () {
     });
 
     $skills.find('.list-group')
-        .on('click', '.btn-danger', function () {
+        .on('click', '.close', function () {
             if (!confirm('Are you sure you want to delete this skill?')) {
                 return;
             }
@@ -176,7 +176,7 @@ $(document).ready(function () {
                 $('#skills-select').select2();
             });
         })
-        .on('change', 'input[type="number"]', function () {
+        .on('click', '.submit', function () {
             var $this = $(this),
                 $item = $this.closest('.list-group-item'),
                 skill = $item.data('skill'),
@@ -190,7 +190,8 @@ $(document).ready(function () {
             request = $.ajax({
                 url: skill.url,
                 data: {
-                    level: $this.val()
+                    is_fss: $item.find('.skill-fss').val(),
+                    level: $item.find('.skill-level').val()
                 },
                 method: 'patch'
             }).done(function () {
@@ -295,12 +296,14 @@ $(document).ready(function () {
                     skill = {
                         engineer: engineer.url,
                         product: products[val[0]],
-                        level: 1
+                        level: 1,
+                        is_fss: false
                     };
 
                 $tpl.data('skill', skill);
                 $tpl.find('.skill-name').text(skill.product.name);
-                $tpl.find('input').val(skill.level);
+                $tpl.find('.skill-level').val(skill.level);
+                $tpl.find('.skill-fss').prop('checked', skill.is_fss);
 
                 $skills.find('.list-group').append($tpl);
 

@@ -153,11 +153,8 @@
                                 <i class="fa fa-fw fa-phone"></i>
                             </label>
                             <div class="col-xs-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">+</span>
-                                    <input id="phone" name="phone" class="form-control" type="tel" maxlength="31"
-                                           required placeholder="Phone number" pattern="^\+[1-9]{1,31}">
-                                </div>
+                                <input id="phone" name="phone" class="form-control" type="tel" maxlength="31"
+                                       required placeholder="Phone number" pattern="^\+[1-9]{1,31}">
                             </div>
                         </div>
 
@@ -348,19 +345,21 @@
 
     <script type="text/html" id="skill-template">
         <li class="list-group-item">
+            <button type="button" class="close">&times;</button>
+            <div class="skill-name form-group"></div>
             <div class="row">
-                <div class="col-xs-7 skill-name">
-
+                <div class="col-xs-3 checkbox">
+                    <label>
+                        <input class="skill-fss" type="checkbox" value="true"> FSS
+                    </label>
+                </div>
+                <div class="col-xs-4">
+                    <input type="number" min="1" max="4" class="form-control skill-level" />
                 </div>
                 <div class="col-xs-5">
-                    <div class="input-group">
-                        <input type="number" min="1" max="4" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-danger" type="button">
-                                <i class="fa fa-fw fa-times"></i>
-                            </button>
-                        </span>
-                    </div>
+                    <button type="button" class="btn btn-default btn-block submit">
+                        Submit
+                    </button>
                 </div>
             </div>
         </li>

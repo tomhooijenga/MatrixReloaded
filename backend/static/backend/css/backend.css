@@ -173,9 +173,26 @@ div#DataTables_Table_0_filter label {
     display: none;
 }
 
-.engineer-skills .btn {
-    padding-left: 0;
-    padding-right: 0;
+.engineer-skills {
+    margin-bottom: 0;
+}
+
+.engineer-skills .skill-name {
+    font-weight: bold;
+}
+
+.engineer-skills .close {
+    color: #333333;
+}
+
+.engineer-skills .list-group .row {
+    margin: 0 -5px;
+}
+
+.engineer-skills .list-group .col-xs-3,
+.engineer-skills .list-group .col-xs-4,
+.engineer-skills .list-group .col-xs-5 {
+    padding: 0 5px;
 }
 
 /*Styling for the country button. Below we give the fa-globe icon the color of the logo */
