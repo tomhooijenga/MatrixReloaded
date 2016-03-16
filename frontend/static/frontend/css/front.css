@@ -180,10 +180,6 @@ tr.even.selected {
     margin: 10px;
 }
 
-.popover .fa {
-    color: rgb(5, 133, 205);
-}
-
 .popover-content {
     padding-left: 10px;
     padding-right: 10px;
@@ -192,6 +188,10 @@ tr.even.selected {
 .note-popover {
     float: right;
     visibility: hidden;
+}
+
+.note .fa {
+    color: #FF801A;
 }
 
 .fa-copy {
