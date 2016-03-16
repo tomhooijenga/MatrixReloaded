@@ -41,7 +41,7 @@
                 <i class="fa fa-header"></i>
             </label>
             <div class="col-xs-10">
-                <input id="name" name="name" class="form-control" type="text"
+                <input id="name" name="name" class="form-control" type="text" data-toggle="tooltip" data-placement="top" title="Product name" 
                        maxlength="100" placeholder="Name">
             </div>
         </div>
@@ -65,6 +65,11 @@
 
 {% block javascript %}
     {{ block.super }}
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+    });
+    </script>
 
     <script src="{% static "backend/js/products.js" %}"></script>
 {% endblock %}
