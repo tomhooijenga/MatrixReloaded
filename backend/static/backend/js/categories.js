@@ -42,6 +42,7 @@ $(function () {
 
     $('.add-new').on('click', function () {
         $parent.form('clear')
+            .form('editable', true)
             .prop('action', '/api/categories/')
             .data('method', 'post');
 
