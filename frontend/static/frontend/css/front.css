@@ -48,10 +48,6 @@ input.form-control.search-engineer {
     display: none;
 }
 
-.fa-shirtsinbulk {
-    display: none;
-}
-
 .card .panel-body {
     overflow: auto;
     height: calc(100% - 45px);
@@ -70,8 +66,11 @@ input.form-control.search-engineer {
     color: #FF801A ;
 }
 
-.stars .fa-shirtsinbulk  {
+.stars .FSS  {
     color: #FF801A ;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    margin-left: 6px;
+    display: none;
 }
 
 .table thead {
