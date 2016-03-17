@@ -201,7 +201,12 @@ $(document).ready(function () {
                 $item = $this.closest('.list-group-item'),
                 skill = $item.data('skill'),
                 request = $item.data('skill.request');
-
+            
+            // We set the value of the skill-fss on true it's checked, and false if it's not checked
+            if($('.skill-fss').is(':checked')) {
+                $('.skill-fss').val(true);
+            } else { $('.skill-fss').val(false); }
+            
             // We've already got a request going, so cancel it.
             if (request) {
                 request.abort()
