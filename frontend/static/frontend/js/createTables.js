@@ -71,7 +71,7 @@ function createProductTable() {
                 data: "is_crosslab",
                 render: function (data) {
                     if (data === true) {
-                        return '<i class="fa fa-check"></i>';
+                        return '<i class="fa fa-check crosslab"></i>';
                     } else {
                         return "";
                     }
