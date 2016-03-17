@@ -124,37 +124,38 @@ $(document).ready(function () {
                         if (engineer.note.visible_until !== null) {
                             tillDate = Date.parse(engineer.note.visible_until);
                         }
+                        if (engineer.note.content.length > 0) {
+                            // We compare the dates to see if the note button should be displayed
+                            if (currDate >= fromDate) {
+                                if (tillDate === null || currDate <= tillDate) {
+                                    // We show the popover icon
+                                    $note_popover.show();
+                                    // Options for the popover note
+                                    var options = {
+                                        //container: 'body',
+                                        content: function () {
+                                            var until;
+                                            if (engineer.note.visible_until !== null) {
+                                                until = engineer.note.visible_until;
+                                            } else {
+                                                until = "no end date set";
+                                            }
+                                            return '<div class="row">'
+                                                    + '<div class="col-xs-1"><i class="fa fa-fw fa-hourglass-start"></i></div><div class="col-xs-8">' + engineer.note.visible_from + '</div>'
+                                                    + '</div><div class="row">'
+                                                    + '<div class="col-xs-1"><i class="fa fa-fw fa-hourglass-end"></i></div><div class="col-xs-8">' + until + '</div>'
+                                                    + '</div>'
+                                                    + '<hr>'
+                                                    + '<div class="row"><div class="col-xs-12">' + engineer.note.content + '</div></div>'
+                                                    ;
 
-                        // We compare the dates to see if the note button should be displayed
-                        if (currDate >= fromDate) {
-                            if (tillDate === null || currDate <= tillDate) {
-                                // We show the popover icon
-                                $note_popover.show();
-                                // Options for the popover note
-                                var options = {
-                                    //container: 'body',
-                                    content: function () {
-                                        var until;
-                                        if (engineer.note.visible_until !== null) {
-                                            until = engineer.note.visible_until;
-                                        } else {
-                                            until = "no end date set";
-                                        }
-                                        return '<div class="row">'
-                                                + '<div class="col-xs-1"><i class="fa fa-fw fa-hourglass-start"></i></div><div class="col-xs-8">' + engineer.note.visible_from + '</div>'
-                                                + '</div><div class="row">'
-                                                + '<div class="col-xs-1"><i class="fa fa-fw fa-hourglass-end"></i></div><div class="col-xs-8">' + until + '</div>'
-                                                + '</div>'
-                                                + '<hr>'
-                                                + '<div class="row"><div class="col-xs-12">' + engineer.note.content + '</div></div>'
-                                                ;
-
-                                    },
-                                    html: true,
-                                    placement: 'left'
-                                };
-                                // We set the popover
-                                $note_popover.popover(options);
+                                        },
+                                        html: true,
+                                        placement: 'left'
+                                    };
+                                    // We set the popover
+                                    $note_popover.popover(options);
+                                }
                             }
                         }
                     }
