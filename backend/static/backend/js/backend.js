@@ -45,7 +45,9 @@ $(function () {
 
     $('.table').on('click', 'tr, .edit', function () {
         $('#card').show();
-    })
+    });
+
+    $(':input[title]').tooltip();
 });
 
 function errorToast(response) {

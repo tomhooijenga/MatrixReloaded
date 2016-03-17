@@ -49,7 +49,8 @@ $(function () {
         });
     });
 
-    var $form = $('#card').find('form');
+    var $form = $('#card').find('form'),
+        $reset = $form.find('.reset');
 
     $table.on('click', 'tr', function () {
         addNew = false;
@@ -78,9 +79,7 @@ $(function () {
         var data = table.row($(this).closest('tr')).data();
 
         // Add titel
-        $( ".panel-heading" ).text(function( x ) {
-          return "Edit user";
-        });
+        $( ".panel-heading" ).text('Edit user');
 
 
         if (data.groups[0] && typeof data.groups[0] === 'object') {
@@ -92,6 +91,8 @@ $(function () {
         $form.data('method', 'patch')
             .form('editable', true)
             .form(data);
+
+        $reset.show();
     });
 
     $('.add-new').on('click', function () {
@@ -101,11 +102,9 @@ $(function () {
             .form('editable', true)
             .form('clear');
 
+        $reset.hide();
         // Add title
-        $( ".panel-heading" ).text(function( x ) {
-          return "Add user";
-        });
-
+        $( ".panel-heading" ).text('Add user');
     });
 
     $form.on('click', '.btn-danger', function () {
