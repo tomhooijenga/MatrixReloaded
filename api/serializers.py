@@ -1,3 +1,4 @@
+from datetime import date
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group, Permission
 from expander import ExpanderSerializerMixin
@@ -100,11 +101,17 @@ class NoteSerializer(serializers.HyperlinkedModelSerializer):
     This class is responsible for the serialization of the 'Note' model
     """
 
-    # Explicitly add this field as DRF makes field with 'auto_now' read only
-    visible_from = serializers.DateField(required=False)
+    visible_from = serializers.DateField(default=date.today)
 
     class Meta:
         model = models.Note
+
+    def validate(self, data):
+        if 'visible_until' in data:
+            if data['visible_until'] < data['visible_from']:
+                raise serializers.ValidationError('visible_until must be after visible_from');
+
+        return data
 
 
 class EngineerSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSerializer):

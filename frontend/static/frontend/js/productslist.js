@@ -30,6 +30,7 @@ $(document).ready(function () {
         productTable.on('click', 'tr>td', function () {
 
             $(".star").css("display", "none");
+            $(".FSS").hide();
             $(".card .panel-body").css("height", "calc(100% - 45px");
 
             // We set the data of the clicked row in a variable for later use
@@ -73,6 +74,10 @@ $(document).ready(function () {
                             if (engineer.skills[key].url === product.skills[val].url) {
                                 $('.level-' + product.skills[val].level).toggle();
                                 $(".card .panel-body").css("height", "calc(100% - 65px");
+                                // If the engineer is FSS, show FSS
+                                if (product.skills[val].is_fss === true){
+                                    $('.FSS').show();
+                                }
                             }
                         }
                     }

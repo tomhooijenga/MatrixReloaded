@@ -12,13 +12,17 @@ input.form-control.search-engineer {
 }
 
 .panel-default > .panel-heading {
-    background-color: rgba(102, 102, 102, 0.8);
+    background-color: rgba(102, 102, 102, 1);
     color: white;
 }
 
 .panel {
     margin: 2vh 0;
     overflow: auto;
+}
+
+.products .fa {
+    color: rgb(5, 133, 205);
 }
 
 .productdetails {
@@ -54,8 +58,19 @@ input.form-control.search-engineer {
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
-.stars .fa-star {
+.stars .fa-star  {
     color: #FF801A ;
+}
+
+.stars .fa-star-o  {
+    color: #FF801A ;
+}
+
+.stars .FSS  {
+    color: #FF801A ;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    margin-left: 6px;
+    display: none;
 }
 
 .table thead {
@@ -90,6 +105,10 @@ table.click {
     background-color: #0085d5;
     color: white;
     cursor: pointer;
+}
+
+.clickinfo tbody tr:hover .fa {
+    color: white;
 }
 
 .click th {
@@ -161,6 +180,31 @@ tr.even.selected {
     opacity: 1;
 }
 
+/* Styling for the note part in the skill matrix */
+/* The max width is dependant on the container (more info below) */
+.popover{
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
+    width: 100%;
+}
+
+.popover hr{
+    margin: 10px;
+}
+
+.popover-content {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.note-popover {
+    float: right;
+    visibility: hidden;
+}
+
+.note .fa {
+    color: #FF801A;
+}
+
 .fa-copy {
     cursor: pointer;
 }
@@ -202,6 +246,11 @@ tr.even.selected {
 tr.odd.selected,
 tr.even.selected {
     background-color: rgb(5, 133, 205);
+    color: white;
+}
+
+tr.odd.selected .fa,
+tr.even.selected .fa {
     color: white;
 }
 

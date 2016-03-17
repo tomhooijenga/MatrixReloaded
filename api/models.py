@@ -1,8 +1,11 @@
+import datetime
+
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin
 )
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.db.models import Q
 from django.utils.crypto import get_random_string
 
 
@@ -52,7 +55,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
 
     # Is this user enabled?
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True, db_index=True)
 
     # Name of the field that uniquely identifies a User
     USERNAME_FIELD = 'email'
@@ -106,10 +109,10 @@ class Engineer(models.Model):
     last_name = models.CharField(max_length=100)
 
     # The location code where supplies should be dropped
-    droppoint = models.CharField(max_length=20)
+    droppoint = models.CharField(max_length=255)
 
     # Employee's phone number
-    phone = models.CharField(max_length=11)
+    phone = models.CharField(max_length=31)
 
     # Employee's email
     email = models.EmailField()
@@ -117,7 +120,7 @@ class Engineer(models.Model):
     # VCA number. Empty if employee doesn't have a VCA
     vca_number = models.CharField(max_length=20, null=True)
 
-    # VCA Expiry date. Empty if employee doesn't have a VCA
+    # VCA expiry date. Empty if employee doesn't have a VCA
     vca_date = models.DateField(null=True)
 
     # Employee's car brand and model. Example: Audi A5
@@ -150,7 +153,7 @@ class Engineer(models.Model):
     languages = models.ManyToManyField(Language, related_name='engineers')
 
     # Whether this employee is still active or not
-    is_active = models.BooleanField(db_index=True)
+    is_active = models.BooleanField(default=True, db_index=True)
 
     # A picture of the engineer
     image = models.ImageField(upload_to=upload_location, blank=True)
@@ -163,7 +166,7 @@ class Engineer(models.Model):
 
     # The type of engineer.
     type = models.SmallIntegerField(choices=(
-        (0, 'FSS'),
+        (0, 'FSE'),
         (1, 'ASP')
     ))
 
@@ -177,10 +180,10 @@ class Note(models.Model):
     content = models.CharField(max_length=255)
 
     # The comment is visible from this date. Defaults to today
-    visible_from = models.DateField(auto_now=True)
+    visible_from = models.DateField(default=datetime.date.today)
 
     # The comment is visible until this date
-    visible_until = models.DateField(null=True)
+    visible_until = models.DateField(default=None, null=True)
 
     # The engineer that this note belongs to
     engineer = models.OneToOneField(Engineer, related_name='note')
@@ -194,9 +197,7 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
 
     # The parent category of this category
-    parent = models.ForeignKey('self', null=True, related_name='children', limit_choices_to={
-        'parent': not None
-    })
+    parent = models.ForeignKey('self', null=True, related_name='children', limit_choices_to=Q(parent__isnull=True))
 
     # The child categories of this category. Defined in the 'parent' property
     # children
@@ -240,6 +241,9 @@ class Skill(models.Model):
         MinValueValidator(1),
         MaxValueValidator(4)
     ])
+
+    # Is the engineer a specialist in this skill?
+    is_fss = models.BooleanField(default=False)
 
     class Meta:
         # Ensure there's always only one combination of engineer and product

@@ -12,10 +12,10 @@ function setEngineerUrl() {
     // Checks if cookie is empty
     // If it's empty, it requests the normal JSON url
     if (cookie === "") {
-        return jsonUrl = "/api/engineers/?expand=skills,country,countries,languages";
+        return jsonUrl = "/api/engineers/?expand=skills,note,country,countries,languages";
     } else {
         // If the cookie is not empty it filters the results.
-        return jsonUrl = "/api/engineers/?expand=skills,country,countries,languages&countries=" + cookie;
+        return jsonUrl = "/api/engineers/?expand=skills,note,country,countries,languages&countries=" + cookie;
     }
     ;
 }
@@ -36,8 +36,13 @@ function createEngineerTable(jsonUrl) {
             {data: "first_name"},
             {data: "last_name"},
             {
-                render: function () {
-                    return 'FSS / ASP';
+                data: "type",
+                render: function (data) {
+                    if (data === 0) {
+                        return "FSE";
+                    } else {
+                        return "ASP";
+                    }
                 },
                 orderable: false,
                 searchable: false},
@@ -61,7 +66,18 @@ function createProductTable() {
         "columns": [
             {data: "category.parent.short_name"},
             {data: "category.short_name"},
-            {data: "name"}
+            {data: "name"},
+            {
+                data: "is_crosslab",
+                render: function (data) {
+                    if (data === true) {
+                        return '<i class="fa fa-check"></i>';
+                    } else {
+                        return "";
+                    }
+                },
+                //orderable: false,
+                searchable: false}
         ]
     });
     return table;

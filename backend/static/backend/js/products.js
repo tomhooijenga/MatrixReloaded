@@ -1,6 +1,8 @@
 $(document).ready(function () {
     var $table = $('.table'),
-        $form = $('#card').find('form');
+        $form = $('#card').find('form'),
+        $card = $('.card'),
+        addNew;
 
     // We initialize the DataTable with the json file required for the products page
     var table = $table.DataTable({
@@ -38,8 +40,13 @@ $(document).ready(function () {
     });
 
     $table.on('click', 'tr', function () {
+        addNew = false;
         var data = table.row(this).data(),
             category = data.category;
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+          return "Details";
+        });
 
         // Set the category to its URL
         data.category = category.url;
@@ -49,11 +56,17 @@ $(document).ready(function () {
         // Restore the original category object
         data.category = category;
     }).on('click', '.edit', function (e) {
+        addNew = false;
         e.stopPropagation();
 
         var $parent = $(this).closest('tr'),
             data = table.row($parent).data(),
             category = data.category;
+
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+          return "Edit product";
+        });
 
         // Set the category to its URL
         data.category = category.url;
@@ -67,12 +80,18 @@ $(document).ready(function () {
     });
 
     $('.add-new').on('click', function () {
+        addNew = true;
         // Empty the form
         // Make the details form editable and set it's action and method
         $form.form('clear')
             .form('editable', true)
             .prop('action', '/api/products/')
             .data('method', 'post');
+
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+          return "Add product";
+        });
     });
 
     $form.on('submit', function (e) {
@@ -84,27 +103,18 @@ $(document).ready(function () {
             .done(function (data) {
                 $this.form(data).data('method', 'patch');
 
-                // TODO: notify user
-                // Toast pop-up function
-                $.toast({
-                    text: "Submitted!",
-                    icon: 'success',
-                    showHideTransition: 'fade',
-                    allowToastClose: true,
-                    hideAfter: 3000,
-                    stack: false,
-                    position: 'bottom-right',
-                    textAlign: 'center'
-                });
                 // Reload the table with new data
                 table.ajax.reload();
+
+                successToast('Product was saved.')
             })
             // Error
-            .fail(function (data) {
-                // Error handling goes here
-                // Possibly show an notification
-                // TODO: notify user
-            });
+            .fail(errorToast);
+            if (addNew === true) {
+                $card.hide();
+            } else {
+                $card.show();
+            }
     });
 
     $.getJSON('/api/categories/?expand=children').done(function (data) {

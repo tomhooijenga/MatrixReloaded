@@ -49,3 +49,43 @@ $(function () {
 
     $(':input[title]').tooltip();
 });
+
+function errorToast(response) {
+    var text;
+
+    if (response.responseJSON.detail === undefined) {
+        var errortext = [];
+
+        for (var error in response.responseJSON) {
+            errortext.push(error + ': ' + errors[error].join('; '));
+        }
+    } else {
+        text = response.responseJSON.detail;
+    }
+
+    $.toast({
+        heading: "Error!",
+        text: text,
+        icon: "error",
+        showHideTransition: 'fade',
+        allowToastClose: true,
+        hideAfter: 3000,
+        stack: false,
+        position: 'bottom-right',
+        textAlign: 'center'
+    });
+}
+
+function successToast(message) {
+    $.toast({
+        heading: "Success!",
+        text: message,
+        icon: "success",
+        showHideTransition: 'fade',
+        allowToastClose: true,
+        hideAfter: 3000,
+        stack: false,
+        position: 'bottom-right',
+        textAlign: 'center'
+    });
+}

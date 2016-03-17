@@ -1,5 +1,7 @@
 $(function () {
     var $table = $('.table'),
+        $card = $('.card'),
+        addNew,
         table = $table.DataTable({
             ajax: {
                 url: '/api/users/?expand=groups',
@@ -51,7 +53,14 @@ $(function () {
         $reset = $form.find('.reset');
 
     $table.on('click', 'tr', function () {
+        addNew = false;
         var data = table.row(this).data();
+
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+          return "Details";
+        });
+
 
         // The group was expanded for the datatable. Reduce it to work with the form
         if (data.groups[0] && typeof data.groups[0] === 'object') {
@@ -64,9 +73,14 @@ $(function () {
             .form('editable', false)
             .form(data);
     }).on('click', '.edit', function (e) {
+        addNew = false;
         e.stopPropagation();
 
         var data = table.row($(this).closest('tr')).data();
+
+        // Add titel
+        $( ".panel-heading" ).text('Edit user');
+
 
         if (data.groups[0] && typeof data.groups[0] === 'object') {
             data.groups = data.groups.map(function (group) {
@@ -82,12 +96,15 @@ $(function () {
     });
 
     $('.add-new').on('click', function () {
+        addNew = true;
         $form.data('method', 'post')
             .prop('action', '/api/users/')
             .form('editable', true)
             .form('clear');
 
         $reset.hide();
+        // Add title
+        $( ".panel-heading" ).text('Add user');
     });
 
     $form.on('click', '.btn-danger', function () {
@@ -96,50 +113,25 @@ $(function () {
         }
 
         $.post($(this).data('url') + 'reset_password/').done(function () {
-            $.toast({
-                text: "Password is reset!",
-                icon: 'success',
-                hideAfter: 3000,
-                stack: false,
-                position: 'bottom-right',
-                textAlign: 'center'
-            });
+            successToast("Password is reset.");
         });
     }).on('submit', function (e) {
         e.preventDefault();
 
         $form.form('submit').done(function (data) {
-            $.toast({
-                text: "Submitted!",
-                icon: 'success',
-                hideAfter: 3000,
-                stack: false,
-                position: 'bottom-right',
-                textAlign: 'center'
-            });
-
-            table.ajax.reload();
 
             $form.data('method', 'patch')
                 .form(data);
 
-        }).fail(function (response) {
-            var errors = response.responseJSON,
-                errortext = [];
+            table.ajax.reload();
 
-            for (var error in errors) {
-                errortext.push(error + ': ' + errors[error].join('; '));
-            }
+            successToast("User is saved.");
 
-            $.toast({
-                heading: "Error!",
-                text: errortext.join('<br />'),
-                icon: "error",
-                hideAfter: 3000,
-                stack: false,
-                position: 'bottom-right',
-                textAlign: 'center'
-            });
-        })
+        }).fail(errorToast)
+        if (addNew === true) {
+            $card.hide();
+        } else {
+            $card.show();
+        }
     })
 });

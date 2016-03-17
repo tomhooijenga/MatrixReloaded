@@ -7,7 +7,9 @@ $(document).ready(function () {
         $add = $('.add-new'),
         $edit = $carousel.find('.engineer-edit'),
         $note = $carousel.find('.engineer-note'),
-        $skills = $carousel.find('.engineer-skills');
+        $skills = $carousel.find('.engineer-skills'),
+        $card = $('.card'),
+        addNew;
 
     // This cookie holds the current selected countries
     var cookie = getCookie("countries");
@@ -70,6 +72,7 @@ $(document).ready(function () {
     });
 
     $table.on('click', 'tr', function (e) {
+        addNew = false;
         // Ignore clicks that started on the edit links. We can't use `stopPropagation`
         // on the link handlers because that breaks the carousel navigation
         if ($(e.target).is('a') === false) {
@@ -77,20 +80,27 @@ $(document).ready(function () {
 
             // Fill the card with data and make the card read-only
             $carousel.form(data).form('editable', false).carousel(2);
+            // Add titel
+            $( ".panel-heading" ).text(function( x ) {
+              return "Details";
+            });
         }
     });
 
     $table.on('click', '.note', function () {
+        addNew = false;
         var parent = $(this).closest('tr'),
             data = table.row(parent).data();
-
+            $( ".panel-heading" ).text(function( x ) {
+              return "Edit note";
+            });
         // Override the form's method
         // Enable the form and fill with data
-        $note.data('method', 'patch')
-            .form('editable', true)
+        $note.form('editable', true)
             .form(data)
             .form(data.note);
     }).on('click', '.skills', function () {
+        addNew = false;
         // find closest parent
         // grab this row's data
         // find the skills list
@@ -102,6 +112,10 @@ $(document).ready(function () {
             $select = $('#skills-select'),
             $template = $($("#skill-template").html()),
             $html = $();
+        // Add titel
+            $( ".panel-heading" ).text(function( x ) {
+              return "Add/Remove skills";
+            });
 
         // set the current engineer
         engineer = data;
@@ -125,8 +139,8 @@ $(document).ready(function () {
                 $tpl.data('skill', skill);
 
                 $tpl.find('.skill-name').text(skill.product.name);
-
-                $tpl.find('input').val(skill.level);
+                $tpl.find('.skill-level').val(skill.level);
+                $tpl.find('.skill-fss').prop('checked', skill.is_fss);
 
                 $html = $html.add($tpl);
 
@@ -141,9 +155,13 @@ $(document).ready(function () {
             $list.html($html);
         });
     }).on('click', '.edit', function () {
+        addNew = false;
         var parent = $(this).closest('tr'),
             data = table.row(parent).data();
-
+        // Add titel
+            $( ".panel-heading" ).text(function( x ) {
+              return "Edit engineer";
+            });
         // Override the form's method
         // Enable the form and fill with data
         $edit.data('method', 'patch')
@@ -152,7 +170,7 @@ $(document).ready(function () {
     });
 
     $skills.find('.list-group')
-        .on('click', '.btn-danger', function () {
+        .on('click', '.close', function () {
             if (!confirm('Are you sure you want to delete this skill?')) {
                 return;
             }
@@ -170,13 +188,15 @@ $(document).ready(function () {
                 // This skill can be removed
                 $item.remove();
 
+                successToast("Skill is deleted.");
+
                 // Also enable in the skill select
                 $('#skills-select').find('[value="' + skill.product.url + '"]').prop('disabled', false);
 
                 $('#skills-select').select2();
             });
         })
-        .on('change', 'input[type="number"]', function () {
+        .on('click', '.submit', function () {
             var $this = $(this),
                 $item = $this.closest('.list-group-item'),
                 skill = $item.data('skill'),
@@ -190,12 +210,12 @@ $(document).ready(function () {
             request = $.ajax({
                 url: skill.url,
                 data: {
-                    level: $this.val()
+                    is_fss: $item.find('.skill-fss').val(),
+                    level: $item.find('.skill-level').val()
                 },
                 method: 'patch'
             }).done(function () {
-                // TODO: notify user
-                alert("saved");
+                successToast("Skill is saved");
             });
 
             // Save the request
@@ -211,48 +231,29 @@ $(document).ready(function () {
             .done(function (data) {
                 $this.form(data).data('method', 'patch');
                 // Toast pop-up function
-                $.toast({
-                    text: "Submitted!",
-                    icon: 'success',
-                    showHideTransition: 'fade',
-                    allowToastClose: true,
-                    hideAfter: 3000,
-                    stack: false,
-                    position: 'bottom-right',
-                    textAlign: 'center'
-                });
+
+                successToast("Data is saved.");
 
                 // Reload the table with new data
                 table.ajax.reload();
             })
             // Error
-            .fail(function (response) {
-                var errors = response.responseJSON,
-                    errortext = [];
-
-                for (var error in errors) {
-                    errortext.push(error + ': ' + errors[error].join('; '));
-                }
-
-                // Possibly show an notification
-                // TODO: notify user
-                $.toast({
-                    heading: "Error!",
-                    text: errortext.join('<br />'),
-                    icon: "error",
-                    showHideTransition: 'fade',
-                    allowToastClose: true,
-                    hideAfter: 3000,
-                    stack: false,
-                    position: 'bottom-right',
-                    textAlign: 'center'
-                });
-            });
+            .fail(errorToast);
+            if (addNew === true) {
+                $card.hide();
+            } else {
+                $card.show();
+            }
     });
 
 
     $add.on('click', function () {
+        addNew = true;
         // Empty the form
+        // Add titel
+        $( ".panel-heading" ).text(function( x ) {
+              return "Add engineer";
+        });
         // Make the details form editable and set it's action and method
         $edit.form('clear')
             .form('editable', true)
@@ -325,12 +326,14 @@ $(document).ready(function () {
                     skill = {
                         engineer: engineer.url,
                         product: products[val[0]],
-                        level: 1
+                        level: 1,
+                        is_fss: false
                     };
 
                 $tpl.data('skill', skill);
                 $tpl.find('.skill-name').text(skill.product.name);
-                $tpl.find('input').val(skill.level);
+                $tpl.find('.skill-level').val(skill.level);
+                $tpl.find('.skill-fss').prop('checked', skill.is_fss);
 
                 $skills.find('.list-group').append($tpl);
 
@@ -346,11 +349,9 @@ $(document).ready(function () {
                         product: skill.product.url,
                         level: 1
                     }
-                }).done(function (data) {
-                    // TODO: notify user
-
-                    alert("saved");
-                })
+                }).done(function () {
+                    successToast("Skill is saved");
+                }).fail(errorToast)
             });
     });
 });

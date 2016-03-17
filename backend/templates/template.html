@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ meta.verbose_name_plural|title }} &ndash; A.S.M.</title>
+    <title>{{ meta.verbose_name_plural|title }} &ndash; Agilent Skill Admin</title>
 
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet"/>
     <link href="{% static "backend/css/backend.css" %}" rel="stylesheet"/>
@@ -58,7 +58,7 @@
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <button class="btn btn-default btn-sm countrybutton" type="button" data-toggle="modal"
-                                        data-target="#filter"><i class="fa fa-globe"></i></button>
+                                        data-target="#filter"><i class="fa fa-fw fa-globe"></i></button>
                             </span>
                             <input type="search" class="form-control search-bar" placeholder="Search&hellip;"/>
                         </div>
@@ -94,6 +94,8 @@
             <div class="col-xs-4">
                 <!-- Details panel -->
                 <div id="card" class="panel panel-default card">
+                    <div class="panel-heading">
+                    </div>
                     <div class="panel-body">
                         {% block card %}
 
