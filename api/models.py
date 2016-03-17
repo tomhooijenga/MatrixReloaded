@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin
 )
@@ -178,10 +180,10 @@ class Note(models.Model):
     content = models.CharField(max_length=255)
 
     # The comment is visible from this date. Defaults to today
-    visible_from = models.DateField(auto_now=True)
+    visible_from = models.DateField(default=datetime.date.today)
 
     # The comment is visible until this date
-    visible_until = models.DateField(null=True)
+    visible_until = models.DateField(default=None, null=True)
 
     # The engineer that this note belongs to
     engineer = models.OneToOneField(Engineer, related_name='note')
