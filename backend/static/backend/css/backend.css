@@ -15,6 +15,8 @@ aside {
 
 aside img {
     padding: 20px;
+    margin: 0 auto;
+    max-height: 100px;
 }
 
 aside p {
@@ -56,26 +58,32 @@ tr {
 
 .main {
     width: 80%;
-    padding: 0 25px;
+    padding: 0 15px;
     float: left;
 }
 
 .main header {
-    height: 100px;
-    padding-top: 33px;
+    height: 135px;
 }
 
 .main header > h1 {
+    line-height: 97px;
     float: left;
     margin: 0;
 }
 
 .main header button {
+    margin-top: 33px;
     float: right;
 }
 
+.main .content {
+    height: 85vh;
+    padding-bottom: 30px;
+}
 .main .panel {
     height: 80vh;
+    height: calc(100vh - 165px);
 }
 
 .data .panel-body {
