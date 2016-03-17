@@ -278,3 +278,13 @@ div#DataTables_Table_0_filter label {
     overflow: auto;
     height: calc(100% - 41px);
 }
+
+.control-label .fa-angle-right{
+    font-size:18px;
+    padding-left:4px;
+}
+
+.control-label .fa-angle-double-right{
+    font-size:18px;
+    padding-left:4px;
+}
