@@ -26,11 +26,11 @@ input.form-control.search-engineer {
 }
 
 .productdetails {
-    visibility: hidden;
+    display: none;
 }
 
 .card {
-    visibility: hidden;
+    display: none;
     overflow: hidden;
 }
 
@@ -198,7 +198,7 @@ tr.even.selected {
 
 .note-popover {
     float: right;
-    visibility: hidden;
+    display: none;
 }
 
 .note .fa {
