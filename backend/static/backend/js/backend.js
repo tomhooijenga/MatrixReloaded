@@ -47,7 +47,7 @@ $(function () {
         $('#card').show();
     });
 
-    $('input[title]').tooltip();
+    $(':input[title]').tooltip();
 });
 
 function errorToast(response) {

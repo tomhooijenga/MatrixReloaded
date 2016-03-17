@@ -6,6 +6,10 @@ var engData;
 
 // This file lists the products on the page
 $(document).ready(function () {
+    
+    var $star = $(".star"),
+        $fss = $(".FSS"),
+        $productdetails = $(".productdetails");
 
     // We get all the current engineers in the database to filter the results later
     jsonUrl = setEngineerUrl();
@@ -29,8 +33,8 @@ $(document).ready(function () {
 
         productTable.on('click', 'tr>td', function () {
 
-            $(".star").css("display", "none");
-            $(".FSS").hide();
+            $star.hide();
+            $fss.hide();
             $(".card .panel-body").css("height", "calc(100% - 45px");
 
             // We set the data of the clicked row in a variable for later use
@@ -40,7 +44,7 @@ $(document).ready(function () {
             if (tr.hasClass('selected')) {
 
                 tr.removeClass('selected');
-                $(".productdetails").css("visibility", "hidden");
+                $productdetails.hide();
                 currProduct = "";
                 product = {};
                 // We clear the datatable and reset it with all the engineers
@@ -53,20 +57,20 @@ $(document).ready(function () {
 
                 // We check if the tr is not empty.
                 if (tr.has("td.dataTables_empty").length > 0) {
-                    $(".productdetails").css("visibility", "hidden");
+                    $productdetails.hide();
                 } else {
                     // If the table is not empty, we show the details of the products
                     // We set the global variable currProduct with the selected html <tr> element
                     currProduct = tr.html();
                     var EngineerNewData = [];
                     // After that we fill the datatable with the engineers who are trained for the selected program
-                    $(".productdetails").css("visibility", "visible");
+                    $productdetails.show();
                     // We save the data from the table row
                     var data = productTable.row(tr).data();
                     product = data;
 
                     // Fill the card with data and make the card read-only
-                    $('.productdetails').form(data).form('editable', false).carousel(2);
+                    $productdetails.form(data).form('editable', false).carousel(2);
 
                     // The section below is required to show the skill level on the selected product.  
                     for (var key in engineer.skills) {
@@ -76,7 +80,7 @@ $(document).ready(function () {
                                 $(".card .panel-body").css("height", "calc(100% - 65px");
                                 // If the engineer is FSS, show FSS
                                 if (product.skills[val].is_fss === true){
-                                    $('.FSS').show();
+                                    $fss.show();
                                 }
                             }
                         }
@@ -104,11 +108,11 @@ $(document).ready(function () {
         
         // The event when the close button in the product panel is clicked
         $(".close-productpanel").on("click", function () {
-            $(".star").css("display", "none");
+            $star.hide();
+            $productdetails.hide();
             $(".card .panel-body").css("height", "calc(100% - 45px");
             // Works the same as the toggle
             productTable.$('tr.selected').removeClass('selected');
-            $(".productdetails").css("visibility", "hidden");
             currProduct = "";
             product = {};
             // We clear the datatable and reset it with all the engineers
@@ -121,7 +125,7 @@ $(document).ready(function () {
         // The table refreshes when the refresh icon is clicked
         $(".refreshbutton").click(function () {
             // Hide the product panel on refresh
-            $(".productdetails").css("visibility", "hidden");
+            $productdetails.hide();
             // We clear the product search field
             // After that we redraw the table with no input
             $('.search-product').val("");

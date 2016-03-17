@@ -18,7 +18,7 @@
                 <i class="fa fa-fw  fa-envelope"></i>
             </label>
             <div class="col-xs-10">
-                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" data-placement="bottom" title="Email" required
                        maxlength="254"/>
             </div>
         </div>
@@ -47,13 +47,15 @@
                 <input type="submit" class="btn btn-default pull-right" value="Submit"/>
             </div>
         </div>
-        <hr/>
-        <p class="help-block">
-            This will send an email with a link to reset the password. The old password is not valid anymore.
-        </p>
-        <button type="button" class="btn btn-danger btn-block url" data-autofill="data-url">
-            Reset this user's password
-        </button>
+        <div class="reset">
+            <hr/>
+            <p class="help-block">
+                This will send an email with a link to reset the password. The old password is not valid anymore.
+            </p>
+            <button type="button" class="btn btn-danger btn-block url" data-autofill="data-url">
+                Reset this user's password
+            </button>
+        </div>
     </form>
 
 {% endblock card %}

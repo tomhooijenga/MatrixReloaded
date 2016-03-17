@@ -5,6 +5,11 @@ var proData;
 
 // This file lists the engineers on the page
 $(document).ready(function () {
+    
+    var $star = $(".star"),
+        $fss = $(".FSS"),
+        $note_popover = $(".note-popover"),
+        $card = $(".card");
 
     // We get all the current products in the database to filter the results later
     $.getJSON("/api/products/?expand=category.parent,skills&is_active=true").done(function (json) {
@@ -52,9 +57,9 @@ $(document).ready(function () {
         engineerTable.on('click', 'tr>td', function () {
             
             // Adjust the CSS of different elements for correct diplay when a row is clicked
-            $(".star").css("display", "none");
-            $(".FSS").hide();
-            $(".note-popover").css("visibility", "hidden");
+            $star.hide();
+            $fss.hide();
+            $note_popover.hide();
             $(".card .panel-body").css("height", "calc(100% - 45px");
 
             // We set the data of the clicked row in a variable for later use
@@ -64,7 +69,7 @@ $(document).ready(function () {
             if (tr.hasClass('selected')) {
 
                 tr.removeClass('selected');
-                $(".card").css("visibility", "hidden");
+                $card.hide();
                 currEngineer = "";
                 engineer = {};
                 // We clear the datatable and reset it with the new engineers
@@ -77,14 +82,14 @@ $(document).ready(function () {
 
                 // We check if the tr is not empty.
                 if (tr.has("td.dataTables_empty").length > 0) {
-                    $(".card").css("visibility", "hidden");
+                    $card.hide();
                 } else {
                     // If the table is not empty, we show the details of the products
                     // We set the global variable currEngineer with the selected html <tr> element
                     currEngineer = tr.html();
                     var ProductNewData = [];
                     // After that we fill the datatable with the engineers who are trained for the selected program
-                    $(".card").css("visibility", "visible");
+                    $card.show();
                     // We save the data from the table row
                     var data = engineerTable.row(tr).data();
                     engineer = data;
@@ -96,7 +101,7 @@ $(document).ready(function () {
                                 $(".card .panel-body").css("height", "calc(100% - 65px");
                                 // If the engineer is FSS, show FSS    
                                 if (engineer.skills[val].is_fss === true){
-                                    $('.FSS').show();
+                                    $fss.show();
                                 }
                             }
                         }
@@ -124,7 +129,7 @@ $(document).ready(function () {
                         if (currDate >= fromDate) {
                             if (tillDate === null || currDate <= tillDate) {
                                 // We show the popover icon
-                                $(".note-popover").css("visibility", "visible");
+                                $note_popover.show();
                                 // Options for the popover note
                                 var options = {
                                     //container: 'body',
@@ -149,13 +154,13 @@ $(document).ready(function () {
                                     placement: 'left'
                                 };
                                 // We set the popover
-                                $(".note-popover").popover(options);
+                                $note_popover.popover(options);
                             }
                         }
                     }
 
                     // Fill the card with data and make the card read-only
-                    $('.card').form(data).form('editable', false).carousel(2);
+                    $card.form(data).form('editable', false).carousel(2);
 
                     // We replace the products with the products which the engineer is trained for
                     for (var obj in data.skills) {
@@ -173,13 +178,12 @@ $(document).ready(function () {
 
         // The event where the close button in the engineer panel is clicked
         $(".close-engineerpanel").on("click", function () {
-            // Adjust the CSS of different elements for correct diplay when the close button is clicked
-            $(".star").css("display", "none");
-            $(".note-popover").css("visibility", "hidden");
+            // We hide all the panels which should be hidden
+            $note_popover.hide();
+            $card.hide();
             $(".card .panel-body").css("height", "calc(100% - 45px");
             // Works the same as the toggle
             engineerTable.$('tr.selected').removeClass('selected');
-            $(".card").css("visibility", "hidden");
             currEngineer = "";
             engineer = {};
             // We clear the datatable and reset it with the new engineers
@@ -192,8 +196,8 @@ $(document).ready(function () {
         // The table refreshes when the refresh icon is clicked
         $(".refreshbutton").click(function () {
             // Hide the engineer panel on refresh
-            $(".card").css("visibility", "hidden");
-            $(".note-popover").css("visibility", "hidden");
+            $card.hide();
+            $note_popover.hide();
             // We clear the engineer search field
             // After that we redraw the table with no input
             $('.search-engineer').val("");

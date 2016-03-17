@@ -22,15 +22,18 @@
                 </label>
                 <div class="col-xs-10">
                     <input id="name" type="text" class="form-control" name="name" placeholder="Name" maxlength="100"
+                           title="Category name"
                            required/>
                 </div>
             </div>
+
             <div class="form-group">
                 <label for="short-name" class="control-label col-xs-2">
                     <i class="fa fa-fw fa-object-group"></i>
                 </label>
                 <div class="col-xs-10">
                     <input id="short-name" type="text" class="form-control" name="short-name" placeholder="Abbreviation"
+                           title="Category name abbreviation"
                            maxlength="5" required/>
                 </div>
             </div>
@@ -47,13 +50,14 @@
     <form id="child-form" class="form-horizontal" action="/api/categories/" method="post">
         <fieldset>
             <legend>Add child category</legend>
-            <input type="hidden" name="parent" />
+            <input type="hidden" name="parent"/>
             <div class="form-group">
                 <label for="name" class="control-label col-xs-2">
                     <i class="fa fa-fw fa-header"></i>
                 </label>
                 <div class="col-xs-10">
                     <input id="name" type="text" class="form-control" name="name" placeholder="Name" maxlength="100"
+                           title="Child category name"
                            required/>
                 </div>
             </div>
@@ -63,6 +67,7 @@
                 </label>
                 <div class="col-xs-10">
                     <input id="short-name" type="text" class="form-control" name="short-name" placeholder="Abbreviation"
+                           title="Child category name abbreviation"
                            maxlength="5" required/>
                 </div>
             </div>
@@ -93,6 +98,7 @@
                 </label>
                 <div class="col-xs-10">
                     <input type="text" class="form-control" name="name" placeholder="Name" maxlength="100"
+                           title="Child category name"
                            required/>
                 </div>
             </div>
@@ -102,6 +108,7 @@
                 </label>
                 <div class="col-xs-10">
                     <input id="short-name" type="text" class="form-control" name="short-name" placeholder="Abbreviation"
+                           title="Child category name abbreviation"
                            maxlength="5" required/>
                 </div>
             </div>
