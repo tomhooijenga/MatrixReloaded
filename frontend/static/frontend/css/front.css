@@ -48,6 +48,10 @@ input.form-control.search-engineer {
     display: none;
 }
 
+.fa-shirtsinbulk {
+    display: none;
+}
+
 .card .panel-body {
     overflow: auto;
     height: calc(100% - 45px);

@@ -53,6 +53,7 @@ $(document).ready(function () {
             
             // Adjust the CSS of different elements for correct diplay when a row is clicked
             $(".star").css("display", "none");
+            $(".fa-shirtsinbulk").css("display", "none");
             $(".note-popover").css("visibility", "hidden");
             $(".card .panel-body").css("height", "calc(100% - 45px");
 
@@ -93,6 +94,10 @@ $(document).ready(function () {
                             if (product.skills[key].url === engineer.skills[val].url) {
                                 $('.level-' + engineer.skills[val].level).toggle();
                                 $(".card .panel-body").css("height", "calc(100% - 65px");
+
+                                if (engineer.skills[val].is_fss === true){
+                                    $('.fa-shirtsinbulk').toggle();
+                                }
                             }
                         }
                     }
