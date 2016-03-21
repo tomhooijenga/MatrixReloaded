@@ -159,10 +159,8 @@ LOGGING = {
 }
 
 # TODO: Fill these with deployment mail server details
-# EMAIL_HOST = ''
-# EMAIL_HOST_USER = ''
-# EMAIL_HOST_PASSWORD = ''
-# EMAIL_PORT =
-# EMAIL_USE_SSL =
-# DEFAULT_FROM_EMAIL = ''
-# SERVER_EMAIL = ''
+EMAIL_HOST = 'smtp.webfaction.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'skillmatrix'
+EMAIL_HOST_PASSWORD = '@g1l3nT'
+DEFAULT_FROM_EMAIL = 'noreply@agilent.engineer'

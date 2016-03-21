@@ -1,10 +1,72 @@
 from datetime import date
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group, Permission
-from expander import ExpanderSerializerMixin
 from rest_framework import serializers
 
 from . import models
+
+
+class DynamicHyperlinkedModelSerializer(serializers.HyperlinkedModelSerializer):
+    def __init__(self, *args, **kwargs):
+        exclude = kwargs.pop('exclude', None)
+
+        expanded_fields = kwargs.pop('expanded_fields', None)
+        expandable_fields = kwargs.pop('expandable_fields', None)
+
+        super(DynamicHyperlinkedModelSerializer, self).__init__(*args, **kwargs)
+
+        # Exclude
+        if exclude is not None:
+            for field in exclude:
+                self.fields.pop(field)
+
+
+        # Expansion
+        if expandable_fields is None and expanded_fields is None:
+            expandable_fields = getattr(self.Meta, 'expandable_fields', None)
+
+        if not expandable_fields:
+            return
+
+        if not expanded_fields:
+            context = self.context
+            if not context:
+                return
+
+            request = context.get('request', None)
+            if not request:
+                return
+
+            expanded_fields = request.query_params.get('expand', None)
+            if not expanded_fields:
+                return
+
+        for expanded_field in expanded_fields.split(','):
+            next_level_expanded_field = ''
+
+            if '.' in expanded_field:
+                expanded_field, next_level_expanded_field = expanded_field.split('.', 1)
+
+            if expanded_field in expandable_fields:
+                serializer_class_info = expandable_fields[expanded_field]
+
+                # Two formats
+                # 1. CLASS
+                # 2. (CLASS, args, kwargs)
+                if isinstance(serializer_class_info, tuple):
+                    serializer_class, args, kwargs = serializer_class_info
+                else:
+                    args = ()
+                    kwargs = {}
+                    serializer_class = serializer_class_info
+
+                # If the serializer class isn't an expander then it can't handle the expanded_fields kwarg.
+                if issubclass(serializer_class, DynamicHyperlinkedModelSerializer):
+                    serializer = serializer_class(*args, expanded_fields=next_level_expanded_field, **kwargs)
+                else:
+                    serializer = serializer_class(*args, **kwargs)
+
+                self.fields[expanded_field] = serializer
 
 
 class PermissionSerializer(serializers.ModelSerializer):
@@ -31,7 +93,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'name', 'permissions')
 
 
-class UserSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSerializer):
+class UserSerializer(DynamicHyperlinkedModelSerializer):
     """
     This class is responsible for the serialization of the 'User' model
     """
@@ -63,7 +125,7 @@ class LanguageSerializer(serializers.HyperlinkedModelSerializer):
         model = models.Language
 
 
-class ProductSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSerializer):
+class ProductSerializer(DynamicHyperlinkedModelSerializer):
     """
     This class is responsible for the serialization of the 'Product' model'
     """
@@ -74,7 +136,7 @@ class ProductSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSer
         model = models.Product
 
 
-class SkillSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSerializer):
+class SkillSerializer(DynamicHyperlinkedModelSerializer):
     """
     This class is responsible for the serialization of the 'Skill' model
     """
@@ -83,7 +145,7 @@ class SkillSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSeria
         model = models.Skill
 
 
-class CategorySerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSerializer):
+class CategorySerializer(DynamicHyperlinkedModelSerializer):
     """
     This class is responsible for the serialization of the 'Category' model
     """
@@ -96,7 +158,7 @@ class CategorySerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSe
         model = models.Category
 
 
-class NoteSerializer(serializers.HyperlinkedModelSerializer):
+class NoteSerializer(DynamicHyperlinkedModelSerializer):
     """
     This class is responsible for the serialization of the 'Note' model
     """
@@ -114,7 +176,7 @@ class NoteSerializer(serializers.HyperlinkedModelSerializer):
         return data
 
 
-class EngineerSerializer(ExpanderSerializerMixin, serializers.HyperlinkedModelSerializer):
+class EngineerSerializer(DynamicHyperlinkedModelSerializer):
     """
     This class is responsible for the serialization of the 'Engineer' model
     """
@@ -147,14 +209,31 @@ CategorySerializer.Meta.expandable_fields = {
 }
 
 ProductSerializer.Meta.expandable_fields = {
-    'category': CategorySerializer,
-    'skills': (SkillSerializer, (), {'many': True})
+    'category': (CategorySerializer, (), {
+        'exclude': ('products', 'children'),
+        'expandable_fields': {
+            'parent': (CategorySerializer, (), {
+                'exclude': ('products', 'children')
+            }),
+        }
+    }),
+    'skills': (SkillSerializer, (), {
+        'many': True,
+        'expandable_fields': {
+            'engineer': EngineerSerializer
+        }
+    })
 }
 
 EngineerSerializer.Meta.expandable_fields = {
     'country': CountrySerializer,
     'countries': (CountrySerializer, (), {'many': True}),
     'languages': (LanguageSerializer, (), {'many': True}),
-    'skills': (SkillSerializer, (), {'many': True}),
-    'note': NoteSerializer
+    'skills': (SkillSerializer, (), {
+        'many': True,
+        'expandable_fields': {}
+    }),
+    'note': (NoteSerializer, (), {
+        'expandable_fields': {}
+    })
 }

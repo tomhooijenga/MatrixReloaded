@@ -9,6 +9,7 @@ from rest_framework.viewsets import GenericViewSet
 
 from . import serializers, models
 from .forms import PasswordResetForm
+from .resolver import url_kwargs
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -238,21 +239,37 @@ class SkillViewSet(viewsets.ModelViewSet):
     API endpoint for the Skills.
     """
 
-    queryset = models.Skill.objects.all().select_related('engineer', 'product')
+    queryset = models.Skill.objects.all()
 
     serializer_class = serializers.SkillSerializer
 
     def filter_queryset(self, queryset):
-        # filter by active status. Is actually 3 values:
+        # filter by fss status (Field Service Specialist). Is actually 3 values:
         # true: active only
         # false: not active only
         # omitted: include all
-        is_active = self.request.query_params.get('is_active')
-        if is_active is not None:
-            if is_active.lower() in ('true', '1'):
-                queryset = queryset.filter(is_active=True)
-            elif is_active.lower() in ('false', '0'):
-                queryset = queryset.filter(is_active=False)
+        is_fss = self.request.query_params.get('is_fss')
+        if is_fss is not None:
+            if is_fss.lower() in ('true', '1'):
+                queryset = queryset.filter(is_fss=True)
+            elif is_fss.lower() in ('false', '0'):
+                queryset = queryset.filter(is_fss=False)
+
+        # filter by engineer
+        # expects an url of an engineer resource, as found in the engineer api
+        engineer_url = self.request.query_params.get('engineer')
+        if engineer_url is not None:
+            engineer_kwargs = url_kwargs(engineer_url)
+            if engineer_kwargs is not None:
+                queryset = queryset.filter(**{'engineer__' + k: v for k, v in engineer_kwargs.items()})
+
+        # filter by product
+        # same as engineer
+        product_url = self.request.query_params.get('product')
+        if product_url is not None:
+            product_kwargs = url_kwargs(product_url)
+            if product_kwargs is not None:
+                queryset = queryset.filter(**{'product__' + k: v for k, v in product_kwargs.items()})
 
         return queryset
 
