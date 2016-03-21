@@ -231,6 +231,10 @@ $(document).ready(function () {
         e.preventDefault();
 
         var $this = $(this);
+        
+        if ($('.is-active').is(':checked')) {
+            $('.is-active-hidden').disabled = true;
+        }
 
         $this.form('submit')
             .done(function (data) {
