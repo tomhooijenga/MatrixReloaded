@@ -132,8 +132,12 @@ $(document).ready(function () {
 
         // Fetch the engineer's skills and expand skills, skill.product, skill.product.category
         // and skill.product.category.parent
-        $.getJSON(data.url + '?expand=skills.product').done(function (engineer) {
-            engineer.skills.forEach(function (skill) {
+        var query = $.param({
+            engineer: data.url,
+            expand: 'product'
+        });
+        $.getJSON('/api/skills/?' + query).done(function (skills) {
+            skills.forEach(function (skill) {
                 var $tpl = $template.clone();
 
                 $tpl.data('skill', skill);
