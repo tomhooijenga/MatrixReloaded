@@ -98,11 +98,11 @@ $(document).ready(function () {
         e.preventDefault();
 
         var $this = $(this);
-
+        
+        // Temporary fix for the is-active and is-crosslab checkboxes. When checked the value is true and when it's not checked the value will be false
         if ($('.is-crosslab').is(':checked')) {
             $('.is-crosslab-hidden').disabled = true;
-        }
-        
+        }      
         if ($('.is-active').is(':checked')) {
             $('.is-active-hidden').disabled = true;
         }
