@@ -235,6 +235,11 @@ $(document).ready(function () {
         e.preventDefault();
 
         var $this = $(this);
+        
+        // Temporary fix for the is-active checkbox. When checked the value is true and when it's not checked the value will be false
+        if ($('.is-active').is(':checked')) {
+            $('.is-active-hidden').disabled = true;
+        }
 
         $this.form('submit')
             .done(function (data) {
