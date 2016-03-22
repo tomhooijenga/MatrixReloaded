@@ -283,6 +283,16 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     serializer_class = serializers.ProductSerializer
 
+    def filter_queryset(self, queryset):
+        is_active = self.request.query_params.get('is_active')
+        if is_active is not None:
+            if is_active.lower() in ('true', '1'):
+                queryset = queryset.filter(is_active=True)
+            elif is_active.lower() in ('false', '0'):
+                queryset = queryset.filter(is_active=False)
+
+        return queryset
+
 
 class CategoryViewSet(viewsets.ModelViewSet):
     """

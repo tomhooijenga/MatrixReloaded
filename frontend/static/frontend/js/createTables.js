@@ -12,12 +12,11 @@ function setEngineerUrl() {
     // Checks if cookie is empty
     // If it's empty, it requests the normal JSON url
     if (cookie === "") {
-        return jsonUrl = "/api/engineers/?expand=skills,note,country,countries,languages";
+        return jsonUrl = "/api/engineers/?is_active=true&expand=skills,note,country,countries,languages";
     } else {
         // If the cookie is not empty it filters the results.
-        return jsonUrl = "/api/engineers/?expand=skills,note,country,countries,languages&countries=" + cookie;
+        return jsonUrl = "/api/engineers/?is_active=true&expand=skills,note,country,countries,languages&countries=" + cookie;
     }
-    ;
 }
 
 // Function for creating the engineer dataTable.
@@ -45,7 +44,8 @@ function createEngineerTable(jsonUrl) {
                     }
                 },
                 orderable: false,
-                searchable: false},
+                searchable: false
+            },
             {data: "country.code"}
         ]
     });
@@ -77,7 +77,8 @@ function createProductTable() {
                     }
                 },
                 //orderable: false,
-                searchable: false}
+                searchable: false
+            }
         ]
     });
     return table;
