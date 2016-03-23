@@ -6,6 +6,7 @@ var proData;
 // This file lists the engineers on the page
 $(document).ready(function () {
     
+    // We set the HTML classes in variable so we can alter them later
     var $star = $(".star"),
         $fss = $(".FSS"),
         $note_popover = $(".note-popover"),
@@ -67,7 +68,7 @@ $(document).ready(function () {
 
             // Adds a selected class (bg-color) to the row when its selected
             if (tr.hasClass('selected')) {
-
+                // Make the row work like a toggle, set everything back to default
                 tr.removeClass('selected');
                 $card.hide();
                 currEngineer = "";
@@ -76,8 +77,9 @@ $(document).ready(function () {
                 redrawProductTable(proData);
 
             } else {
-
+                // Remove the selected class from the current selected row
                 engineerTable.$('tr.selected').removeClass('selected');
+                // Add selected class to the new selected row
                 tr.addClass('selected');
 
                 // We check if the tr is not empty.
@@ -98,6 +100,7 @@ $(document).ready(function () {
                         for (var val in engineer.skills) {
                             if (product.skills[key].url === engineer.skills[val].url) {
                                 $('.level-' + engineer.skills[val].level).toggle();
+                                // Adjust the height of the panel body, because the panel heading gets bigger with the skill level
                                 $(".card .panel-body").css("height", "calc(100% - 65px");
                                 // If the engineer is FSS, show FSS    
                                 if (engineer.skills[val].is_fss === true){
@@ -140,6 +143,7 @@ $(document).ready(function () {
                                             } else {
                                                 until = "no end date set";
                                             }
+                                            // HTML for displaying the note
                                             return '<div class="row">'
                                                     + '<div class="col-xs-1"><i class="fa fa-fw fa-hourglass-start"></i></div><div class="col-xs-8">' + engineer.note.visible_from + '</div>'
                                                     + '</div><div class="row">'
@@ -185,6 +189,7 @@ $(document).ready(function () {
             $(".card .panel-body").css("height", "calc(100% - 45px");
             // Works the same as the toggle
             engineerTable.$('tr.selected').removeClass('selected');
+            // Set the variables empty again so there are no selected items
             currEngineer = "";
             engineer = {};
             // We clear the datatable and reset it with the new engineers

@@ -7,6 +7,7 @@ var engData;
 // This file lists the products on the page
 $(document).ready(function () {
     
+    // We set the HTML classes in variable so we can alter them later
     var $star = $(".star"),
         $fss = $(".FSS"),
         $productdetails = $(".productdetails");
@@ -32,9 +33,10 @@ $(document).ready(function () {
         });
 
         productTable.on('click', 'tr>td', function () {
-
+            // Hide the panels on click of new table row
             $star.hide();
             $fss.hide();
+            // Adjust the height of the card panel body
             $(".card .panel-body").css("height", "calc(100% - 45px");
 
             // We set the data of the clicked row in a variable for later use
@@ -42,7 +44,7 @@ $(document).ready(function () {
 
             // Adds a selected class (bg-color) to the row when its selected
             if (tr.hasClass('selected')) {
-
+                // Make the row work like a toggle, set everything back to default
                 tr.removeClass('selected');
                 $productdetails.hide();
                 currProduct = "";
@@ -77,6 +79,7 @@ $(document).ready(function () {
                         for (var val in product.skills) {
                             if (engineer.skills[key].url === product.skills[val].url) {
                                 $('.level-' + product.skills[val].level).toggle();
+                                // Adjust the height of the panel body, because the panel heading gets bigger with the skill level
                                 $(".card .panel-body").css("height", "calc(100% - 65px");
                                 // If the engineer is FSS, show FSS
                                 if (product.skills[val].is_fss === true){
@@ -86,7 +89,7 @@ $(document).ready(function () {
                         }
                     }
 
-                    // We replace the engineers that are trained for the product with an engineer object
+                    // We replace the engineers (urls) that are trained for the product with the engineer objects
                     for (var obj in data.skills) {
                         for (var eng in engineers) {
                             if (engineers[eng].url === data.skills[obj].engineer) {
@@ -108,6 +111,7 @@ $(document).ready(function () {
         
         // The event when the close button in the product panel is clicked
         $(".close-productpanel").on("click", function () {
+            // Hide all panels on close
             $star.hide();
             $productdetails.hide();
             $(".card .panel-body").css("height", "calc(100% - 45px");
