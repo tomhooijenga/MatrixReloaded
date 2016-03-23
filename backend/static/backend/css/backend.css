@@ -62,6 +62,10 @@ tr {
     float: left;
 }
 
+.main .header {
+    height: 15vh;
+}
+
 .main header {
     height: 135px;
 }
@@ -81,6 +85,7 @@ tr {
     height: 85vh;
     padding-bottom: 30px;
 }
+
 .main .panel {
     height: 80vh;
     height: calc(100vh - 165px);
@@ -121,7 +126,8 @@ input[type="search"] {
     position: relative;
     box-sizing: content-box;
     overflow: hidden;
-    padding-bottom: 100%;
+    box-shadow: none;
+    padding: 0 0 100% 0;
 }
 
 .image-input > label > span {
@@ -138,18 +144,21 @@ input[type="search"] {
     text-shadow: 1px 1px 1px white;
 }
 
-.image-input:hover > label > span {
-    z-index: 2;
+.image-input input:disabled + label > span,
+.image-input img:not([src='']) + span {
+    display: none;
 }
 
-.image-input input:disabled + label > span {
-    display: none;
+.image-input:hover > label > span {
+    z-index: 2;
+    display: block;
 }
 
 .image-input > label > img {
     position: absolute;
     display: block;
     z-index: 1;
+    border-radius: 4px;
     /*
      Yes really:
      http://stackoverflow.com/questions/18673900/how-to-center-and-crop-an-image-to-square-with-css
@@ -160,6 +169,12 @@ input[type="search"] {
     bottom: -100%;
     margin: auto;
 }
+
+.image-input > label > img[src=''] {
+    display: none;
+}
+
+
 
 .image-input .image-square {
     width: 100%;
@@ -274,17 +289,17 @@ div#DataTables_Table_0_filter label {
     color: white;
 }
 
-.card .panel-body{
+.card .panel-body {
     overflow: auto;
     height: calc(100% - 41px);
 }
 
-.control-label .fa-angle-right{
-    font-size:18px;
-    padding-left:4px;
+.control-label .fa-angle-right {
+    font-size: 18px;
+    padding-left: 4px;
 }
 
-.control-label .fa-angle-double-right{
-    font-size:18px;
-    padding-left:4px;
+.control-label .fa-angle-double-right {
+    font-size: 18px;
+    padding-left: 4px;
 }
