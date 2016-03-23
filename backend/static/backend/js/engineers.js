@@ -206,11 +206,6 @@ $(document).ready(function () {
                 skill = $item.data('skill'),
                 request = $item.data('skill.request');
             
-            // We set the value of the skill-fss on true it's checked, and false if it's not checked
-            if($('.skill-fss').is(':checked')) {
-                $('.skill-fss').val(true);
-            } else { $('.skill-fss').val(false); }
-            
             // We've already got a request going, so cancel it.
             if (request) {
                 request.abort()
@@ -219,7 +214,8 @@ $(document).ready(function () {
             request = $.ajax({
                 url: skill.url,
                 data: {
-                    is_fss: $item.find('.skill-fss').val(),
+                    // We set the value of the skill-fss on true it's checked, and false if it's not checked
+                    is_fss: $('.skill-fss').is(':checked'),
                     level: $item.find('.skill-level').val()
                 },
                 method: 'patch'
