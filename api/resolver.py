@@ -3,6 +3,9 @@ from django.core.urlresolvers import resolve, Resolver404
 
 
 def url_kwargs(data):
+    """
+    Extract the kwargs from an url
+    """
     url = urlparse(data)
 
     try:

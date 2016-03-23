@@ -17,38 +17,32 @@
         }
     };
 
-    /* Function for creating and returning a string with the Countries and Languages of an engineer */
+    /**
+     * Format a data object to a specific format
+     *
+     * @param {Object|Array} data The data to format
+     * @param {string} key The format to use
+     * @returns {*}
+     */
     function formatString(data, key) {
-        var value = "";
-        // Added separate if statements to check in which format the data should return
         if (key == "countries" || key == "languages") {
-            // Splits the data into a string separated by commas
-            for (var val in data) {
-                if (val == 0) {
-                    value += data[val].name;
-                } else {
-                    value += ", " + data[val].name;
-                }
-                ;
-            }
-            ;
+            return data.map(function (obj) {
+                return obj.name;
+            }).join(', ');
         } else if (key == "category") {
             // Creates a string that holds the category and subcategory
-            value = data.parent.name;
-            value += " " + data.name;
+            return data.parent.name + " " + data.name;
         } else if (key == "country") {
-            for (var val in data) {
-                value = data.name;
-            }
-            ;
+            return data.name;
         }
-        return value;
+
+        return data;
     }
 
     var methods = {
         /**
          * Fill the form with data
-         * @param data Object with keys as input names and values as input values
+         * @param {Object} data Object with keys as input names and values as input values
          * @returns {jQuery}
          */
         init: function (data) {
@@ -75,21 +69,12 @@
                         }
 
                         if (autofill) {
+                            // data-* properties are treated differently than normal properties
                             if (autofill.substr(0, 5) === 'data-') {
-                                if (typeof data[key] == "object") {
-                                    $el.data(autofill.slice(5), formatString(data[key], key));
-                                } else {
-                                    $el.data(autofill.slice(5), data[key]);
-                                }
+                                $el.data(autofill.slice(5), formatString(data[key], key));
                             } else {
-                                // If the typeof information is an object it will be formatted to a string
-                                if (typeof data[key] == "object") {
-                                    $el.prop(autofill, formatString(data[key], key));
-                                } else {
-                                    $el.prop(autofill, data[key]);
-                                }
+                                $el.prop(autofill, formatString(data[key], key));
                             }
-
                         } else {
                             // If the data is not an array, make it an array
                             var value = $.isArray(data[key]) ? data[key] : [data[key]];
@@ -102,7 +87,7 @@
         },
         /**
          *
-         * @param enabled Are the elements enabled?
+         * @param {boolean} enabled Are the elements enabled?
          * @returns {jQuery}
          */
         editable: function (enabled) {
@@ -122,7 +107,7 @@
             // Find all file inputs and append all files of these inputs to the data
             this.find('input[type="file"]')
                 .each(function () {
-                    var name = this.name;
+                    var name = this.name.replace(/-/g, '_');
 
                     for (var i = this.files.length - 1; i >= 0; i--) {
                         data.append(name, this.files[i]);
