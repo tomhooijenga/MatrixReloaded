@@ -1,5 +1,6 @@
 import datetime
 
+from PIL import Image, ImageOps
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin
 )
@@ -170,6 +171,24 @@ class Engineer(models.Model):
         (1, 'ASP')
     ))
 
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+
+        # Save model to database
+        super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
+
+        if self.image and self.image.file:
+            # Open a file handle pointing to our image
+            with self.image.file as handle:
+                # Open the image in PIL
+                image = Image.open(handle)
+                width, height = image.size
+
+                if width != 300 and height != 300:
+                    # If the image is not the required size, crop and resize to specified size
+                    image = ImageOps.fit(image, size=(300, 300), method=Image.ANTIALIAS)
+                    image.save(handle.name)
+
 
 class Note(models.Model):
     """
@@ -207,6 +226,23 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = 'categories'
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+
+        # Save model to database
+        super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
+
+        if self.image and self.image.file:
+            # Open a file handle pointing to our image
+            with self.image.file as handle:
+                # Open the image in PIL
+                image = Image.open(handle)
+                width, height = image.size
+
+                if width != 300 and height != 300:
+                    # If the image is not the required size, crop and resize to specified size
+                    image = ImageOps.fit(image, size=(300, 300), method=Image.ANTIALIAS)
+                    image.save(handle.name)
 
 
 class Product(models.Model):
