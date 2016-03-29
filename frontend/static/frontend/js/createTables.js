@@ -48,8 +48,6 @@ function createEngineerTable(jsonUrl) {
                         return "ASP";
                     }
                 },
-                orderable: false,
-                searchable: false
             },
             {data: "country.code"}
         ]
