@@ -61,6 +61,8 @@ $(function () {
     var row = null;
 
     $table.on('click', 'tr', function () {
+        $child.show();
+        $children.show();
         addNew = false;
         row = this;
 
@@ -81,6 +83,8 @@ $(function () {
 
         $children.form('editable', false);
     }).on('click', '.edit', function (e) {
+        $child.show();
+        $children.show();
         addNew = false;
         e.stopPropagation();
 
