@@ -110,7 +110,11 @@ $(document).ready(function () {
         $this.form('submit')
             .done(function (data) {
                 $this.form(data).data('method', 'patch');
-
+                if (addNew === true) {
+                    $card.hide();
+                } else {
+                    $card.show();
+                }
                 // Reload the table with new data
                 table.ajax.reload();
 
@@ -118,11 +122,6 @@ $(document).ready(function () {
             })
             // Error
             .fail(errorToast);
-        if (addNew === true) {
-            $card.hide();
-        } else {
-            $card.show();
-        }
     });
 
     $.getJSON('/api/categories/?expand=children').done(function (data) {

@@ -240,6 +240,11 @@ $(document).ready(function () {
         $this.form('submit')
             .done(function (data) {
                 $this.form(data).data('method', 'patch');
+                if (addNew === true) {
+                    $card.hide();
+                } else {
+                    $card.show();
+                }
                 // Toast pop-up function
 
                 successToast("Data is saved.");
@@ -249,11 +254,6 @@ $(document).ready(function () {
             })
             // Error
             .fail(errorToast);
-            if (addNew === true) {
-                $card.hide();
-            } else {
-                $card.show();
-            }
     });
 
 
