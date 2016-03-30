@@ -1,8 +1,8 @@
 $(document).ready(function () {
     var $table = $('.table'),
-            $form = $('#card').find('form'),
-            $card = $('.card'),
-            addNew;
+        $form = $('#card').find('form'),
+        $card = $('.card'),
+        addNew;
 
     // We initialize the DataTable with the json file required for the products page
     var table = $table.DataTable({
@@ -42,7 +42,7 @@ $(document).ready(function () {
     $table.on('click', 'tr', function () {
         addNew = false;
         var data = table.row(this).data(),
-                category = data.category;
+            category = data.category;
         // Add titel
         $(".panel-heading").text(function (x) {
             return "Details";
@@ -60,20 +60,20 @@ $(document).ready(function () {
         e.stopPropagation();
 
         var $parent = $(this).closest('tr'),
-                data = table.row($parent).data(),
-                category = data.category;
+            data = table.row($parent).data(),
+            category = data.category;
 
         // Add titel
         $(".panel-heading").text(function (x) {
             return "Edit product";
         });
-       
+
         // Set the category to its URL
         data.category = category.url;
 
         $form.data('method', 'patch')
-                .form('editable', true)
-                .form(data);
+            .form('editable', true)
+            .form(data);
 
         // Restore the original category object
         data.category = category;
@@ -84,9 +84,9 @@ $(document).ready(function () {
         // Empty the form
         // Make the details form editable and set it's action and method
         $form.form('clear')
-                .form('editable', true)
-                .prop('action', '/api/products/')
-                .data('method', 'post');
+            .form('editable', true)
+            .prop('action', '/api/products/')
+            .data('method', 'post');
 
         // Add titel
         $(".panel-heading").text(function (x) {
@@ -98,26 +98,26 @@ $(document).ready(function () {
         e.preventDefault();
 
         var $this = $(this);
-        
+
         // Temporary fix for the is-active and is-crosslab checkboxes. When checked the value is true and when it's not checked the value will be false
         if ($('.is-crosslab').is(':checked')) {
             $('.is-crosslab-hidden').disabled = true;
-        }      
+        }
         if ($('.is-active').is(':checked')) {
             $('.is-active-hidden').disabled = true;
         }
 
         $this.form('submit')
-                .done(function (data) {
-                    $this.form(data).data('method', 'patch');
+            .done(function (data) {
+                $this.form(data).data('method', 'patch');
 
-                    // Reload the table with new data
-                    table.ajax.reload();
+                // Reload the table with new data
+                table.ajax.reload();
 
-                    successToast('Product was saved.')
-                })
-                // Error
-                .fail(errorToast);
+                successToast('Product was saved.')
+            })
+            // Error
+            .fail(errorToast);
         if (addNew === true) {
             $card.hide();
         } else {
@@ -147,6 +147,9 @@ $(document).ready(function () {
                     children: children
                 }
             }
+        }).filter(function (category) {
+            // Filter out empty entries
+            return !!category;
         });
 
 
