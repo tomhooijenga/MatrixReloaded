@@ -1,12 +1,15 @@
 import datetime
+import os
 
 from PIL import Image, ImageOps
+from django.conf import settings
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin
 )
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models import Q
+from django.db.models.fields.files import File
 from django.utils.crypto import get_random_string
 
 
@@ -188,6 +191,11 @@ class Engineer(models.Model):
                     # If the image is not the required size, crop and resize to specified size
                     image = ImageOps.fit(image, size=(300, 300), method=Image.ANTIALIAS)
                     image.save(handle.name)
+        else:
+            path = os.path.join(settings.BASE_DIR, 'static', 'img', 'default_engineer.png')
+            with open(path, 'rb') as handle:
+                file = File(handle)
+                self.image.save('default_engineer.png', file)
 
 
 class Note(models.Model):
@@ -262,6 +270,11 @@ class Product(models.Model):
                     # If the image is not the required size, crop and resize to specified size
                     image = ImageOps.fit(image, size=(300, 300), method=Image.ANTIALIAS)
                     image.save(handle.name)
+        else:
+            path = os.path.join(settings.BASE_DIR, 'static', 'img', 'default_product.png')
+            with open(path, 'rb') as handle:
+                file = File(handle)
+                self.image.save('default_product.png', file)
 
 
 class Skill(models.Model):

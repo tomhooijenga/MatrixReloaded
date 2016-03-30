@@ -1,4 +1,5 @@
 from datetime import date
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group, Permission
 from rest_framework import serializers
@@ -19,7 +20,6 @@ class DynamicHyperlinkedModelSerializer(serializers.HyperlinkedModelSerializer):
         if exclude is not None:
             for field in exclude:
                 self.fields.pop(field)
-
 
         # Expansion
         if expandable_fields is None and expanded_fields is None:
