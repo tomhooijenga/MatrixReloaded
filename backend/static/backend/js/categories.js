@@ -60,7 +60,7 @@ $(function () {
 
     var row = null;
 
-    $table.on('click', 'tr', function () {
+    $table.on('click', 'tr:not(.child, .child tr)', function () {
         $child.show();
         $children.show();
         addNew = false;
@@ -86,6 +86,7 @@ $(function () {
         $child.show();
         $children.show();
         addNew = false;
+
         e.stopPropagation();
 
         row = $(this).closest('tr');
@@ -189,17 +190,20 @@ $(function () {
     });
 
     // Add event listener for opening and closing subcategory listing
-    $('table tbody').on('click', 'tr', function () {
-        var tr = $(this).closest('tr');
-        var row = table.row(tr);
+    $('table tbody').on('click', 'tr:not(.child, .child tr)', function () {
+        var tr = $(this).closest('tr'),
+            row = table.row(tr),
+            data = row.data();
 
-        if (row.child.isShown()) {
-            // This row is already open - close it
-            row.child.hide();
-        } else {
-            // Open this row
-            row.child(listSubcategories(row.data())).show();
-            $(row.child()).addClass('child');
+        if (data.children && data.children.length > 0) {
+            if (row.child.isShown()) {
+                // This row is already open - close it
+                row.child.hide();
+            } else {
+                // Open this row
+                row.child(listSubcategories(data)).show();
+                $(row.child()).addClass('child');
+            }
         }
     });
 

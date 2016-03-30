@@ -55,6 +55,9 @@ a {
 tr {
     cursor: pointer;
 }
+tr.child tr {
+    cursor: default;
+}
 
 .main {
     width: 80%;
