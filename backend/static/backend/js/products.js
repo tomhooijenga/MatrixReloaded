@@ -118,7 +118,7 @@ $(document).ready(function () {
                 // Reload the table with new data
                 table.ajax.reload();
 
-                successToast('Product was saved.')
+                successToast('Product was saved.');
             })
             // Error
             .fail(errorToast);
