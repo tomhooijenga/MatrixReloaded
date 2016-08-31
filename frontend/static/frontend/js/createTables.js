@@ -44,8 +44,10 @@ function createEngineerTable(jsonUrl) {
                 render: function (data) {
                     if (data === 0) {
                         return "FSE";
-                    } else {
+                    } else if (data === 1) {
                         return "ASP";
+                    } else if (data === 2) {
+                        return "RCE";
                     }
                 },
             },
