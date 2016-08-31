@@ -171,7 +171,8 @@ class Engineer(models.Model):
     # The type of engineer.
     type = models.SmallIntegerField(choices=(
         (0, 'FSE'),
-        (1, 'ASP')
+        (1, 'ASP'),
+        (2, 'RCE')
     ))
 
     def save(self, force_insert=False, force_update=False, using=None,
